@@ -169,7 +169,6 @@ La zona tra _source_ e _draing_ è chiamata **_Lunghezza di Canale_** $(L)$, men
 
 ## 4.1. Analisi del Transistore
 
-> [!note]
 > Le ipotesi sulle quali lavoriamo sono quindi due:
 > - L'ossido è perfetto
 > - Le giunzioni `D-B` e `S-B` sono in inversa
@@ -824,11 +823,11 @@ $$
 \end{align*}
 $$
 
->  [!important]
+
 > Negli studi che faremo, opereremo due semplificazioni:
 > 1. I `MOSFET` non avranno capacità
 > 2. La resistenza $r_d \to \infty$, quindi potremo considerarla un aperto
 
 
-> [!warning]
+
 > Il modello _**è uguale sia per `NMOS` che per `PMOS`**_, in quanto stiamo trattando di relazioni _differenziali_.

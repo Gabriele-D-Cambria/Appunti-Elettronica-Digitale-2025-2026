@@ -346,10 +346,10 @@ $$
 Tipicamente $g_m$ è un valore grosso, quindi la resistenza vista di uscita è tipcamente **piccola**.
 
 Anche l'amplificazione di tensione è diversa in questo caso.
-Chiamando sempre $R_P = \R_S \parallel R_L$:
+Chiamando sempre $R_P = R_S \parallel R_L$:
 $$
 \begin{align*}
-	V_G = V_I \\
+	V_G &= V_I \\
 	V_S &= V_O \\
 	V_O &= R_S(g_mV_{GS}) \\
 	V_{GS} &= V_G - V_S  = V_G - V_O
@@ -407,7 +407,6 @@ Per ogniuno di questi stadi conosciamo le caratteristiche.
 
 Ipotizziamo che $A_{V_1} = 10$ e $A_{V_2} = 2$. Ci aspetteremmo un'amplificazione totale di $20$, ma questo _**non sempre accade**_.
 
-> [!caution]
 > L'amplificazione complessiva _**non è il prodotto delle singole amplificazioni**_:
 > $$
 > 	A_V = \frac{V_O}{V_I} \ne \prod_i{A_{V_i}}
@@ -441,11 +440,11 @@ $$
 Di conseguenza:
 $$
 \begin{CD}
-	\begin{rcases}
-		R_{I_2} \to \infty \\
-		\text{OR} \\
-		R_{O_1} \to 0
-	\end{rcases} @>>>
+	\begin{align*}
+		R_{I_2} &\to \infty \\
+		&\text{OR} \\
+		R_{O_1} &\to 0
+	\end{align*} @>>>
 	{
 		A_V = A_{V_1}A_{V_2}
 	}
@@ -532,8 +531,8 @@ La rete sommatrice può essere di:
 - **Insersione in Serie**: mette la reazione in serie all'ingresso
 - **Insersione in Parallelo**: mette la reazione in parallelo all'ingresso
 
-> [!important]
->
+
+
 > Le semplificazioni che facciamo nello studiare la Teoria della Reazione sono:
 > 1. L'Amplificatore $A$ è un circuito _**unidirezionale**_, dove il segnale può andare solo dalla _rete sommatrice_ alla _rete di prelievo_
 > 2. La _rete di reazione_ $\beta$ è un circuito _**unidirezionale**_, dove il segnale può andare solo dalla _rete di prelievo_  alla _rete sommatrice_
