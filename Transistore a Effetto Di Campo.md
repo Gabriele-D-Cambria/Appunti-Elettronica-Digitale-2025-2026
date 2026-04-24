@@ -831,3 +831,5 @@ $$
 
 
 > Il modello _**è uguale sia per `NMOS` che per `PMOS`**_, in quanto stiamo trattando di relazioni _differenziali_.
+>
+> Dobbiamo solo stare attenti che $g_m$ sia positivo, per fare ciò possiamo utilizzare la relazione $g_m = \frac{2I_{D_Q}}{|V_{GS_Q} - V_T|}$
