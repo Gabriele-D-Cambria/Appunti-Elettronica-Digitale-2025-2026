@@ -19,7 +19,7 @@ title: Circuiti Amplificatori
 	- [7.1. Amplificatore Operazionale - `OPA`](#71-amplificatore-operazionale---opa)
 		- [7.1.1. Metodo Del Corto Circuito Virtuale - `MCCV`](#711-metodo-del-corto-circuito-virtuale---mccv)
 		- [7.1.2. Amplificatore Non Invertente](#712-amplificatore-non-invertente)
-			- [7.1.2.1. BUffer](#7121-buffer)
+			- [7.1.2.1. Buffer](#7121-buffer)
 
 # 2. Transistore BJT come Amplificatore
 
@@ -665,39 +665,26 @@ $$
 
 </div>
 <div class="">
-TODO: foto
-<img class="80" src="./images">
+<img class="80" src="./images/transistor/amplification/differential/scheme.png">
 </div>
 </div>
 
-Per studiare questo tipo di amplificatori, e verificare che amplifichino solamente la differenza tra i due segnali, dobbiamo definire degli oggetti.
-
-Chiamiamo _**Segnale A Modo Differenziale**_ la differenza tra i segnali:
+Per studiare questo tipo di amplificatori, e verificare che amplifichino solamente la differenza tra i due segnali, dobbiamo definire degli oggetti:
 $$
-	V_d := V_1 - V_2
+\begin{cases}
+	V_d := V_1 - V_2 & \textbf{Segnale A Modo Differenziale} \\[1em]
+	V_c := \frac{V_1 + V_2}{2} & \textbf{Segnale a Modo Comune} \\[1em]
+	A_d := \frac{V_u}{V_d} & \textbf{Guadagno del Modo Differenziale} \\[1em]
+	A_c := \frac{V_u}{V_c} & \textbf{Guadahno del Modo Comune}
+\end{cases}
 $$
-
-Definiamo _**Segnale a Modo Comune**_ la semisomma tra i segnali:
-$$
-	V_c := \frac{V_1 + V_2}{2}
-$$
-
-Definiamo _**Guadagno del Modo Differenziale**_ il rapporto:
-$$
-	A_d = \frac{V_u}{V_d}
-$$
-
-Analogamente, definiamo il _**Guadahno del Modo Comune**_:
-$$
-	A_c = \frac{V_u}{V_c}
-$$
-
 
 Negli _Amplificatori Differenziali Ideali_ abbiamo che:
 - $A_d = K \gg 0$
 - $A_c = 0$
 
-Negli _Amplificatori Differenzili Reali_ questo non accade, ma abbiamo un segnale di uscita che dipende in qualche modo anche dal _modo comune_. Introduciamo quindi il `CMRR` (_Common MOde Rejection Ratio_):
+Negli _Amplificatori Differenzili Reali_ questo non accade, ma abbiamo un segnale di uscita che dipende in qualche modo anche dal _modo comune_.
+Per misurare questa quantità introduciamo il $\operatorname{CMRR}$ (_Common Mode Rejection Ratio_):
 $$
 	\operatorname*{CMRR} := \frac{A_d}{A_c}\Bigg|_{dB}
 $$
@@ -707,10 +694,10 @@ Nel caso ideale $\operatorname*{CMRR} \to \infty$.
 Si classificano _buoni amplificatori differenziali_, quegli amplificatori il quale $\operatorname{CMRR} \ge 80 \div 150$ $dB$
 
 
-È possibile dimostrare che le due quantità $V_d$ e $V_c$ sono linearmente dipendenti dalle tensioni di ingresso:
+È possibile dimostrare che le tensioni di ingresso sono linearmente dipendenti da $V_d$ e $V_c$:
 $$
 \begin{align*}
-	{V_d \over 2} + V_c &= \frac{V_1}{2} - \frac{V_2}{2} + \frac{V_1}{2} + \frac{V_2}{2} = V_1
+	{V_d \over 2} + V_c &= \frac{V_1}{2} - \frac{V_2}{2} + \frac{V_1}{2} + \frac{V_2}{2} = V_1 \\[1em]
 	V_c - {V_d \over 2} &= \frac{V_1}{2} + \frac{V_2}{2} - \frac{V_1}{2} + \frac{V_2}{2} +  = V_2
 \end{align*}
 $$
@@ -719,7 +706,7 @@ Possiamo quindi scrivere:
 $$
 \large
 \begin{align*}
-	V_1 &= V_c + \frac{V_d}{2}
+	V_1 &= V_c + \frac{V_d}{2} \\
 	V_2 &= V_c - \frac{V_d}{2}
 \end{align*}
 $$
@@ -728,22 +715,22 @@ Per quanto riguarda le amplificazioni le possiamo mettere in relazione all'uscit
 $$
 \begin{CD}
 	\underbrace{
-		\begin{align*}
-			A_1 &= \frac{V_u}{V_1}\Bigg|_{V_2 = 0} \\
-			A_2 &= \frac{V_u}{V_2}\Bigg|_{V_1 = 0}
-		\end{align*}
+		\begin{matrix}
+			A_1 = \frac{V_u}{V_1}\Bigg|_{V_2 = 0} & &
+			A_2 = \frac{V_u}{V_2}\Bigg|_{V_1 = 0}
+		\end{matrix}
 	} \\
 	@VVV \\
 	\begin{align*}
 		V_u &= V_1A_1 + V_2A_2 \\
-			&= (V_c + \frac{V_d}{2}A)A_1 + (V_c \frac{V_d}{2})A_2 \\
-			&= V_c (A_1 + A_2) + V_d (\frac{A_1-A_2}{2}) \\
+			&= \Bigl(V_c + \frac{V_d}{2}\Bigr)A_1 + \Bigl(V_c -\frac{V_d}{2}\Bigr)A_2 \\
+			&= V_c (A_1 + A_2) + V_d \Bigl(\frac{A_1-A_2}{2}\Bigr) \\
 			&= V_c A_c + V_d A_d
 	\end{align*}
 \end{CD}
 $$
 
-Abbiamo quindi che l'uscita è lienarmente dipendente dai guadagni in relazione alle tensioni di ingresso.
+Abbiamo  dimostrato quindi che l'uscita è _lienarmente dipendente dai guadagni_ in relazione alle tensioni di ingresso.
 
 Una particolarità degli amplificatori differenziali è che se in ingresso vi sono due segnali con rumore, dove il rumore è simile tra i due, il segnale in uscita sarà più "pulito", in quanto il rumore di uno e quello dell'altro vengono annulllati a vicenda.
 
@@ -764,8 +751,8 @@ Possiede un certo numero di piedini, tipicamente $8$, di cui $5$ sono fondamenta
 - **Terminale di Ingresso Invertente** (`-`)
 - **Terminale di Uscita**
 - **2 Terminali di Alimentazione**: sono necessari per il corretto funzionamento dei transistori, e sono connessi a due batterie con un nodo a comune. I valori di $V_{CC}$ e $V_E$ possono essere in alimentazione:
-  - _Duale_: $V_{CC} =  - V_E$
-  - __ : $V_{CC} \ne 0$ &emsp; $V_E = 0$
+  - $V_{CC} = -V_E$ &emsp; detta anche _alimentazione duale_
+  - $V_{CC} \ne 0$ &emsp; $V_E = 0$
 
 
 La tensione di base dell'amplificatore è presa _**sul nodo a comune dei terminali di alimentazione**_.
@@ -777,21 +764,20 @@ La tensione di uscita $V_o$ è presa in riferimento al nodo comune, e _**varia s
 </div>
 <div class="">
 <figure class="80">
-TODO: foto
-<img class="100" src="./images">
+<img class="100" src="./images/transistor/amplification/differential/operational-scheme.png">
 <figcaption>
 
-Tipicamente i due terminali di alimentazione non sono riportati nei circuiti, ma è importante che ci siano.
+Tipicamente i due terminali di alimentazione non sono riportati nei circuiti, ma è importante sapere che ci sono e sono il motivo per il quale l'amplificatore funziona.
 </figcaption>
 </figure>
 </div>
 </div>
 
-
 Per variazioni differenziali il circuito equivalente è il seguente:
 <div class="grid2">
 <div class="">
 
+Le relazioni che valgono in questo circuito sono:
 $$
 \begin{cases}
 	V_{IN} = (V^+ - V^-) = V_d \\
@@ -801,9 +787,8 @@ $$
 
 </div>
 <div class="">
-TODO: foto
-<figure class="">
-<img class="100" src="./images">
+<figure class="100">
+<img class="80" src="./images/transistor/amplification/differential/operational-small-signals.png">
 <figcaption>
 
 $V_{OL}$ sta per _tensione di ciclo aperto_ o di _open-loop_.
@@ -813,7 +798,7 @@ $V_{OL}$ sta per _tensione di ciclo aperto_ o di _open-loop_.
 </div>
 </div>
 
-I valori di riferimento delgi amplificatori operazionali sono i seguenti:
+I valori di riferimento degli amplificatori operazionali sono i seguenti:
 <div class="flexbox" markdown="1">
 
 |                                  |  Ideale  |        Reale         |
@@ -824,16 +809,17 @@ I valori di riferimento delgi amplificatori operazionali sono i seguenti:
 |              Banda               | $\infty$ |   $4 \div 10$ $Hz$   |
 | Prodotto Guadagno-Banda<br>`PGB` | $\infty$ |   $10^5 \div 10^6$   |
 |      $\operatorname{CMRR}$       | $\infty$ |  $90 \div 120$ $dB$  |
+
+
 </div>
 
 La _banda_ è il valore che si discosta di più tra modello ideale e modello reale. Questo avviene per motivi di **stabilità** del sistema.
 Tuttavia, quando li utilizziamo in _loop-reazione_ notiamo che il prodotto guadagno banda si conserva. Ciò implica che possiamo utilizzare amplificatori con guadagno più piccolo per ampliare la banda, **senza perdere di stabilità**.
 
 
-La caratteristica di uscita degli amplificatori operazionali è il seguente:
+La caratteristica di uscita degli amplificatori operazionali è la seguente:
 <figure class="">
-TODO: immagine
-<img class="100" src="./images">
+<img class="60" src="./images/transistor/amplification/differential/operational-graph.png">
 <figcaption>
 
 Non sempre la tensione di uscita con $V_{IN} = 0$ è nulla. In alcuni amplificatori è infatti presente un piedino per far in modo che questo avvenga
@@ -845,20 +831,23 @@ Notiamo che, fuori dalle zone di saturazione, la tensione di uscita è **linearm
 
 Se prendessimo un amplificatore con $A_{V_{OL}} = 10^5$ e $V_{CC} = -V_E = 10$ $V$ otteniamo che:
 $$
+\large
 \begin{matrix}
-	\frac{V_CC}{A_{V_{OL}}} = 10^-4 & & \frac{V_E}{A_{V_{OL}}} = -10^-4
+	\frac{V_{CC}}{A_{V_{OL}}} = 10^{-4} & & \frac{V_E}{A_{V_{OL}}} = -10^{-4}
 \end{matrix}
 $$
 
 Otteniamo quindi che il range di tensioni nelle quali il nostro amplificatore opera è tra $-0.1$ e $0.1$ $mV$. Il valore di rumore è molto spesso **molto più alto**, e porta il nostro amplificatore a _**saturarsi**_.
 
-Per riuscire quindi a utilizzarlo in _loop chiusi_ senza portarlo in saturazione, lo montiamo in **reazione negativa**. Per quanto andiamo a perdere notevolmente in guadagno (passando da $10^5$ volte anche fino a $10$ volte), riusciamo ad utilizzarlo sempre nella _zona lineare_, evitando la saturazione.
+Per riuscire quindi a utilizzarlo in _loop chiusi_ senza portarlo in saturazione, lo montiamo in **reazione negativa**.
+Questa configurazione ci farà sì perdere molto in guadagno (passando da un guadagno di $10^5$ anche fino a un "misero" $10$), ma ci permette di **utilizzarlo sempre nella _zona lineare_**, evitandoci la saturazione.
 
 ### 7.1.1. Metodo Del Corto Circuito Virtuale - `MCCV`
 
 Questo metodo inserisce l'amplificatore operazionale all'interno di un circuito.
 
-TODO: foto
+<img class="30" src="./images/transistor/amplification/differential/MCCV.png">
+
 
 Se questo circuito rispetta le seguenti ipotesi, allora ci permette di trattare il circuito in modo molto semplice.
 
@@ -872,7 +861,7 @@ $$
 	V^+ \approx V^-
 $$
 
-Oltre a giustificare il nome del metodo (_corto-circuito_), ci dice non solo che la differenza di tensione ai due capi è quasi nulla, quindi coerente con l'ipotesi di _zona lineare_, ci permette di dire che, le correnti nei terminali di ingresso, in relazione alla resistenza equivalente di ingresso $R_{IN}$:
+Oltre a giustificare il nome del metodo (_corto-circuito_), ci dice non solo che la differenza di tensione ai due capi è quasi nulla, quindi coerente con l'ipotesi di _zona lineare_, ma ci permette di dire che le correnti nei terminali di ingresso, in relazione alla resistenza equivalente di ingresso $R_{IN}$, **sono praticamente nulle**:
 $$
 \begin{CD}
 	{
@@ -888,8 +877,6 @@ $$
 	}
 \end{CD}
 $$
-
-Ciò ci dice quindi che la corrente all'interno dell'aplificatore è praticamente nulla.
 
 ### 7.1.2. Amplificatore Non Invertente
 
@@ -924,14 +911,13 @@ $$
 	V_o &= R_2i_2 + R_1i_1 \\
 		&= (R_2 + R_1) i_1 \\
 		&= (R_2 + R_1) \cdot \frac{V_s}{R_1} \\
-		&= V_s(1 + \frac{R_2}{R_1})
+		&= V_s\Bigl(1 + \frac{R_2}{R_1}\Bigr)
 \end{align*}
 $$
 
 </div>
 <div class="">
-TODO: foto
-<img class="80" src="./images">
+<img class="80" src="./images/transistor/amplification/differential/non-inverter.png">
 </div>
 </div>
 
@@ -945,7 +931,7 @@ $$
 
 L'Amplificazione quindi è:
 - **Indipendente dall'amplificatore**: finché questo opera in zona lineare con un guadagno elevato
-- **Dipdendente dal rapporto di due resistenze**: se le due resistenze sono della stessa famiglia, avranno variazioni simili sotto effetit di temperatura
+- **Dipendente dal rapporto di due resistenze**: se le due resistenze sono della stessa famiglia, avranno variazioni simili sotto effetti di temperatura, mantenendo un guadagno costante
 
 
 La _Resistenza Di Uscita_ $R_{of}$:
@@ -960,12 +946,12 @@ $$
 \end{CD}
 $$
 
-La _Resistenza Di Ingresso_ $R_I$:
+La _Resistenza Di Ingresso_ $R_{in}$:
 $$
-	R_I = \frac{V_s}{i_s} = +\infty
+	R_{in} = \frac{V_s}{i_s} = +\infty
 $$
 
-#### 7.1.2.1. BUffer
+#### 7.1.2.1. Buffer
 
 Possiamo quindi utilizzare questo circuito all'interno di un altra configurazione:
 <div class="grid2">
@@ -973,22 +959,20 @@ Possiamo quindi utilizzare questo circuito all'interno di un altra configurazion
 
 Ponendo $R_2 = 0$ otteniamo un guadagno $A = 1$, quindi una mera **propagazione del segnale**.
 
-Un Amplificatore non invertente che rispetta:
-$$
-\begin{cases}
-	R_{of} = \frac{R_{OPA}}{1 - \beta A} = 0 \\
-	R_I = \frac{V_s}{i_s} = 0 \\
-	R_2 = 0 \\
-	A = 1
-\end{cases}
-$$
-
-È chiamato _**Buffer**_.
+Definiamo _**Buffer**_:
+> Un _Amplificatore Non Invertente_ che rispetta:
+> $$
+> 	\begin{cases}
+> 		R_{of} = \frac{R_{OPA}}{1 - \beta A} = 0 \\
+> 		R_{in} = \frac{V_s}{i_s} = 0 \\
+> 		R_2 = 0 \\
+> 		A = 1
+> 	\end{cases}
+> $$
 
 </div>
 <div class="">
-TODO: foto
-<img class="80" src="./images">
+<img class="60" src="./images/transistor/amplification/differential/buffer.png">
 </div>
 </div>
 
