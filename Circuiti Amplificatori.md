@@ -24,8 +24,6 @@ title: Circuiti Amplificatori
 		- [7.1.4. Amplificatore di Differenza](#714-amplificatore-di-differenza)
 		- [7.1.5. Amplificatore Della Somma](#715-amplificatore-della-somma)
 	- [7.2. Integratore di Miller](#72-integratore-di-miller)
-		- [7.2.1. Studio Nel Dominio di Laplace](#721-studio-nel-dominio-di-laplace)
-		- [7.2.2. Studio Nel Dominio del Tempo](#722-studio-nel-dominio-del-tempo)
 		- [7.2.3. Problemi di Stabililtà](#723-problemi-di-stabililtà)
 - [8. Regolatori di Tensione Lineare Serie](#8-regolatori-di-tensione-lineare-serie)
 
@@ -991,7 +989,7 @@ Il **Buffer** ci permette di propagare la tensione _**ignorando le resistenze a 
 <div class="grid2">
 <div class="">
 
-Lo schema è simile a quella che avbiamo già visto per il _non invertente_.
+Lo schema è simile a quello che avbiamo già visto per il _non invertente_.
 
 L'unica differenza è che la tensione di ingresso non è applicata sul polo non invertente dell'amplificatore (`+`), ma su quello invertente (`-`).
 
@@ -1022,8 +1020,7 @@ $$
 
 </div>
 <div class="">
-TODO: foto
-<img class="80" src="./images">
+<img class="80" src="./images/transistor/amplification/differential/inverter.png">
 </div>
 </div>
 
@@ -1031,7 +1028,7 @@ Il circuito avrà quindi un amplificazione totale che vale:
 $$
 \LARGE
 \boxed{
-	A =\frac{V_o}{V_s} = 1 + \frac{R_2}{R_1}
+	A =\frac{V_o}{V_s} = -\frac{R_2}{R_1}
 }
 $$
 
@@ -1078,8 +1075,7 @@ L'analisi del circuito è sempre la stessa. Ipotizziamo per comodità l'ipotesi 
 
 </div>
 <div class="">
-TODO: foto
-<img class="80" src="./images">
+<img class="80" src="./images/transistor/amplification/differential/differenza.png">
 </div>
 <div class="top">
 <p class="p">Ipotesi 1</p>
@@ -1091,8 +1087,7 @@ $$
 
 Il circuito è il seguente:
 
-TODO: foto partizione 1
-<img class="" src="./images">
+<img class="" src="./images/transistor/amplification/differential/differenza-p1.png">
 
 In questa conformazione:
 $$
@@ -1102,8 +1097,8 @@ $$
 A questo punto siamo tornati nel caso dell'_Amplificatore non Invertente_:
 $$
 \begin{align*}
-	V_{o1}  &= (1 + \frac{R_2}{R_1})V^+ \\
-			&= (1 + \frac{R_2}{R_1})\frac{R_4}{R_3 + R_4}V_1
+	V_{o1}  &= \Bigl(1 + \frac{R_2}{R_1}\Bigr)V^+ \\
+			&= \Bigl(1 + \frac{R_2}{R_1}\Bigr)\frac{R_4}{R_3 + R_4}V_1
 \end{align*}
 $$
 
@@ -1117,8 +1112,8 @@ $$
 $$
 
 Il circuito diventa il seguente:
-TODO: foto partizione 2
-<img class="" src="./images">
+<img class="" src="./images/transistor/amplification/differential/differenza-p2.png">
+
 
 Dato che $i^+ = 0$ e $V^+ \approx = 0$, significa che le resistenze $R_3, R_4$ è come se non ci fossero, ovvero come se stessimo studiando l'_amplificatore invertente_:
 $$
@@ -1132,7 +1127,7 @@ Mettiamo adesso insieme i due risultati:
 $$
 \begin{align*}
     V_o &= V_{o1} \\
-        &= (1 + \frac{R_2}{R_1})\frac{R_4}{R_3 + R_4}V_1 - \frac{R_2}{R_1}V_2
+        &= \Bigl(1 + \frac{R_2}{R_1}\Bigr)\frac{R_4}{R_3 + R_4}V_1 - \frac{R_2}{R_1}V_2
 \end{align*}
 $$
 
@@ -1144,12 +1139,12 @@ $$
 Imponiamo che se $V_1 = V_2$ allora abbiamo che $V_o = 0$:
 $$
 \begin{align*}
-  \frac{R_4}{R_4 + R_3}(1 + \frac{R_2}{R_1}) - \frac{R_2}{R_1} &= 0 \\
-  \frac{R_4}{R_4 + R_3}(1 + \frac{R_2}{R_1})  &= \frac{R_2}{R_1} \\
-  \frac{R_4}{R_4 + R_3} &= \frac{R_2}{R_1} \cdot \frac{R_1}{R_1 + R_2} \\
-  \frac{R_4}{R_4 + R_3} &= \frac{R_2}{R_1 + R_2} \\
-  \frac{R_4 + R_3}{R_4} &= \frac{R_1+R_2} {R_2} \\
-  \frac{R_3}{R_4} + 1 &= \frac{R_1}{R_2} + 1 \\
+  \frac{R_4}{R_4 + R_3}\Bigl(1 + \frac{R_2}{R_1}\Bigr) - \frac{R_2}{R_1} &= 0 \\[1em]
+  \frac{R_4}{R_4 + R_3}\Bigl(1 + \frac{R_2}{R_1}\Bigr)  &= \frac{R_2}{R_1} \\[1em]
+  \frac{R_4}{R_4 + R_3} &= \frac{R_2}{R_1} \cdot \frac{R_1}{R_1 + R_2} \\[1em]
+  \frac{R_4}{R_4 + R_3} &= \frac{R_2}{R_1 + R_2} \\[1em]
+  \frac{R_4 + R_3}{R_4} &= \frac{R_1+R_2} {R_2} \\[1em]
+  \frac{R_3}{R_4} + 1 &= \frac{R_1}{R_2} + 1 \\[1em]
   \frac{R_3}{R_4} &= \frac{R_1}{R_2}
 \end{align*}
 $$
@@ -1165,7 +1160,7 @@ $$
 Per calcolare ora il valore del fattore $K$:
 $$
 \begin{align*}
-V_o &= V_1 \frac{R_2}{R_1 + R_2} (\frac{R_1 + R_2}{R_1}) -V_2 \frac{R_2}{R_1} \\
+V_o &= V_1 \frac{R_2}{R_1 + R_2} \Bigl(\frac{R_1 + R_2}{R_1}\Bigr) -V_2 \frac{R_2}{R_1} \\
     &= \frac{R_2}{R_1}(V_1 - V_2)
 \end{align*}
 $$
@@ -1187,8 +1182,6 @@ $$
 
 Per parlare invece di _Resistenza Vista di Ingresso_, come è possibile vedere dall'immagine ne possiamo calcolare 2:
 $$
-\def\arraystretch{2}
-
 \begin{matrix}
 \begin{align*}
   R_{I_1} &= \frac{V_1}{i_1}\Bigg|_{V_2 = 0} \\
@@ -1220,10 +1213,10 @@ Il circuito è simile a quello di un _Amplificatore Invertente_, dove però coll
 
 Le due correnti:
 $$
-\begin{align*}
-    i_1 &= \frac{V_1}{R_1} \\
-    i_2 &= \frac{V_2}{R_3}
-\end{align*}
+\large
+\begin{matrix}
+    i_1 = \frac{V_1}{R_1} && i_2 = \frac{V_2}{R_3}
+\end{matrix}
 $$
 
 Le correnti al nodo, sempre in ipotesi `MCCV`:
@@ -1239,7 +1232,7 @@ La tensione di uscita sarà quindi:
 $$
 \begin{align*}
     V_o &= -R_2i_2\\
-        &= -R_2(\frac{V_1}{R_1} + \frac{V_2}{R_3})
+        &= -R_2\Bigl(\frac{V_1}{R_1} + \frac{V_2}{R_3}\Bigr)
 \end{align*}
 $$
 
@@ -1252,8 +1245,7 @@ $$
 $$
 </div>
 <div class="">
-TODO: foto
-<img class="80" src="./images" />
+<img class="80" src="./images/transistor/amplification/differential/sum.png"/>
 </div>
 </div>
 
@@ -1263,13 +1255,14 @@ TODO: foto
 
 È un _Amplificatore Non Invertente_ dove la reazione è fatta sfruttando invece di una resistenza un condensatore.
 
-TODO: foto 
+<img class="30" src="./images/transistor/amplification/differential/miller-integrator.png">
+
 
 Lo studio può essere fatto sia nel **Dominio di Laplace** che nel **Dominio del Tempo**.
 
-### 7.2.1. Studio Nel Dominio di Laplace
-
-TODO: foto
+<div class="grid2">
+<div class="top">
+<p class="p">Studio Nel Dominio di Laplace</p>
 
 In questa conformazione è immediato capire che:
 $$
@@ -1288,15 +1281,15 @@ $$
 }
 $$
 
-### 7.2.2. Studio Nel Dominio del Tempo
-
-TODO: foto
+</div>
+<div class="top">
+<p class="p">Studio Nel Dominio Del Tempo</p>
 
 Nell'ipotesi del `MCCV`:
 $$
 \begin{align*}
   i_R = i_C &= \frac{V_s}{R} \\
-            &= \frac{dq}{dt} = C \frac{dV_c}{dt}
+            &= \frac{dq}{dt} = C \cdot \frac{dV_c}{dt}
 \end{align*}
 $$
 
@@ -1308,11 +1301,14 @@ $$
 Sostituendo:
 $$
 \begin{align*}
-    \frac{V_s}{R} &= - C \frac{dV_o}{dt} \\
+    \frac{V_s}{R} &= - \frac{dV_o}{dt} C \\
     \frac{dV_o}{dt} &= - \frac{1}{RC}V_s \\
-    V_o(t) = -\frac{1}{RC} \int_0^t{V_s(\tau)\;d\tau} + V_o(0)
+    V_o(t) &= -\frac{1}{RC} \int_0^t{V_s(\tau)\;d\tau} + V_o(0)
 \end{align*}
 $$
+
+</div>
+</div>
 
 ### 7.2.3. Problemi di Stabililtà
 
@@ -1326,8 +1322,7 @@ $$
 Se grafichiamo:
 
 <figure>
-TODO: foto
-<img class="" src="./images" />
+<img class="50" src="./images/transistor/amplification/differential/miller-integrator-graph.png"/>
 <figcaption>
 
 La saturazione _OPA_ è dovuta al Condensatore.
@@ -1335,64 +1330,4 @@ Per evitare questo problema si mette spesso un interruttore o una resistenza in 
 </figcaption>
 </figure>
 
-
 Se invertissimo resistenza e condensatore otterremo un **Circuito Derivatore**.
-
-# 8. Regolatori di Tensione Lineare Serie
-
-È un circuito che ci permette di stabilizzare una tensione variabile.
-
-Per ottenere questo mettiamo un _**Elemento di Passo**_, un elemento di potenza, tra ingresso e uscita che ci permetta di regolare l'ingresso per ottenere l'uscita che desideriamo.
-
-Per ottenere questo possiamo utilizzare come _Elemento di Passo_ sia un **Transistore Bipolare** che un **Transistore MOSFET**.
-
-Noi vedremo la formazione con il **BJT**:
-
-grid1
-
-Per riuscire a regolare il comportamento del **BJT** e mantenere costante l'uscita prendiamo una partizione della tensione di uscita e la portiamo in ingresso ad un **Amplificatore Operazionale**, dove la confrontiamo con un riferimento di tensione.
-
-Il riferimento può essere di tanti tipi, noi utilizziamo un **Diodo Zener**, mettendo a confronto la sua tensione $V_Z$.
-
-L'uscita dell'amplificatore viene collegata quindi alla base del **BJT**.
-
-TODO: foto
-
-
-Verifichiamo quindi la reazione negativa ipotizzando:
-- $|\beta A | \gg 1$
-- Reazione Negativa
-- Regime Lineare
-
-Queste ipotesi ci permettono di operare in `MCCV`:
-$$
-\begin{cases}
-  V^+ \approx V^- \\
-  i^+ \approx i^- \approx = 0
-\end{cases}
-$$
-
-In questa ipotesi:
-$$
-\begin{CD}
-\underbrace{
-  \begin{align*}
-    V^- &= \frac{R_2}{R_1 + R_2}V_o \\
-    V^+ &= V_Z
-  \end{align*}} \\
-@V{V^+ \approx V^-}VV \\
-\begin{align*}
-  V_o\frac{R_2}{R_1 + R_2} &\approx V_Z \\
-  V_o &= \frac{R_1 + R_2}{R_2} \cdot V_Z
-\end{align*}
-\end{CD}
-$$
-
-Per verificare la _reazione negativa_ iporizziamo che, per qualche motivo, $V_o \to V_o + \Delta V_o > V_o$.
-
-Di conseguenza aumenterà anche $V^-$, mentre $V^+$ **resta costante**.
-
-Questo comporta che la tensione in ingresso $V_{in} = V^+ - V^-$ **diminuisce**, che produrrà una _diminuzione dell'uscita dal circuito operazionale_, che produce una corrente sulla base che diminuisce e che fa diminuire la corrente $i_E$.
-
-Se $i_E$ diminuisce, diminuisce la tensione che viene partizionata e di conseguenza **diminuisce $V_o$**, quindi in _**Reazione Negativa**_.
-

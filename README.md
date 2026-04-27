@@ -66,7 +66,7 @@ Questa parte di Spice NON È COMPRESA ALL'INTERNO DELL'ESAME, ma il loro scopo �
 ## 📖 Ordine di Studio Consigliato
 
 <div class="alert">
-Gli appunti non sono terminati e potrebbero avere errori o potrebbero mancare delle immagini.
+Gli appunti non sono terminati e potrebbero avere errori e/o potrebbero mancare delle immagini.
 </div>
 
 1. [Introduzione](./Introduzione)
@@ -76,7 +76,8 @@ Gli appunti non sono terminati e potrebbero avere errori o potrebbero mancare de
 6. [Trasistore Bipolare](./Transistore%20Bipolare)
 7. [Trasistore a Effetto di Campo](./Transistore%20a%20Effetto%20Di%20Campo)
 8. [Circuiti Amplificatori](./Circuiti%20Amplificatori)
-9. [Porte Logiche](./Porte%20Logiche)
+9. [Regolatori di Tensione](./Regolatori%20di%20Tensione)
+10. [Porte Logiche](./Porte%20Logiche)
 
 ## 📜 Disclaimer
 
