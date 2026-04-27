@@ -22,6 +22,12 @@ title: Circuiti Amplificatori
 			- [7.1.2.1. Buffer](#7121-buffer)
 		- [7.1.3. Amplificatore Invertente](#713-amplificatore-invertente)
 		- [7.1.4. Amplificatore di Differenza](#714-amplificatore-di-differenza)
+		- [7.1.5. Amplificatore Della Somma](#715-amplificatore-della-somma)
+	- [7.2. Integratore di Miller](#72-integratore-di-miller)
+		- [7.2.1. Studio Nel Dominio di Laplace](#721-studio-nel-dominio-di-laplace)
+		- [7.2.2. Studio Nel Dominio del Tempo](#722-studio-nel-dominio-del-tempo)
+		- [7.2.3. Problemi di Stabililtà](#723-problemi-di-stabililtà)
+- [8. Regolatori di Tensione Lineare Serie](#8-regolatori-di-tensione-lineare-serie)
 
 # 2. Transistore BJT come Amplificatore
 
@@ -1152,7 +1158,7 @@ Otteniamo quindi che la condizione è vera se:
 $$
 \Large
 \boxed{
-  \frac{R_3}{R_4} &= \frac{R_1}{R_2}
+  \frac{R_3}{R_4} = \frac{R_1}{R_2}
 }
 $$
 
@@ -1201,7 +1207,7 @@ $$
   \operatorname*{CMRR} \to \infty
 $$
 
-### Amplificatore Della Somma
+### 7.1.5. Amplificatore Della Somma
 
 La configurazione di questo circuito è molto semplice:
 
@@ -1237,8 +1243,10 @@ $$
 
 Se ipotizziamo $R_1 = R_3 = R$:
 $$
+\begin{align*}
     V_o &= -R_2i_2\\
         &= -\frac{R_2}{R}(V_1 + V_2)
+\end{align*}
 $$
 </div>
 <div class="">
@@ -1249,7 +1257,7 @@ TODO: foto
 
 
 
-## Integratore di Miller
+## 7.2. Integratore di Miller
 
 È un _Amplificatore Non Invertente_ dove la reazione è fatta sfruttando invece di una resistenza un condensatore.
 
@@ -1257,7 +1265,7 @@ TODO: foto
 
 Lo studio può essere fatto sia nel **Dominio di Laplace** che nel **Dominio del Tempo**.
 
-### Studio Nel Dominio di Laplace
+### 7.2.1. Studio Nel Dominio di Laplace
 
 TODO: foto
 
@@ -1274,11 +1282,11 @@ Applicando l'antitrasformata otteniamo che nel tempo:
 $$
 \large
 \boxed{
-  V_o(t) = -\frac{1}{RC} \cdot \int_{0}^{t}{V_s(\tao)\;d\tao} + V_o(0)
+  V_o(t) = -\frac{1}{RC} \cdot \int_{0}^{t}{V_s(\tau)\;d\tau} + V_o(0)
 }
 $$
 
-### Studio Nel Dominio del Tempo
+### 7.2.2. Studio Nel Dominio del Tempo
 
 TODO: foto
 
@@ -1300,11 +1308,11 @@ $$
 \begin{align*}
     \frac{V_s}{R} &= - C \frac{dV_o}{dt} \\
     \frac{dV_o}{dt} &= - \frac{1}{RC}V_s \\
-    V_o(t) = -\frac{1}{RC} \int_0^t{V_s(\tao)\;d\tao} + V_o(0)
+    V_o(t) = -\frac{1}{RC} \int_0^t{V_s(\tau)\;d\tau} + V_o(0)
 \end{align*}
 $$
 
-### Problemi di Stabililtà
+### 7.2.3. Problemi di Stabililtà
 
 Questo circuito ha il problema che **NON È STABILE BIBO**.
 
@@ -1328,7 +1336,7 @@ Per evitare questo problema si mette spesso un interruttore o una resistenza in 
 
 Se invertissimo resistenza e condensatore otterremo un **Circuito Derivatore**.
 
-# Regolatori di Tensione Lineare Serie
+# 8. Regolatori di Tensione Lineare Serie
 
 È un circuito che ci permette di stabilizzare una tensione variabile.
 
@@ -1372,9 +1380,10 @@ $$
   \end{align*}} \\
 @V{V^+ \approx V^-}VV \\
 \begin{align*}
-  V_o\frac{R_2}{R_1 + R_2} \approx V_Z \\
-  V_o = \frac{R_1 + R_2}{R_2} \cdot V_Z
+  V_o\frac{R_2}{R_1 + R_2} &\approx V_Z \\
+  V_o &= \frac{R_1 + R_2}{R_2} \cdot V_Z
 \end{align*}
+\end{CD}
 $$
 
 Per verificare la _reazione negativa_ iporizziamo che, per qualche motivo, $V_o \to V_o + \Delta V_o > V_o$.
