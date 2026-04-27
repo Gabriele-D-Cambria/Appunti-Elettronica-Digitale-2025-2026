@@ -1,7 +1,7 @@
 # Appunti Elettronica Digitale  A.A. 2025-2026
 
 Questi sono gli appunti del corso Elettronica Digitale di 2025-2026 dell'Università di Pisa.
-Per una visualizzazione ottimale con formattazione completa, rendering delle formule matematiche e funzionamento dei link di navigazione, si consiglia di consultare la versione online disponibile su [GitHub Pages]().
+Per una visualizzazione ottimale con formattazione completa, rendering delle formule matematiche e funzionamento dei link di navigazione, si consiglia di consultare la versione online disponibile su [GitHub Pages](https://gabriele-d-cambria.github.io/Appunti-Elettronica-Digitale-2025-2026/).
 
 
 ## 📚 Informazioni sul Corso
@@ -64,6 +64,10 @@ Questa parte di Spice NON È COMPRESA ALL'INTERNO DELL'ESAME, ma il loro scopo �
 
 
 ## 📖 Ordine di Studio Consigliato
+
+<div class="alert">
+Gli appunti non sono terminati e potrebbero avere errori o potrebbero mancare delle immagini.
+</div>
 
 1. [Introduzione](./Introduzione)
 2. [Corrente nei Materiali](./Corrente%20nei%20Materiali)

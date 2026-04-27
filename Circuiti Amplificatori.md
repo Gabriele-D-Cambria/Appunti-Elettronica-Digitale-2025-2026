@@ -1187,6 +1187,8 @@ $$
 
 Per parlare invece di _Resistenza Vista di Ingresso_, come è possibile vedere dall'immagine ne possiamo calcolare 2:
 $$
+\def\arraystretch{2}
+
 \begin{matrix}
 \begin{align*}
   R_{I_1} &= \frac{V_1}{i_1}\Bigg|_{V_2 = 0} \\
@@ -1195,7 +1197,7 @@ $$
 \end{align*}
 & & 
 \begin{align*}
-  R_{I_2} 6= \frac{V_2}{i_2}\Bigg|_{V_1 = 0} \\
+  R_{I_2} &= \frac{V_2}{i_2}\Bigg|_{V_1 = 0} \\
   i_2 &= \frac{V_2}{R_1} \\
   R_{I_2} &= R_1
 \end{align*}
