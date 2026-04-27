@@ -25,7 +25,6 @@ title: Circuiti Amplificatori
 		- [7.1.5. Amplificatore Della Somma](#715-amplificatore-della-somma)
 	- [7.2. Integratore di Miller](#72-integratore-di-miller)
 		- [7.2.3. Problemi di Stabililtà](#723-problemi-di-stabililtà)
-- [8. Regolatori di Tensione Lineare Serie](#8-regolatori-di-tensione-lineare-serie)
 
 # 2. Transistore BJT come Amplificatore
 
@@ -124,7 +123,7 @@ $$
 \end{CD}
 $$
 
-In situazioni comuni $(h_{fe} \gg 1, R_E \not{\to} 0), mantenendo $R_E$ otteniamo un guadagno di tensione che è **indipendente dalle caratteristiche del transistore**, ma proporzionale solamente al **_rapporto tra due resistenze_**, ovvero dalle caratteristiche dei componenti esterni **sui quali abbiamo controllo**.
+In situazioni comuni $(h_{fe} \gg 1, R_E \not{\to} 0)$, mantenendo $R_E$ otteniamo un guadagno di tensione che è **indipendente dalle caratteristiche del transistore**, ma proporzionale solamente al **_rapporto tra due resistenze_**, ovvero dalle caratteristiche dei componenti esterni **sui quali abbiamo controllo**.
 
 Per quanto riguarda la _Resistenza di Ingresso_:
 $$
@@ -1183,17 +1182,17 @@ $$
 Per parlare invece di _Resistenza Vista di Ingresso_, come è possibile vedere dall'immagine ne possiamo calcolare 2:
 $$
 \begin{matrix}
-\begin{align*}
+\begin{aligned}
   R_{I_1} &= \frac{V_1}{i_1}\Bigg|_{V_2 = 0} \\
   i_1 &= \frac{V_1}{R_3 + R_4} \\
   R_{I_1} &= R_3 + R_4
-\end{align*}
+\end{aligned}
 & & 
-\begin{align*}
+\begin{aligned}
   R_{I_2} &= \frac{V_2}{i_2}\Bigg|_{V_1 = 0} \\
   i_2 &= \frac{V_2}{R_1} \\
   R_{I_2} &= R_1
-\end{align*}
+\end{aligned}
 \end{matrix}
 $$
 

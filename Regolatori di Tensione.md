@@ -36,7 +36,7 @@ L'uscita dell'amplificatore viene collegata quindi alla base del **BJT**.
 
 
 Verifichiamo quindi la reazione negativa ipotizzando:
-- $|\beta A | \gg 1$
+- $|\beta A| \gg 1$
 - Reazione Negativa
 - Regime Lineare
 
