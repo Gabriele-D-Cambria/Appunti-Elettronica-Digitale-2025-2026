@@ -24,7 +24,7 @@ title: Circuiti Amplificatori
 		- [7.1.4. Amplificatore di Differenza](#714-amplificatore-di-differenza)
 		- [7.1.5. Amplificatore Della Somma](#715-amplificatore-della-somma)
 	- [7.2. Integratore di Miller](#72-integratore-di-miller)
-		- [7.2.3. Problemi di Stabililtà](#723-problemi-di-stabililtà)
+		- [7.2.1. Problemi di Stabililtà](#721-problemi-di-stabililtà)
 
 # 2. Transistore BJT come Amplificatore
 
@@ -1187,7 +1187,7 @@ $$
   i_1 &= \frac{V_1}{R_3 + R_4} \\
   R_{I_1} &= R_3 + R_4
 \end{aligned}
-& & 
+& &
 \begin{aligned}
   R_{I_2} &= \frac{V_2}{i_2}\Bigg|_{V_1 = 0} \\
   i_2 &= \frac{V_2}{R_1} \\
@@ -1248,8 +1248,6 @@ $$
 </div>
 </div>
 
-
-
 ## 7.2. Integratore di Miller
 
 È un _Amplificatore Non Invertente_ dove la reazione è fatta sfruttando invece di una resistenza un condensatore.
@@ -1309,7 +1307,7 @@ $$
 </div>
 </div>
 
-### 7.2.3. Problemi di Stabililtà
+### 7.2.1. Problemi di Stabililtà
 
 Questo circuito ha il problema che **NON È STABILE BIBO**.
 
