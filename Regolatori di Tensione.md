@@ -16,7 +16,7 @@ title: Regolatori di Tensione
 
 È un circuito che ci permette di stabilizzare una tensione variabile.
 
-<img class="30" src="./images/transistor/tension-regolator/linear-series/scheme.png">
+<img class="30" src="./images/transistor/regolators/tension-linear-series/scheme.png">
 
 
 Per ottenere questo mettiamo un _**Elemento di Passo**_, un elemento di potenza, tra ingresso e uscita che ci permetta di regolare l'ingresso per ottenere l'uscita che desideriamo.
@@ -35,7 +35,7 @@ L'uscita dell'amplificatore viene collegata quindi alla base del **BJT**.
 
 </div>
 <div class="">
-<img class="80" src="./images/transistor/tension-regolator/linear-series/BJT-circuit.png">
+<img class="80" src="./images/transistor/regolators/tension-linear-series/BJT-circuit.png">
 </div>
 </div>
 
@@ -97,10 +97,10 @@ Avevamo visto che la risposta in ampiezza dell'amplificazione dell'amplificatore
 
 In particolare ad alta frequenza quello che accade è che $|\beta A|$ non è molto grande.
 
-<img class="40" src="./images/transistor/amplification/frequency/DC-pairing.png">
+<img class="25" src="./images/transistor/amplification/frequency/DC-pairing.png">
 
 
-Anche se può sembrare che non ci interessi, dato che noi operiamo in continua, dobbiamo considerare che _**i disturbi operano principalmente nelle alte frequenze**_.
+Anche se può sembrare che quelo che accade alle alte frequenze non influenzi il nostro operato in continua, dobbiamo considerare che _**i disturbi operano principalmente nelle alte frequenze**_.
 
 In presenza di questi disturbi quindi non possiamo più utilizzare l'ipotesi `MCCV`, e l'effetto prodotto è che $R_{out} \ne 0$.
 
@@ -117,7 +117,7 @@ Questo condensatore, se scelto opportunamente, nelle frequenze dei disturbi agis
 
 </div>
 <div class="">
-<img class="80" src="./images">
+<img class="80" src="./images/transistor/regolators/tension-linear-series/noise-example.png">
 </div>
 </div>
 
@@ -147,8 +147,7 @@ Questo accade per come i _condensatori elettrolitici_ sono costruiti:
 
 Infatti il circuito equivalente è il seguente:
 
-TODO: foto
-<img class="" src="./images">
+<img class="30" src="./images/transistor/regolators/elettrolithic-capacitor-circuit.png">
 
 
 Per ovviare a questo probema si utilizzano _**Condensatori Ceramici**_, che hanno un comportamento in frequenza molto migliore di questo, ma che, per prezzi ragionaevoli, hanno capacità nell'ordine dei $O(nF \div pF)$.
@@ -165,8 +164,7 @@ La soluzione è mettere nel nostro regolatore di tensione **due condensatori in 
 
 </div>
 <div class="">
-TODO: foto
-<img class="80" src="./images">
+<img class="80" src="./images/transistor/regolators/tension-linear-series/real-BJT-circuit.png">
 </div>
 </div>
 
@@ -181,8 +179,7 @@ Questi sono tipicamente identificati sul mercato sono identificati dalle sigle:
 
 In entrambi i casi `XX` indica la tensione che sono in grado di erogare, ad esempio `7805` è un regolatore di tensione che eroga $+5V$, mentre `7905` è un regolatore che eroa $-5V$.
 
-TODO: foto
-<img class="" src="./images">
+<img class="20" src="./images/transistor/regolators/tension-linear-series/integrated-chip.png">
 
 
 I circuiti integrati possiedono anche un altra specifica, ovvero la tensione di _**Dropout**_:
@@ -218,8 +215,7 @@ Quindi abbiamo in uscita una **corrente costante**, essendo sia $V_x$ che $R$ co
 
 </div>
 <div class="">
-TODO: foto
-<img class="80" src="./images">
+<img class="50" src="./images/transistor/regolators/current-tls-chip-circuit.png">
 </div>
 </div>
 
@@ -276,10 +272,11 @@ Dove $T_{ON}$ è il periodo dove l'interruttore è in conduzione, e $T_{OFF}$ è
 
 Chiamiamo il periodo $T_S = T_{ON} + T_{OFF}$.
 
+<img class="30" src="./images/transistor/regolators/commutation/simple-graph.png">
+
 </div>
 <div class="">
-TODO: foto
-<img class="80" src="./images">
+<img class="60" src="./images/transistor/regolators/commutation/simple-scheme.png">
 </div>
 </div>
 
@@ -315,24 +312,22 @@ $$
 
 L'analisi in frequenza del circuito sulla destra ci produce un grafico simile a questo:
 
-TODO: foto
-<img class="" src="./images">
+<img class="" src="./images/transistor/regolators/commutation/filter-graph.png">
 
 
 </div>
 <div class="">
-TODO: foto
-<img class="80" src="./images">
+<img class="80" src="./images/transistor/regolators/commutation/filter-circuit.png">
 </div>
 </div>
 
 Questo circuito presenta ancora un problema, relativo al fatto di avere in serie **un interruttore** e un **induttanza**.
 Infatti, durante i transitori l'interruttore è sottoposto a _**altissime tensioni**_ dovute all'induttanza $L$, che può arrivare a produrre degli archi.
 
-Per ovviare a questo problema si collega tra il nodo tra l'induttanza e l'interruttore e il _ground_ un diodo, detto **_Regolatore di Forward_**.
-TODO: foto
+Per ovviare a questo problema si collega tra il nodo tra l'induttanza e l'interruttore e il _ground_ un diodo, detto **_Regolatore di Forward_**:
+
 <figure class="">
-<img class="100" src="./images">
+<img class="100" src="./images/transistor/regolators/commutation/forward-circuit.png">
 <figcaption>
 
 Il diodo introduce della dissipazione dovuta alla tensione $V_\gamma$, ma è piccola e comunque necessaria per non rischiare di danneggiare l'interruttore.
@@ -347,8 +342,7 @@ Il diodo introduce della dissipazione dovuta alla tensione $V_\gamma$, ma è pic
 Il circuito equivalente in $T_{ON}$ è il seguente
 
 <figure class="">
-TODO: foto
-<img class="100" src="./images">
+<img class="100" src="./images/transistor/regolators/commutation/filter-ON.png">
 <figcaption>
 
 Il Diodo è $OFF$
@@ -356,13 +350,12 @@ Il Diodo è $OFF$
 </figure>
 </div>
 <div class="top">
-<p class="p"></p>
+<p class="p">Interruttore Aperto</p>
 
 Il circuito equivalente in $T_{OFF}$ è il seguente
 
 <figure class="">
-TODO: foto
-<img class="100" src="./images">
+<img class="100" src="./images/transistor/regolators/commutation/filter-OFF.png">
 <figcaption>
 
 Il Diodo è $ON$
@@ -372,20 +365,22 @@ Il Diodo è $ON$
 </div>
 
 
-Per analizzare questo circuito possiamo graficare la tensione ai capi dell'induttore $V_L$ in relazione alla tensione di uscita $V_o$:
+<div class="grid2">
+<div class="">
 
-TODO: foto
-<img class="" src="./images">
-
-La tensione nella fase $ON$ è data dalla differenza tra l'alimentazione e la tensione di uscita, mentre nella fase $OFF$ è _**l'inversa della tensione di uscita**_.
+Per analizzare questo circuito possiamo graficare la tensione ai capi dell'induttore $V_L$ in relazione alla tensione di uscita $V_o$, sapendo che:
+- Nella fase $ON$ è data dalla differenza tra l'alimentazione e la tensione di uscita
+- Nella fase $OFF$ è _**l'inversa della tensione di uscita**_
 
 Allo stesso modo possiamo graficare la corrente ai capi dell'induttanza nel tempo, ricordando che:
 $$
 V_L = L \cdot {d i_L \over dt}
 $$
-
-TODO: foto
-<img class="" src="./images">
+</div>
+<div class="">
+<img class="40" src="./images/transistor/regolators/commutation/filter-ind-current-tension-graph.png">
+</div>
+</div>
 
 Essendo anche la corrente periodica:
 $$
@@ -412,11 +407,14 @@ $$
 
 Se recuperiamo quindi l'espressione analitica della $V_L$:
 $$
-\int_0^{T_S}{V_L(\tau)\;d\tau} = (E-V_o)T_{ON} - V_oT_{OFF} = 0 \\
-\begin{align*}
-			ET_{ON} - V_oT_{ON} - V_oT_S + V_oT_{ON} &= 0\\
-			V_o &= \frac{T_{ON}}{T_S} \cdot E = ED
-\end{align*}
+\begin{CD}	
+	{\int_0^{T_S}{V_L(\tau)\;d\tau} = (E-V_o)T_{ON} - V_oT_{OFF} = 0 }\\
+	@VVV \\ 
+	\begin{matrix}
+		ET_{ON} - V_oT_{ON} - V_oT_S + V_oT_{ON} = 0 \\[1em]
+		V_o = \frac{T_{ON}}{T_S} \cdot E = ED
+	\end{matrix}
+\end{CD}
 $$
 
 A dimostrazione che possiamo ancora regolare la tensione di uscita a partire dal **Duty Cycle**.
