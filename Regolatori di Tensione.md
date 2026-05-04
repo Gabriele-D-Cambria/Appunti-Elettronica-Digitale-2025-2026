@@ -10,7 +10,10 @@ title: Regolatori di Tensione
 	- [2.2. Circuito Integrato](#22-circuito-integrato)
 	- [2.3. Regolatore di Corrente](#23-regolatore-di-corrente)
 	- [2.4. Considerazioni Energetiche](#24-considerazioni-energetiche)
-- [3. Regolatori a Commutazione](#3-regolatori-a-commutazione)
+- [3. Regolatori Switching/a Commutazione](#3-regolatori-switchinga-commutazione)
+	- [3.1. Regolatore Flyback](#31-regolatore-flyback)
+- [4. Passaggio Tensione Alternata-Costante](#4-passaggio-tensione-alternata-costante)
+	- [4.1. Forward con Trasformatore](#41-forward-con-trasformatore)
 
 # 2. Regolatori di Tensione Lineare Serie
 
@@ -248,7 +251,7 @@ Inoltre per riuscire a fornire alti voltaggi/amperaggi le tensioni in ingresso c
 
 
 
-# 3. Regolatori a Commutazione
+# 3. Regolatori Switching/a Commutazione
 
 Sono dei regolatori che dal punto di vista funzionale sono più complessi, ma ci permettono di avere alte tensioni con sprechi di energia minimi.
 
@@ -412,9 +415,175 @@ $$
 	@VVV \\ 
 	\begin{matrix}
 		ET_{ON} - V_oT_{ON} - V_oT_S + V_oT_{ON} = 0 \\[1em]
-		V_o = \frac{T_{ON}}{T_S} \cdot E = ED
+		V_o = \frac{T_{ON}}{T_S} \cdot E = D \cdot E
 	\end{matrix}
 \end{CD}
 $$
 
 A dimostrazione che possiamo ancora regolare la tensione di uscita a partire dal **Duty Cycle**.
+
+## 3.1. Regolatore Flyback
+
+È un altra tipo di regolatore a commutazione, in particolare il circuito è il seguente:
+
+<img class="" src="./images/transistor/regolators/commutation/flyback-circuit.png">
+
+Se studiamo il comportamento del circuito:
+<div class="grid2">
+<div class="top">
+<p class="p">Periodo ON</p>
+
+Durante il periodo $T_{ON}$ il circuito è il seguente:
+
+<figure class="75">
+<img class="80" src="./images/transistor/regolators/commutation/flyback-ON.png">
+<figcaption>
+
+Il diodo è $OFF$
+</figcaption>
+</figure>
+
+La corrente circola solo nella maglia che comprende batteria e induttore, che si **carica**.
+
+La resistenza e il condensatore non sono quindi collegate direttamente al generatore.
+
+
+</div>
+<div class="top">
+<p class="p">Periodo OFF</p>
+
+Durante il periodo $T_{ON}$ il circuito è il seguente:
+
+<figure class="75">
+<img class="80" src="./images/transistor/regolators/commutation/flyback-OFF.png">
+<figcaption>
+
+Il diodo è $ON$
+</figcaption>
+</figure>
+
+La batteria viene isolata dal circuito.
+
+Nel circuito circola comunque corrente fornita dall'induttore, che si è caricato nel periodo di $ON$.
+
+Durante questo periodo il condensatore si **carica**.
+
+</div>
+</div>
+
+
+Nel semiperiodo $ON$ quindi sul carico _**ci sarà comunque corrente**_, fornita dal condensatore che si è caricato nel periodo $OFF$.
+
+Graficando i valori della tensione nel circuito nel tempo:
+
+<img class="30" src="./images/transistor/regolators/commutation/flyback-graph.png">
+
+Otteniamo quindi una tensione **periodica**, che vale $E$ nel periodo $T_{ON}$ e $-V_u$ nel periodo $OFF$.
+
+Possiamo quindi applicare il principio che abbiamo visto precedentemente, ovvero che:
+$$
+\begin{CD}
+	{\int{V(t)\;dt} = 0} \\
+	@VVV \\
+	\begin{cases}
+		E \cdot T_{ON} = V_u T_{OFF} \\
+		T_{OFF} = T_S - T_{ON}
+	\end{cases} \\
+	@VVV \\
+	\begin{aligned}
+		E \cdot T_{ON} &= V_u (T_S - T_{ON}) \\
+		E &= \frac{V_u}{D} - V_u = V_u \Bigl(\frac{1}{D} - 1\Bigr)
+	\end{aligned}
+\end{CD}
+$$
+
+La tensione di uscita sarà quindi:
+$$
+\large
+	V_u = \frac{E}{\frac{1}{D} - 1} = \frac{D}{1 - D}\cdot E
+$$
+
+Questo significa che con questo circuito possiamo avere in uscita un _**uscita maggiore della tensione $E$ fornita dalla batteria**_, basta che $D > \frac{1}{2}$.
+Questo è possibile proprio perché il carico non è connesso direttamente alla batteria, ma al condensatore e all'induttore, che si _**caricano**_ nel tempo.
+
+
+# 4. Passaggio Tensione Alternata-Costante
+
+Per passare da un'alta-tensione alternata a una tensione continua sul carico, lo schema a blocchi è il seguente:
+
+<figure class="75">
+<img class="60" src="./images/ACDC-converter/unsafe-scheme.png">
+<figcaption>
+
+La corrente arriva da tre fili **Fase**, **Neutro** e **Ground**.
+Il cavo _neutro_ (tipicamente blu), se i collegamenti sono fatti bene, si dovrebbe trovare a valori quasi nulli, in quanto è collegato a _ground_.
+Il cavo _ground_ (tipicamente giallo/verde) è la _messa a terra_.
+</figcaption>
+</figure>
+
+
+
+In realtà questo schema è _**illegale**_. Questo perché, quando abbiamo un circuito che è connesso alla $220$, è _**obbligatoria la presenza di un isolamento Galvanizzante**_.
+
+Esistono diversi tipi di isolamenti possibili:
+- _Condensatori_
+- _Ottici_: si separano i circuiti con dei collegamenti dove passano fotoni che poi vengono convertiti in corrente
+- _**Trasformatore**_: tra primario e secondario si trova un isolamento elettrico. I due sono collegati infatti dal **campo magnetico**.
+
+<div class="grid2">
+<div class="">
+
+Immaginiamo di avere un circuito connesso alla $220$.
+
+Il circuito lo possiamo immaginare come composto da due grandi _impedenze_ $Z_1$ e $Z_2$.
+Tra di loro ci sarà una tensione che è compreso tra $0$ e $220$.
+
+Quando qualcuno va a toccare il punto intermedio, formerà un circuito chiuso, in quanto la _**tensione è riferita a terra**_.
+
+</div>
+<div class="">
+<img class="40" src="./images/ACDC-converter/man-getting-electro.png">
+</div>
+<div class="">
+
+Se introduciamo invece un trasformatore, nella maglia del carico _**la tensione dell'induttore non è riferita a terra**_. 
+
+Ciò significa che se qualcuno tocca _un_ punto del circuito, non passerà alcuna corrente.
+
+Se invece dovesse toccare _due_ punti, allora andrebbe a chiudere il circuito con il proprio corpo.
+
+</div>
+<div class="">
+<img class="40" src="./images/ACDC-converter/man-saved-from-electro.png">
+</div>
+</div>
+
+
+Dobbiamo quindi aggiungere il circuito isolante all'interno del nostro schema.
+
+Se lo mettiamo a monte del circuito, prima del _ponte di graetz_, possiamo:
+- Possiamo subito, attraverso il rapporto spire, abbassare la tensione
+- _**Deve funzionare bene a $50$ $Hz$**_. I trasformatori che funzionano bene a queste frequenze pesano nell'ordine di _**diversi kilogrammi**_
+
+Questo secondo punto ci spinge a spsotare il trasformatore in un altro punto della nostra catena, in quanto esistono trasformatori che operano nelle centinaia di $kHz$ della grandezza di pochi centimetri.
+
+Il problema è che per come sono fatti i vari blocchi, non possiamo inserirlo in nessun'altro punto del circuito, in quanto dopo il ponte la **tensione è costante**.
+
+Possiamo però _**introdurre un regolatore a commutazione**_ che rende la tensione costante nuovamente alternata (_onda quadra_), permettendoci di trasformarla 
+
+## 4.1. Forward con Trasformatore
+
+Il circuito è il seguente
+
+<figure class="75">
+<img class="100" src="./images/ACDC-converter/forward-and-transform.png">
+<figcaption>
+
+Il condensatore agisce da _filtro_.
+Il diodo $D_1$ serve per forzare la direzione della corrente di scarica nel semiperiodo di $OFF$, evitando che ritorni sul trasformatore.
+</figcaption>
+</figure>
+
+In questa conformazione, possiamo utilizzare interruttori che operano nelle frequenze del nostro trasformatore, ad esempio $R_L$.
+
+La vera regolazione avviene attraverso il **Comparatore**, che relaziona la tensione di uscita (o una sua partizione) con una _tensione di riferimento_ $V_{REF}$ che successivamente, grazie ad una _logica di controllo_, torna ad operare in reazione all'interruttore agendo sul _Duty Cycle_.
