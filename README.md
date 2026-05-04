@@ -77,7 +77,8 @@ Gli appunti non sono terminati e potrebbero avere errori e/o potrebbero mancare 
 7. [Trasistore a Effetto di Campo](./Transistore%20a%20Effetto%20Di%20Campo)
 8. [Circuiti Amplificatori](./Circuiti%20Amplificatori)
 9. [Regolatori di Tensione](./Regolatori%20di%20Tensione)
-10. [Porte Logiche](./Porte%20Logiche)
+10. [Circuiti Digitali](./Circuiti%20Digitali)
+11. [Porte Logiche](./Porte%20Logiche)
 
 ## 📜 Disclaimer
 
