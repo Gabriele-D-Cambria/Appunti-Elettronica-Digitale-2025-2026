@@ -44,7 +44,7 @@ L'uscita dell'amplificatore viene collegata quindi alla base del **BJT**.
 
 
 Verifichiamo quindi la reazione negativa ipotizzando:
-- $\vert \beta A| \gg 1$
+- $\vert \beta A \vert \gg 1$
 - Reazione Negativa
 - Regime Lineare
 
@@ -94,7 +94,7 @@ La minima differenza di queste tensioni è detta **Dropout** e sarà importante 
 
 ## 2.1. Reiezione dei Disturbi
 
-Questo tipo di regolatore funziona finché $\vert \beta A| \gg 1$.
+Questo tipo di regolatore funziona finché $\vert \beta A \vert \gg 1$.
 
 Avevamo visto che la risposta in ampiezza dell'amplificazione dell'amplificatore OPA in _open-loop_ è un valore alto per basse frequenze, ma ad alta frqeuenza diminuisce esponenzialmente.
 
