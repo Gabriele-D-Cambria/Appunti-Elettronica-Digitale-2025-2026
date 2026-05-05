@@ -80,7 +80,7 @@ $$
 	A_P := \frac{P_L}{P_S} = -\frac{v_2 i_2}{v_Si_1} = -A_iA_v = A_i^2 \frac{R_L}{R_S}
 $$
 
-Quindi, anche avessimo un **_amplificazione di corrente_**, non è detto che avremo anche un'amplificazione di potenza. Tuttavia, i componenti attivi come `BJT` e `MOSFET` **permettono** $\vert A_P| > 1$, raccogliendola da un'alimentazione a loro interna.
+Quindi, anche avessimo un **_amplificazione di corrente_**, non è detto che avremo anche un'amplificazione di potenza. Tuttavia, i componenti attivi come `BJT` e `MOSFET` **permettono** $\vert A_P\vert > 1$, raccogliendola da un'alimentazione a loro interna.
 
 <div class="grid2">
 <div class="">

@@ -593,7 +593,7 @@ Questa accortezza ci fornisce diversi vantaggi:
 
 La "resistenza per piccoli segnali" è quindi un valore che _dipende dal punto di riposo_ $Q$.
 
-La linearizzazione, vedremo valida solamente se $\vert v_d(t)|\ll V_{DQ}$:
+La linearizzazione, vedremo valida solamente se $\vert v_d(t) \vert \ll V_{DQ}$:
 $$
 \begin{align*}
 	i_d(t) &= f(V_{DQ}+v_d(t)) \\

@@ -504,7 +504,7 @@ Quello che si fa quindi, invece di analizzare tutta la risposta in frequenza in 
 
 </div>
 
-Lo [lo studio dell'amplificatore MOSFET a drain comune](#32-amplificatore-a-drain-comune) che abbiamo fatto in precedenza è proprio uno studio in _**risposta in media frequenza**_.
+Lo [studio dell'amplificatore MOSFET a drain comune](#32-amplificatore-a-drain-comune) che abbiamo fatto in precedenza è proprio uno studio in _**risposta in media frequenza**_.
 
 Tipicamente il diagramma di ampiezza della risposta in frequenza è qualcosa del genere:
 
