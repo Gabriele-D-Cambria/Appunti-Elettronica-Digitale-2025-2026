@@ -6,13 +6,21 @@ title: Circuiti Digitali
 
 - [1. Indice](#1-indice)
 - [2. Circuiti Digitali](#2-circuiti-digitali)
-	- [2.1. Voltage Tranfer Characteristic - `VTC`](#21-voltage-tranfer-characteristic---vtc)
-	- [2.2. Margini di Rumore](#22-margini-di-rumore)
-	- [2.3. Porte Rigenerative](#23-porte-rigenerative)
-	- [2.4. Potenza Dissipata](#24-potenza-dissipata)
-	- [2.5. Tempo di propagazione](#25-tempo-di-propagazione)
-	- [2.6. Power Delay Product - PDP](#26-power-delay-product---pdp)
-	- [2.7. Fan IN - OUT](#27-fan-in---out)
+	- [2.1. Caratteristiche](#21-caratteristiche)
+		- [2.1.1. Voltage Tranfer Characteristic - `VTC`](#211-voltage-tranfer-characteristic---vtc)
+		- [2.1.2. Margini di Rumore](#212-margini-di-rumore)
+		- [2.1.3. Porte Rigenerative](#213-porte-rigenerative)
+		- [2.1.4. Potenza Dissipata](#214-potenza-dissipata)
+		- [2.1.5. Tempo di propagazione](#215-tempo-di-propagazione)
+		- [2.1.6. Power Delay Product - PDP](#216-power-delay-product---pdp)
+		- [2.1.7. Fan IN - OUT](#217-fan-in---out)
+- [3. Porte Logiche](#3-porte-logiche)
+	- [3.1. Famiglie Logiche](#31-famiglie-logiche)
+	- [3.2. Famiglia CMOS Complementare](#32-famiglia-cmos-complementare)
+		- [3.2.1. Notazione](#321-notazione)
+		- [3.2.2. Inverter](#322-inverter)
+			- [3.2.2.1. Analisi Circuitale](#3221-analisi-circuitale)
+			- [3.2.2.2. Analisi Zona a Transistori Saturi](#3222-analisi-zona-a-transistori-saturi)
 
 # 2. Circuiti Digitali
 
@@ -29,7 +37,9 @@ I _Simboli Logici_ con i quali scelgiamo di operare nel mondo digitale sono nel 
 
 Affinché tutto funzioni correttamente i due intervalli di tensione _**devono essere disgiunti**_, ovvero $V_{L,MAX} < V_{H,MIN}$
 
-## 2.1. Voltage Tranfer Characteristic - `VTC`
+## 2.1. Caratteristiche
+
+### 2.1.1. Voltage Tranfer Characteristic - `VTC`
 
 Prendiamo per esempio un _**Inverter**_:
 
@@ -87,7 +97,7 @@ A questo punto chiamiamo le tensioni associate ai due punti:
 </div>
 
 
-## 2.2. Margini di Rumore
+### 2.1.2. Margini di Rumore
 
 Immaginando di mettere due inverter in serie, avremo:
 <div class="grid2">
@@ -152,7 +162,7 @@ $$
 
 Che significa che **_non si hanno preferenze tra lo_ `0` _e l'`1`_**.
 
-## 2.3. Porte Rigenerative
+### 2.1.3. Porte Rigenerative
 
 Definiamo _**Porte Rigenerative**_:
 > Circuiti Logici nei quali, tra i due punti a derivata in modulo unitaria della `VTC`, la derivata:
@@ -180,7 +190,7 @@ Questo comportamento è dato proprio dal fatto che la derivata nella zona interm
 </div>
 </div>
 
-## 2.4. Potenza Dissipata
+### 2.1.4. Potenza Dissipata
 
 La potenza dissipata $P_D$ si divide in due tipologie:
 - _**Statica**_: è la potenza dissipata quando la porta **non sta lavorando**
@@ -191,7 +201,7 @@ Dobbiamo cercare di:
 - **Eliminare la potenza statica**: cercheremo un modo per rimuovere questo costo durante i periodi di _idle_
 - **Minimizzare la potenza dinamica**: non possiamo eliminarla perché è necessaria energia per poter modificare un segnale. Tuttavia cerchiamo di ridurla al minimo
 
-## 2.5. Tempo di propagazione
+### 2.1.5. Tempo di propagazione
 
 <div class="grid2">
 <div class="">
@@ -219,7 +229,7 @@ $$
 t_P := \frac{t_{P_{HL}} + t_{P_{LH}}}{2}
 $$
 
-## 2.6. Power Delay Product - PDP
+### 2.1.6. Power Delay Product - PDP
 
 Mette in relazione la _Potenza Dissipata_ e il _Tempo di Propagazione_:
 $$
@@ -233,7 +243,7 @@ Questo parametro ci permette di capire quale tra due porte è più efficiente, i
 - Porte che dissipano poca potenza
 - Porte con tempi di risposta ridotti
 
-## 2.7. Fan IN - OUT
+### 2.1.7. Fan IN - OUT
 
 Definiamo **Fan OUT** di una porta:
 > Numero massimo di ingressi di una stessa porta collegabili all'uscita della porta
@@ -244,3 +254,336 @@ Analogamente **Fan IN** di una porta:
 > Numero massimo di ingressi di una stessa porta collegabili all'ingresso della porta
 
 Ovvero il numero massimo di ingressi che possiamo fornire alla nostra porta.
+
+# 3. Porte Logiche
+
+## 3.1. Famiglie Logiche
+
+In funzione della tecnologia che scegliamo per creare le nostre porte logiche, definiamo una **Famiglia Logica**.
+
+Tutte le porte della stessa famiglia _**condividono le caratteristiche**_, e quindi possono essere messe in cascata l'una all'altra senza problemi.
+
+Se invece volessimo usare due porte di due famiglie diverse è necessario interporre tra le due un **Circuito Interfaccia**, che converta le tensioni/correnti di uscita dalla prima nei valori corrispettivi di ingresso per la seconda.
+
+
+Le porte logiche più utilizzate sono quelle basate su _**Tecnologia `CMOS`**_, che integra sullo stesso _chip_ sia `NMOS` che `PMOS` con caratteristiche simili tra loro.
+
+Tra le famiglie che utilizzano questa tecnologia distinguiamo
+1. _**Famiglia `CMOS` Complementare**_
+2. _**Famiglia Logica Pass-Transistor**_
+3. **Famiglia Logica Dinamica**
+4. **Famiglia Pseudo `NMOS`**
+
+Nel corso vedremo la prima e la seconda.
+
+Esiste anche la famiglia che sfrutta transistori bipolari, ma oggi sono praticamente inutilizzati per i vantaggi che i `CMOS` hanno.
+
+Analizziamo adesso le diverse porte logiche.
+
+## 3.2. Famiglia CMOS Complementare
+
+### 3.2.1. Notazione
+
+Nelle porte che vedremo utilizzeremo un diverso numero di `NMOS` e `CMOS`, quindi facciamo la seguente semplificazione:
+
+<div class="grid2">
+<div class="">
+
+Definiamo **Pull Up Network**:
+> Rete di $N$ `PMOS` che operano quando la tensione in ingresso è _bassa_
+
+Analogamente definiamo **Push Down Network**:
+> Rete di $N$ `NMOS` che operano quando la tensione in ingresso è _alta_
+
+
+</div>
+<div class="">
+<img class="80" src="./images">
+</div>
+</div>
+
+Questo tipo di soluzioni sono perfettamente funzionali, ma richiedono che per ogni varibile logica che utilizziamo sono **necessari due transistori**.
+
+
+Le analisi che vedremo saranno:
+1. In forma grafica
+2. In forma analitica **a partire da una condizione**
+
+### 3.2.2. Inverter
+
+<div class="grid2">
+<div class="">
+
+Dal punto di vista elettrico, possiamo pensare ad una porta inverter come sulla destra, dove la tensione in entrata pilota un interruttore:
+1. $V_{IN} = 0$ $V$ $\to$ **Interruttore Aperto** 
+1. $V_{IN} = V_{DD}$ $V$ $\to$ **Interruttore Chiuso** 
+
+
+Quando l'interruttore è aperto, nel circuito superiore non passa corrente, perciò $V_{o} = V_{DD}$, mentre quando è aperto è connesso a _ground_, quindi $V_{o} = 0$
+
+</div>
+<div class="">
+TODO: foto
+<img class="80" src="./images">
+</div>
+</div>
+
+A questo punto dobbiamo solo capire come costruire l'interruttore.
+
+In realtà abbiamo già visto come i **transistori** possono operare come interruttori:
+
+<div class="grid2">
+<div class="top">
+<p class="p">Inverter Bipolare</p>
+
+TODO: foto
+</div>
+<div class="top">
+<p class="p">Inverter MOS</p>
+
+
+TODO: foto
+</div>
+</div>
+
+I transistori non sono però interruttori ideali, infatti possiamo dimostrare anche in modo grafico come in realtà:
+
+<figure class="">
+TODO: foto
+<img class="100" src="./images">
+<figcaption>
+
+Possiamo considerare i transistori bipolari in saturazione come **quasi** dei cortocircuiti
+</figcaption>
+</figure>
+
+Questo tipo di circuiti hanno però dei problemi.
+
+Il primo è che per poter avere una $V_{CE}$ più prossima allo zero, è necessario che $R_C$ sia **il più grande possibile**. Questo tipo di resistenze, dette resistenze integrali, sono tipicamente grosse.
+
+Il secondo, più grave, è che quando l'interruttore è chiuso, **sulla resistenza passa corrente** e quindi **_dissipano energia_** $W = Ri^2$, oltre a quella dissipata dal transistore. Abbiamo quindi una **Potenza Statica** nel nostro circuito, oltre a quella già dissipata dal transistor.
+
+
+Negli anni sono state proposte diverse soluzioni a questo problema, ed oggi quella utilizzata si basa sul fatto di poter creare transistori `CMOS`.
+
+
+<div class="grid2">
+<div class="">
+
+Invece di usare una resistenza e un interruttore, utilizziamo **due interruttori** $1$ e $2$.
+
+Se quando $V_{IN} = 0$ $V$, $1$ fosse $ON$ e $2$ fosse $OFF$, allora avremmo $V_{o} = V_{DD}$. Analogamente se quando $V_{IN} = V_{DD}$ $V$ $1$ fosse $OFF$ e $2$ fosse $ON$, avremmo $V_{o} = 0$ $V$.
+
+In questo modo, sia che ci troviamo in uno o nell'altro caso, _**sugli interruttori non passa corrente**_, dato che almeno uno dei due interruttori è aperto.
+
+Questo circuito ha quindi _**Potenza Statica Nulla**_.
+
+</div>
+<div class="">
+TODO: foto
+<img class="80" src="./images">
+</div>
+</div>
+
+Per poter riuscire a creare questa porta sono necessari **due interruttori complementari l'uno rispetto all'altro**. Quando [abbiamo studiato i `MOS`](./Transistore%20a%20Effetto%20Di%20Campo#441-confronto-nnos---pmos) abbiamo proprio detto che l'`NMOS` e il `PMOS` possono essere considerati come circuiti complementari.
+
+Il circuito inverter in tecnologia **`CMOS` complementare** è quindi il seguente:
+
+TODO: foto
+<img class="" src="./images">
+
+#### 3.2.2.1. Analisi Circuitale
+
+Possiamo quindi analizzare questo circuito:
+
+<div class="grid2">
+<div class="">
+
+I due transistori hanno _Ground_ e _Drain_ in comune.
+
+La soluzione è sufficientemente semplice. Essendo i due transistori **in serie**, devono essere attraversati dalla _stessa corrente_:
+$$
+i_{D_N} = -i_{D_P}
+$$
+
+</div>
+<div class="">
+TODO: foto
+<img class="80" src="./images">
+</div>
+</div>
+
+Per risolvere dal punto di vista grafico, possiamo effettuare il _plot_ di entrambi i transistori sullo stesso grafico. Dobbiamo quindi trovare un modo per unire sullo stesso piano cartesiano le due caratteristiche, dato che il primo grafica $i_{D_N}$ e $V_{DS_N}$ e il secondo $i_{D_P}$ e $V_{DS_P}$.
+
+Facendo attenzione però possiamo vedere come:
+- $V_{DS_N} = V_o$
+- $V_{GS_{N}}$ = V_i$
+
+Scegliamo quindi questi assi, poiché già relazionati alla tensione di ingresso e di uscita.
+
+A questo punto dobbiamo riuscire a capire come tracciare il grafico del `PMOS` su questi assi, ma sappiamo che:
+- $i_{D_P} = -i_{D_N} \qquad \to \qquad$ sufficiente "ribaltare" sul secondo quadrante
+- $V_{DS_P} = V_{DS_N} - V_{DD} \qquad \to \qquad$ sufficiente "shiftare a destra" le curve di un fattore $V_{DD}$
+
+Il risultato finale è quindi:
+
+<div class="grid2">
+<div class="">
+
+A questo punto quindi, supponendo $V_i = V_{i1}$:
+$$
+\begin{cases}
+	V_{GS_N} = V_i = V_{i1} \\
+	V_{GS_P} = V_{G_P} - V_{S_P} = V_{i1} - V_{DD}
+\end{cases}
+$$
+
+Il punto di riposo è quindi **l'intersezione tra un ramo del primo set e uno del secondo**, ovvero:
+$$
+	V_o = V_{o1}
+$$
+
+</div>
+<div class="">
+TODO: foto
+<img class="80" src="./images">
+</div>
+</div>
+
+
+Il nostro scopo è però avere una relazione tra la **tensione di uscita** e la **tensione di ingresso**.
+
+Partendo per step, analizziamo quando $V_i < V_{T_N}$, che comporta
+- $V_{GS_N} = V_i < V_{T_N}$
+- $V_{GS_P} = V_i -V_{DD}$
+
+Quindi abbiamo che:
+- `NMOS` **interdetto**: la caratteristica è $i_D = 0$
+- `PMOS` **in conduzione**: la caratteristica sarà quella per $V_{GS_P} = V_i - V_{DD}$, che interseca l'origine in $(V_{DD}, 0)$
+
+L'unico punto di intersezione tra le due caratteristiche è $V_o = V_{DD}$
+
+Se invece studiamo quando $V_{T_N} < V_i < \overline{V}$:
+- $V_{GS_N} = V_i$
+- $V_{GS_P} = V_i -V_{DD}$
+
+Quindi abbiamo che:
+- `NMOS` **saturazione**: la caratteristica sarà quella per $V_{GS_N} = V_i$, crescente per valori crescenti di $V_i$
+- `PMOS` **triodo**: la caratteristica sarà quella per $V_{GS_P} = V_i - V_{DD}$, decrescente per valori crescenti di $V_i$
+
+Al crescere di $V_i$ il punto di intersezione $V_o$ andrà a diminuire sempre più _velocemente_.
+
+Il punto $\overline{V}$ è un valore di tensione per il quale `NMOS` **saturazione** e `PMOS` **saturazione**. Una singola tensione $V_i$ avrà quindi **più possibili tensioni di uscita** $V_o$.
+
+Se invece studiamo quando $V_i > \overline{V}$ avremo che:
+- `NMOS` **triodo**: la caratteristica sarà quella per $V_{GS_N} = V_i$, crescente per valori crescenti di $V_i$
+- `PMOS` **saturazione**: la caratteristica sarà quella per $V_{GS_P} = V_i - V_{DD}$, decrescente per valori crescenti di $V_i$
+
+Al crescere di $V_i$ il punto di intersezione $V_o$ andrà a diminuire sempre più _lentamente_.
+
+L'ultimo caso è quindi quello per il quale $V_{GS_P} = V_{T_P}$, ovvero $V_i = V_{DD} + V_{TP}$, per il quale:
+- `NMOS` **in conduzione**
+- `PMOS` **interdetto**
+
+Che quindi interseca le due caratteristiche quando $V_o = 0$
+
+
+Ricordando che i transistori operano
+
+<div class="flexbox" markdown="1">
+
+|        |                      Conduzione                       |                          Saturazione                          |
+| :----: | :---------------------------------------------------: | :-----------------------------------------------------------: |
+| `NMOS` |             $V_{GS_N} = V_i \ge V_{T_N}$              | $V_{DS_N} \ge V_{GS_N} - V_{T_N} \rArr V_o \ge V_i - V_{T_N}$ |
+| `CMOS` | $V_{GS_P} \le V_{T_P} \rArr V_i \le V_{DD} + V_{T_P}$ | $V_{DS_P} \le V_{GS_P} - V_{T_P} \rArr V_o \le V_i - V_{T_P}$ |
+
+</div>
+
+
+
+Mettendo insieme queste considerazioni, **possiamo graficare la relazione tra tensione di uscita e entrata**:
+
+TODO: foto
+<img class="80" src="./images">
+
+Possiamo identificare le 5 zone, ogniuna diversa dall'altre per lo stato di funzionamento di almeno uno dei due transistori:
+
+<div class="flexbox" markdown="1">
+
+|            | `NMOS` | `PMOS` |
+| :--------: | :----: | :----: |
+| **Zona 1** |  OFF   | TRIODO |
+| **Zona 2** | SATURO | TRIODO |
+| **Zona 3** | SATURO | SATURO |
+| **Zona 4** | TRIODO | SATURO |
+| **Zona 5** | TRIODO |  OFF   |
+
+</div>
+
+A questo punto è quindi smeplice risolvere il circuito, poiché è sufficiente capire in quale zona ci troviamo.
+
+#### 3.2.2.2. Analisi Zona a Transistori Saturi
+
+Noi andremo a studiare solamente la **zona 3**, ovvero quella per cui:
+- `NMOS` **saturo**
+- `PMOS` **saturo**
+
+In questa zona:
+$$
+\begin{align*}
+	i_{DS_N} &= K_N \cdot (V_{GS_N} - V_{T_N})^2 \\
+	i_{DS_P} &= -K_P \cdot (V_{GS_P} - V_{T_P})^2 \\
+	i_{DS_N} &= - i_{DS_P}
+\end{align*}
+$$
+
+Unendo le relazioni otteniamo:
+$$
+\begin{align*}
+	K_N \cdot (V_{GS_N} - V_{T_N})^2 &= K_P \cdot (V_{GS_P} - V_{T_P})^2  && {V_{GS_N} = V_i \atop V_{GS_P} = V_i - V_{DD}} \\
+	K_N \cdot (V_i - V_{T_N})^2 &= K_P \cdot (V_i - V_{DD} - V_{T_P})^2 && \text{Prendiamo solamente una soluzoine delle radici} \\ 
+	\sqrt{K_N} \cdot (V_i - V_{T_N}) &= -\sqrt{K_P} \cdot (V_i - V_{DD} - V_{T_P}) \\
+	(\sqrt{K_N} + \sqrt{K_P}) V_i &= -\sqrt{K_P} \cdot (- V_{DD} - V_{T_P}) + \sqrt{K_N}V_{T_N} \\
+	V_i &= \frac{\sqrt{K_P} \cdot (V_{DD} + V_{T_P}) + \sqrt{K_N}V_{T_N}}{\sqrt{K_N} + \sqrt{K_P}}
+\end{align*}
+$$
+
+Notiamo come in questo tratto _**la caratteristica è indipendente da qualsiasi variabile**_, ma è definita **solo da costanti**.
+
+Nella zona tre, **trascurando l'effetto di modulazione di canale**, la caratteristica _**viene verticale**_:
+
+$$
+\Large
+\boxed{
+	\begin{matrix}
+		V^\ast = \frac{\sqrt{K_P} \cdot (V_{DD} + V_{T_P}) + \sqrt{K_N}V_{T_N}}{\sqrt{K_N} + \sqrt{K_P}} & & {\lambda_{PMOS} = 0 \atop \lambda_{NMOS} = 0}
+	\end{matrix}
+}
+$$
+
+
+Inoltre, nelle condizioni in cui:
+$$
+\begin{align*}
+	V_{T_P} &= - V_{T_N}\\
+	K_P &= K_N = K
+\end{align*}
+$$
+
+La nostra tensione:
+$$
+V^\ast = \frac{\sqrt{K}(V_{DD} + V_{T_P} + V_{T_N})}{2 \sqrt{K}} = \frac{V_{DD}}{2}
+$$
+
+Definiamo _**Soglia Logica**_ il valore di tensione della caratteristica che interseziona la bisettrice del primo quadrante, ovvero la tensione in ingresso $V_i$ che produce una tensione in uscita $V_o = V_i$.
+
+In questo inverter quindi si ha una _soglia logica_ perfettamente simmetrica, pari alla **metà della tensione di alimentazione $V_{DD}$**.
+
+Affinché questo sia vero _**devono essere vere entrambe le relazioni**_:
+- $V_{T_N} = - v_{T_P}$ &emsp; non abbiamo controllo, dobbiamo guardare le specifiche dei transistori
+- $K_P = K_N$ &emsp; possiamo dimensionarli affinché sia vero, ovvero:
+$$
+\frac{\mu_N}{\mu_P} = \frac{\Bigl(\frac{W}{L}\Bigr)_P}{\Bigl(\frac{W}{L}\Bigr)_N}
+$$
+
+In questo tipo di porte i punti a derivata in modulo unitario _**sono simmetrici**_..
