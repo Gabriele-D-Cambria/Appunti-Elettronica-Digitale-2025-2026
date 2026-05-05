@@ -152,7 +152,7 @@ $$
 
 Ipotizzando il condensatore inizialmente scarico, durante la semionda positiva del generatore, abbiamo che il diodo sarà in condunzione, in quanto:
 $$
-	{dV_u \over dt} \ge 0 \rArr I_D \ge 0
+	{dV_u \over dt} \ge 0 \Rightarrow I_D \ge 0
 $$
 
 Dopo aver attraversato il primo picco, in assenza del diodo quello che avremmo visto è che il condensatore si sarebbe scaricato operando da generatore di tensione, producendo una corrente inversa a $I_D$.
@@ -226,13 +226,13 @@ $$
 - La **Legge di Faraday** comporta:
 $$
 \large
-\begin{matrix}
+\begin{CD}
 	\begin{matrix}
 		V_1 = N_1 {d\phi \over dt} \\[0.75em]
 		V_2 = N_2 {d\phi \over dt}
-	\end{matrix} & \rArr &
-	\LARGE \frac{V_1}{V_2} = \frac{N_1}{N_2}
-\end{matrix}
+	\end{matrix} @>>>
+	\frac{V_1}{V_2} = \frac{N_1}{N_2}
+\end{CD}
 
 $$
 </div>
@@ -250,12 +250,12 @@ Introduciamo un **trasformatore a doppio secondario con presa centrale**: &emsp;
 
 Durante il primo semiperiodo abbiamo quindi che:
 $$
-V_1 \ge 0 \rArr {V_A \ge 0 \atop V_B \ge 0}
+V_1 \ge 0 \Rightarrow {V_A \ge 0 \atop V_B \ge 0}
 $$
 
 Mentre nel secondo abbiamo che:
 $$
-V_1 \le 0 \rArr {V_A \le 0 \atop V_B \le 0}
+V_1 \le 0 \Rightarrow {V_A \le 0 \atop V_B \le 0}
 $$
 
 </div>

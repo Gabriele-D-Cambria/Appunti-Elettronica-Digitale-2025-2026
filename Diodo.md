@@ -200,7 +200,7 @@ In particolare avremo una densità di corrente diretta **_dall'Anodo verso il Ca
 
 Se invece invertiamo la polarità della tensione, applicando una tensione $V_1 = -V$, avremo degli effetti opposti a quelli precedenti.
 
-Gli effetti di $V_1$ sul _potenziale di barriera_ non è diminuirlo ma bensì **aumentarlo** $V_0 + |V_1|$.
+Gli effetti di $V_1$ sul _potenziale di barriera_ non è diminuirlo ma bensì **aumentarlo** $V_0 + \vert V_1\vert$.
 
 Alzando la barriera di diffusione, osserviamo che le _componenti di diffusione_ $J_{n,DIFF}$ e $J_{p,DIFF}$ **diminuiscono**, diventando molto piccole.
 Le _componenti di drift_ $J_{n, DRIFT}$ e $J_{p, DRIFT}$ rimangono invece **piccole e costanti**.
@@ -263,7 +263,7 @@ Se invece applicassimo $V_D < 0$ si dice che siamo in **_Polarizzazione Inversa_
 
 Sulla destra possiamo vedere una rappresentazione grafica della corrente al variare della differenza di potenziale.
 
-Notiamo subito che per $V_D = 0 \rArr I_D = 0$, quindi il grafico passerà per l'origine.
+Notiamo subito che per $V_D = 0 \Rightarrow I_D = 0$, quindi il grafico passerà per l'origine.
 
 Se prendiamo il valore $V_D = 4 \cdot V_T \approx 100mV$, sapendo che $\eta = 1$, otteniamo $I_D = I_S (e^{4} - 1) \approx I_S \cdot e^{4}$
 
@@ -313,16 +313,16 @@ Questi diodi sono utilizzati nei sistemi per:
 
 Quando aumenta la temperatura $T$ sappiamo già che la mobilità diminuisce.
 
-L'effetto Zener, all'aumento di $T$, **diminuisce il modulo di** $|V_{BR}|$, in quanto aumenta l'energia termica, richiedendo meno energia per rompere ogni legame covalente.
+L'effetto Zener, all'aumento di $T$, **diminuisce il modulo di** $\vert V_{BR}\vert$, in quanto aumenta l'energia termica, richiedendo meno energia per rompere ogni legame covalente.
 
 Seppur può sembrare che sull'effetto Valanga si abbia lo stessa conseguenza, in realtà la situazione è opposta. Infatti, aumentando l'energia termica di ogni elettrone, è vero che _aumenta il numero di urti_, ma ciò comporta una **diminuzione del tempo tra uno e l'altro**. L'effetto che ha sul singolo elettrone è quello di diminuire l'energia acquisita tra un urto e l'altro, non permettendogli di arrivare al livello necessario per la _ionizzazione per utro_.
 
-L'effetto è quindi quello di **aumentare il modulo di** $|V_{BR}|$.
+L'effetto è quindi quello di **aumentare il modulo di** $\vert V_{BR}\vert$.
 
 I diodi Zener sono costruiti in modo da gestire opportunamente gli effetti della temperatura. In generale:
-- Prevale effetto Zener &emsp; $|V_{BR}| < 5\;V$
-- Prevale effetto Valanga &emsp; $|V_{BR}| > 7\;V$
-- Si hanno entrambi gli effetti &emsp; $5\;V < |V_{BR}| < 7\;V$
+- Prevale effetto Zener &emsp; $\vert V_{BR} \vert < 5\;V$
+- Prevale effetto Valanga &emsp; $\vert V_{BR} \vert > 7\;V$
+- Si hanno entrambi gli effetti &emsp; $5\;V < \vert V_{BR} \vert < 7\;V$
 
 Nel caso di diodi che presentano entrambi gli effetti, soprattutto quelli da $5.6$ $V$ si dice che questi sono **termicamente stabili**, in quanto i due effetti tendono a compensarsi a vicenda.
 
@@ -593,7 +593,7 @@ Questa accortezza ci fornisce diversi vantaggi:
 
 La "resistenza per piccoli segnali" è quindi un valore che _dipende dal punto di riposo_ $Q$.
 
-La linearizzazione, vedremo valida solamente se $|v_d(t)|\ll V_{DQ}$:
+La linearizzazione, vedremo valida solamente se $\vert v_d(t)|\ll V_{DQ}$:
 $$
 \begin{align*}
 	i_d(t) &= f(V_{DQ}+v_d(t)) \\

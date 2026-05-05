@@ -45,7 +45,7 @@ Nel suo uso generico si accoppia con una rete esterna che comprende un generator
 Il guadagno di corrente $A_i$ è calcolabile come il rapporto tra le correnti:
 $$
 \begin{matrix}
-	i_2 = A_ii_1 & \rArr & A_i = \frac{i_2}{i_1}
+	i_2 = A_ii_1 & \Rightarrow & A_i = \frac{i_2}{i_1}
 \end{matrix}
 $$
 
@@ -80,7 +80,7 @@ $$
 	A_P := \frac{P_L}{P_S} = -\frac{v_2 i_2}{v_Si_1} = -A_iA_v = A_i^2 \frac{R_L}{R_S}
 $$
 
-Quindi, anche avessimo un **_amplificazione di corrente_**, non è detto che avremo anche un'amplificazione di potenza. Tuttavia, i componenti attivi come `BJT` e `MOSFET` **permettono** $|A_P| > 1$, raccogliendola da un'alimentazione a loro interna.
+Quindi, anche avessimo un **_amplificazione di corrente_**, non è detto che avremo anche un'amplificazione di potenza. Tuttavia, i componenti attivi come `BJT` e `MOSFET` **permettono** $\vert A_P| > 1$, raccogliendola da un'alimentazione a loro interna.
 
 <div class="grid2">
 <div class="">
@@ -88,8 +88,8 @@ Quindi, anche avessimo un **_amplificazione di corrente_**, non è detto che avr
 Modellare il `BJT` senza il `GCCC` equivale ad averne uno con $A_i = -1$:
 $$
 	\begin{matrix}
-		v_2 = \frac{R_L}{R_L + R_S}v_S & \rArr & A_V = \frac{R_L}{R_L + R_S} \\
-		i_2 = -i_1 & \rArr & A_i = -1
+		v_2 = \frac{R_L}{R_L + R_S}v_S & \Rightarrow & A_V = \frac{R_L}{R_L + R_S} \\
+		i_2 = -i_1 & \Rightarrow & A_i = -1
 	\end{matrix}
 $$
 
@@ -283,32 +283,32 @@ $$
 Quando operiamo nella **_Zona Attiva Diretta_**, ovvero con $V_{EB} \gg U_T$ e $V_{CB} \ll 0$, possiamo semplificare le nostre equazioni:
 $$
 \begin{CD}
-	\begin{matrix}
-		\begin{align*}
+	\underbrace{\begin{matrix}
+		\begin{aligned}
 			I_E &= I_{ES}(e^{V_{EB}/U_T} \cancel{- 1}) - \alpha_R I_{CS}(\cancel{e^{V_{CB}/U_T}} - 1) \\
 			I_E &= I_{ES}\cdot e^{V_{EB}/U_T} \cancel{+ \alpha_R I_{CS}} \\
 			I_E &= I_{ES}\cdot e^{V_{EB}/U_T}
-		\end{align*} & &
-		\begin{align*}
+		\end{aligned} & &
+		\begin{aligned}
 			I_C &= I_{CS}(\cancel{e^{V_{CB}/U_T}} - 1) - \alpha_F I_{ES}(e^{V_{EB}/U_T} \cancel{- 1}) \\
 			I_C &= \cancel{-I_{CS}} -\alpha_F I_{ES}\cdot e^{V_{EB}/U_T} \\
 			I_C &= -\alpha_F I_{ES}\cdot e^{V_{EB}/U_T}
-		\end{align*}
-	\end{matrix} \\
+		\end{aligned}
+	\end{matrix}} \\
 	@VVV \\
 	\boxed{
-		\begin{align*}
+		\begin{aligned}
 			I_E &= I_{ES}e^{V_{EB}/U_T}\\[1em]
 			I_C &= -\alpha_F I_E \\[1em]
 			I_B &= -(I_E + I_C) = (\alpha_F - 1)I_E
-		\end{align*}
+		\end{aligned}
 	}
 \end{CD}
 $$
 
 Se provassimo a mettere in relazione corrente in entrata e corrente di base otterremmo il **rapporto** $\beta_F$, indicato dai costruttori anche come $h_{FE}$:
 $$
-\beta_F := \frac{I_{in}}{I_B} \rArr \frac{I_C}{I_B} =\frac{\alpha_F}{1 - \alpha_F}
+\beta_F := \frac{I_{in}}{I_B} \Rightarrow \frac{I_C}{I_B} =\frac{\alpha_F}{1 - \alpha_F}
 $$
 
 Che, considerando $0.98 \le \alpha_F \le 0.998$, otteniamo che $50 \lesssim \beta_F \lesssim 500$.
@@ -384,7 +384,7 @@ Questo accade perché in `ZAD` la giunzione `BC` è in **inversa** $(V_{CB} > 0)
 Riducendo la $V_{CE}$:
 $$
 \begin{matrix}
-	V_{CE} = V_C - V_E = V_C - V_B + V_B - V_E = -V_{BC} + \underbrace{V_{BE}}_{V_\gamma} & \rArr & V_{BC} = -V_{CE} + V_\gamma
+	V_{CE} = V_C - V_E = V_C - V_B + V_B - V_E = -V_{BC} + \underbrace{V_{BE}}_{V_\gamma} & \Rightarrow & V_{BC} = -V_{CE} + V_\gamma
 \end{matrix}
 $$
 
@@ -407,7 +407,7 @@ Notiamo infatti che queste convergono su un punto sull'asse delle $V_{CE}$ che c
 <img class="100" src="./images/transistor/bjt/early-effect-graph.png">
 <figcaption>
 
-Più $|V_{A}|$ è grande, meno notiamo lo "sparpagliamento" delle caratteristiche al variare della corrente di base.
+Più $\vert V_{A}\vert$ è grande, meno notiamo lo "sparpagliamento" delle caratteristiche al variare della corrente di base.
 </figcaption>
 </figure>
 

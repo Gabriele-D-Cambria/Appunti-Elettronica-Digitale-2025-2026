@@ -344,7 +344,7 @@ Questo fenomeno si chiama **_Pinch-Off_** ed è una vera e propria _chiusura ant
 
 Se aumentassimo _ancora di più_ $V_{DS}$ avremmo che:
 $$
-\exist x_P \quad | \quad V_{GS} - V_{x_PS} = V_L
+\exists x_P \quad | \quad V_{GS} - V_{x_PS} = V_L
 $$
 
 Questo significa che abbiamo **_chiuso anticipatamente il canale_** di una porzione $\Delta L = L - x_P$.
@@ -548,7 +548,7 @@ $$
 
 Dobbiamo però ricordare che:
 - $\mu_n > \mu_p$ &emsp; con le tecniche moderne arriviamo ad avere $\mu_n \approx 4 \cdot \mu_p$
-- $|V_{Tn}| \ne |V_{Tp}|$
+- $\vert V_{Tn}| \ne |V_{Tp}\vert$
 
 Tendenzialmente avremo quindi che i transistori `NMOS` conducono più corrente.
 
@@ -832,4 +832,4 @@ $$
 
 > Il modello _**è uguale sia per `NMOS` che per `PMOS`**_, in quanto stiamo trattando di relazioni _differenziali_.
 >
-> Dobbiamo solo stare attenti che $g_m$ sia positivo, per fare ciò possiamo utilizzare la relazione $g_m = \frac{2I_{D_Q}}{|V_{GS_Q} - V_T|}$
+> Dobbiamo solo stare attenti che $g_m$ sia positivo, per fare ciò possiamo utilizzare la relazione $g_m = \frac{2I_{D_Q}}{\vert V_{GS_Q} - V_T\vert }$

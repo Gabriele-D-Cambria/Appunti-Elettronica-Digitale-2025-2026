@@ -595,8 +595,8 @@ Chiamiamo:
 A seconda del rapporto tra _guadagno ad anello aperto_ e _guadagno ad anello chiuso_ si chiama:
 $$
 \begin{matrix}
-	|H| < |A| & \textbf{Reazione Negativa} \\
-	|H| > |A| & \textbf{Reazione Positiva}
+	\vert H\vert  < \vert A\vert  & \textbf{Reazione Negativa} \\
+	\vert H\vert  > \vert A\vert  & \textbf{Reazione Positiva}
 \end{matrix}
 $$
 

@@ -671,8 +671,8 @@ Ricordando che i transistori operano
 
 |        |                      Conduzione                       |                          Saturazione                          |
 | :----: | :---------------------------------------------------: | :-----------------------------------------------------------: |
-| `NMOS` |             $V_{GS_N} = V_i \ge V_{T_N}$              | $V_{DS_N} \ge V_{GS_N} - V_{T_N} \rArr V_o \ge V_i - V_{T_N}$ |
-| `CMOS` | $V_{GS_P} \le V_{T_P} \rArr V_i \le V_{DD} + V_{T_P}$ | $V_{DS_P} \le V_{GS_P} - V_{T_P} \rArr V_o \le V_i - V_{T_P}$ |
+| `NMOS` |             $V_{GS_N} = V_i \ge V_{T_N}$              | $V_{DS_N} \ge V_{GS_N} - V_{T_N} \Rightarrow V_o \ge V_i - V_{T_N}$ |
+| `CMOS` | $V_{GS_P} \le V_{T_P} \Rightarrow V_i \le V_{DD} + V_{T_P}$ | $V_{DS_P} \le V_{GS_P} - V_{T_P} \Rightarrow V_o \le V_i - V_{T_P}$ |
 
 </div>
 

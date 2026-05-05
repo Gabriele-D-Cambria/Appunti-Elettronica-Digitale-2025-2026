@@ -419,8 +419,10 @@ IL rapporto tra uqeste quantità si chiama **_Tensione Termica_** (_Thermal Volt
 
 Concludiamo quindi dicendo quanto vale la **_Densità di Corrente_** in un materiale:
 $$
-	\vec{J}_n = \vec{J}_{n,DRIFT} + \vec{J}_{n,DIFF} = n\cdot q \cdot \mu_n \cdot \vec{E} + q \cdot D_N \cdot \frac{\partial n}{\partial x} \hat{x} \\[1em]
-	\vec{J}_p = \vec{J}_{p,DRIFT} + \vec{J}_{p,DIFF} = p\cdot q \cdot \mu_p \cdot \vec{E} + q \cdot D_N \cdot \frac{\partial }{\partial x} \hat{x} \\[2em]
-	\vec{J}_{TOTALE} = \vec{J}_{n} + \vec{J}_{p}
-
+\large
+\begin{align*}
+	\vec{J}_n = \vec{J}_{n,DRIFT} + \vec{J}_{n,DIFF} &= n\cdot q \cdot \mu_n \cdot \vec{E} + q \cdot D_N \cdot \frac{\partial n}{\partial x} \hat{x} \\[1em]
+	\vec{J}_p = \vec{J}_{p,DRIFT} + \vec{J}_{p,DIFF} &= p\cdot q \cdot \mu_p \cdot \vec{E} + q \cdot D_N \cdot \frac{\partial }{\partial x} \hat{x} \\[1em]
+	\vec{J}_{TOTALE} &= \vec{J}_{n} + \vec{J}_{p}	
+\end{align*}
 $$
