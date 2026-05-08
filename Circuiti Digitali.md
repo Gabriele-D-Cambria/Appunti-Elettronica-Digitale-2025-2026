@@ -25,6 +25,11 @@ title: Circuiti Digitali
 		- [3.3.2. Inverter](#332-inverter)
 			- [3.3.2.1. Analisi Circuitale](#3321-analisi-circuitale)
 			- [3.3.2.2. Analisi Zona a Transistori Saturi](#3322-analisi-zona-a-transistori-saturi)
+			- [3.3.2.3. Analisi in Potenza](#3323-analisi-in-potenza)
+		- [3.3.3. Reti Combinatorie](#333-reti-combinatorie)
+			- [3.3.3.1. Porta `NOR` a 2 Ingressi](#3331-porta-nor-a-2-ingressi)
+			- [3.3.3.2. Porta `NAND` a 2 Ingressi](#3332-porta-nand-a-2-ingressi)
+			- [3.3.3.3. Porta Complessa a 4 Ingressi](#3333-porta-complessa-a-4-ingressi)
 
 # 2. Circuiti Digitali
 
@@ -585,12 +590,6 @@ $$
 i_{D_N} = -i_{D_P}
 $$
 
-</div>
-<div class="">
-<img class="40" src="./images/digital/logic-ports/inverter/circuit-analysis-CMOS.png">
-</div>
-</div>
-
 Per risolvere dal punto di vista grafico, possiamo effettuare il _plot_ di entrambi i transistori sullo stesso grafico. Dobbiamo quindi trovare un modo per unire sullo stesso piano cartesiano le due caratteristiche, dato che il primo grafica $i_{D_N}$ e $V_{DS_N}$ e il secondo $i_{D_P}$ e $V_{DS_P}$.
 
 Facendo attenzione però possiamo vedere come:
@@ -598,6 +597,12 @@ Facendo attenzione però possiamo vedere come:
 - $V_{GS_{N}} = V_i$
 
 Scegliamo quindi questi assi, poiché già relazionati alla tensione di ingresso e di uscita.
+
+</div>
+<div class="">
+<img class="40" src="./images/digital/logic-ports/inverter/circuit-analysis-CMOS.png">
+</div>
+</div>
 
 A questo punto dobbiamo riuscire a capire come tracciare il grafico del `PMOS` su questi assi, ma sappiamo che:
 - $i_{D_P} = -i_{D_N} \qquad \to \qquad$ sufficiente "ribaltare" sul secondo quadrante
@@ -800,4 +805,337 @@ $$
 \frac{\mu_N}{\mu_P} = \frac{\Bigl(\frac{W}{L}\Bigr)_P}{\Bigl(\frac{W}{L}\Bigr)_N}
 $$
 
-In questo tipo di porte i punti a derivata in modulo unitario _**sono simmetrici**_..
+In questo tipo di porte i punti a derivata in modulo unitario _**sono simmetrici**_.
+
+#### 3.3.2.3. Analisi in Potenza
+
+Nella porta inverter costruita con tecnologia `CMOS` abbiamo che:
+- **Potenza Statica Ideale**: $0$. Sui transistori non passa mai corrente
+- **Potenza Statica Reale**: molto piccola, dovuta a correnti parassite
+- **Potenza Dinamica**: ce ne sono di diversi tipi
+  1. _Potenza di "Cortocircuito"_: è la potenza dissipata quando i due transistori sono entrambi in conduzione (zona 3)
+  2. _Carica/Scarica Capacità_
+
+Il secondo tipo di potenza dinamica, deriva perché i due transistori, durante i loro processi, possono agire "parassitivamente" come dei condensatori, che quindi dovranno essere svuotati/caricati per peter far variare l'uscita.
+
+Per spiegare meglio perché questa capacità è presente, **e non eliminabile** vediamo il circuito di seguito, dove poniamo **2 inverter in serie**.
+
+<div class="grid2">
+<div class="">
+
+La prima capacità parassita è identificata da $C_W$, che rappresenta la _Capacità del Filo_. Infatti ogni collegamento presenta resistenza, induttanza e capacità intrinseche non eliminabili.
+
+La seconda e terza capacità parassita si presentano nelle _**Zone di svuotamento tra Drain e Body**_ dei `MOSFET`. Infatti, tra zona $n^+$ del drain e il substrato $p$ è presente una zona di svuotamento, che agisce proprio come un condensatore. La chiamiamo $C_{DB}$.
+
+La quarta e la quinta capacità parassita si trovano nelle _**Sovrapposizioni tra Gate e Drain**_ dei `MOSFET`. Nella piccola intersezione che ha la zona $n^+$ con la sezione del _Gate_, si forma infatti un piccolo condensatore. Chiamiamo questa capacità $C_{GD}$
+
+Avendo messo serie un altro _inverter_, si presentano quindi altre due capacità, tra il _Gate_ del secondo inverter e i due substrati dei suoi `MOSFET`. Le chiamiamo $C_{GP}$ e $C_{GN}$
+
+</div>
+<div class="">
+TODO: foto
+<img class="80" src="./images">
+</div>
+</div>
+
+
+Tutte queste capacità _**condividono un nodo**_. Per calcolare la capacità equivalente dobbiamo ricordare che questo circuito va studiato **per le variazioni**. Infatti, _groud_ e $V_{CC}$, per quanto fisse, durante le variazioni dei transistori possono essere considerati _**come se fossero lo stesso nodo**_.
+
+Inoltre, per i due condensatori collegati alla $V_i$ dobbiamo fare un discorso particolare. Infatti questi due consensatori non hanno un armatura che ha tensione fissa, infatti se $V_i$ aumenta allora $V_o$ diminuirà, aumentando la differenza tra le armature del doppio della variazione di $V_i$.
+Possiamo quindi dire che:
+$$
+	\Delta Q = C_{GD} \cdot 2 \Delta V
+$$
+
+
+Nelle altre capacità invece, collegate a _ground_, abbiamo che la relazione è:
+$$
+	\Delta Q = C \cdot \Delta V
+$$
+
+Possiamo quindi rendere le due espressioni uguali, se consideriamo le capacità connesse a $V_i$ come **se fossero collegate a _ground_, a patto che le consideriamo _con capacità nominale doppia_**.
+
+Questi condensatori possono quindi essere considerati in parallelo a gli atri, ottenendo una capacità equivalente:
+$$
+\large
+\boxed{
+	C_{EQ} = C_W + C_{DB_N} + C_{DB_P} + C_{GN} + C_{GP} + 2 \cdot C_{GD_N} + 2 \cdot C_{GD_P}
+}
+$$
+
+Questo valore dipende sia dal processo tecnologico, che fornisce informazioni sulle capacità per area, sia dalle dimensioni dei transistori che moltiplicano queste densità.
+Nei processi moderni queste capacità, per dimensioni minime, si aggirano nell'ordine dei $O(fF) = O(10^{-15} F)$.
+
+È importante sottolineare che questa capacità **aumenta per ogni porta in uscita collegata** aumentando sia il ritardo che la potenza dissipata. Ecco il perché dell'esistenza del **FAN OUT**.
+
+Questa capacità in uscita dovrà quindi essere **caricata e scaricata**. Ignorando i ritardi temporali, andiamo a vedere quanta potenza dissipiamo nei processi di carica/scarica della capacità.
+
+Studiamo intanto il processo di scarico del condensatore, ovvero la _Transizione di Uscita Alto $\to$ Basso_.
+
+
+La variazione di energia è quindi:
+$$
+\large
+\boxed{
+	E_{HL} = E_i - E_f = \frac{1}{2}C_{EQ}V_{DD}^2
+}
+$$
+
+Questa energia viene dissipata, _sotto forma di energia termica_, dall'`NMOS` che chiude il circuito con _ground_.
+
+Nel processo di carica del condesatore, ovvero la _Transizione di Uscita Basso $\to$ Alto_ invece:
+$$
+\begin{cases}
+	V_o = 0 & \text{Situazione Iniziale} \\
+	V_o = V_{DD} & \text{Situazione Finale}
+\end{cases}
+$$
+
+Facciamo in questo caso un altro ragionamento: per ottenere l'**energia dissipata** $E_{LH}$, calcoliamo prima l'energia erogata dalla batteria $E_B$, e vi sottraiamo l'energia che abbiamo immagazzinato nel condesatore $E_C$
+$$
+	E_{LH} = E_{B} - E_{C}
+$$
+
+L'energia della batteria:
+$$
+\begin{align*}
+	E_B &= \int_0^{T}{V_B(\tau) i(\tau)\;d\tau} \\
+		&= V_{DD} \int_0^T{i(\tau)\;d\tau} \\
+		&= V_{DD} \cdot Q
+\end{align*}
+$$
+
+L'integrale della corrente infatti è la carica, che nel nostro caso **si è depositata tutta sulle pareti del condensatore**.
+
+Possiamo quindi riscrivere anche:
+$$
+	E_B = V_{DD} \cdot (C_{EQ}V_{DD}) = C_{EQ}V_{DD}^2
+$$
+
+A questo punto calcoliamo l'energia immagazzinata nel condensatore:
+$$
+	E_C = \frac{1}{2} C_{EQ} V_{DD}^2
+$$
+
+L'energia dissipata è quindi:
+$$
+\large
+\boxed{
+	E_{LH} = E_B - E_C =  \frac{1}{2}C_{EQ}V_{DD}^2
+}
+$$
+
+L'energia dissipata in una doppia transizione sarà quindi:
+$$
+\Large
+\boxed{
+	E_D = E_{HL} + E_{LH} = C_{EQ}V_{DD}^2
+}
+$$
+
+Per calcolare la **Potenza Dinamica** ipotizziamo che la commutazione avvenga con una _frequenza_ $f$, ottenendo:
+$$
+\Large
+\boxed{
+	P_D = f \cdot C_{EQ} \cdot V_{DD}^2
+}
+$$
+
+### 3.3.3. Reti Combinatorie
+
+<div class="grid2">
+<div class="">
+
+Le reti combinatorio che affronteremo seguiranno tutte lo schema proposto sulla sinistra, ovvero:
+- Due variabili di entrata `A` a `B`
+- Una variabile di uscita `Y`
+
+La rete di _PULL-UP_ `PUN`, composta da `PMOS`, e la rete di _PULL-DOWN_ `PDN`, composta da `NMOS`, sono **completamente disguinte e separate**, non operando mai in contemporanea.
+
+</div>
+<div class="">
+TODO: foto
+<img class="80" src="./images">
+</div>
+</div>
+
+
+Pensando ai `MOSFET` come a degli interruttori, dove:
+- `PMOS`: attivo basso
+- `NMOS`: attivo alto
+
+Possiamo vedere facilmente come:-
+- **Due `MOSFET` in _serie_** equivalgono ad una `AND`
+- **Due `MOSFET` in _parallelo_** equivalgono ad una `OR`
+
+<div class="grid2">
+<div class="top">
+<p class="p">NMOS - Serie</p>
+
+TODO: foto
+<img class="" src="./images">
+
+$V_y = 0$ sarà vera _**se e solo se**_ i due transistor $Q_A$ e $Q_B$ conducono.
+
+Quindi:
+$$
+\begin{CD}
+	\begin{cases}
+		V_A = V_{DD} \\
+		V_B = V_{DD}
+	\end{cases} @>>>
+	\begin{cases}
+		A = 1 \\
+		B = 1
+	\end{cases}
+\end{CD}
+$$
+
+
+Abbiamo quindi che `Y = 0` quando `A = 1` e `B = 1`.
+
+Abbiamo quindi ottenuto una _**Porta NAND**_:
+$$
+	Y = \overline{A \cdot B}
+$$
+</div>
+<div class="top">
+<p class="p">NMOS Parallelo</p>
+
+TODO: foto
+<img class="" src="./images">
+
+$V_y = 0$ sarà vera _**se e solo se**_ almeno uno due transistor conduce.
+
+Abbiamo quindi che `Y = 0` quando almeno uno tra `A` e `B` vale `1`.
+
+Abbiamo quindi ottenuto una _**Porta NOR**_:
+$$
+	Y = \overline{A + B}
+$$
+
+</div>
+<p class="p">PMOS - Serie</p>
+
+TODO: foto
+<img class="" src="./images">
+
+$V_y = V_{DD}$ sarà vera _**se e solo se**_ entrambi i transistori sono interdetti.
+
+Abbiamo quindi che `Y = 0` quando sia `A = 0` e `B = 0`.
+
+Abbiamo quindi ottenuto una _**Porta NOR**_:
+$$
+	Y = \overline{A} \cdot \overline{B} = \overline{A + B}
+$$
+
+</div>
+<div class="top">
+<p class="p">PMOS Parallelo</p>
+
+TODO: foto
+<img class="" src="./images">
+
+$V_y = V_{DD}$ sarà vera _**se e solo se**_ almeno uno due transistor è interdetto.
+
+Abbiamo quindi che `Y = 1` quando almeno uno tra `A` e `B` vale `0`.
+
+Abbiamo quindi ottenuto una _**Porta NAND**_:
+$$
+	Y = \overline{A} + \overline{B} = \overline{A \cdot B}
+$$
+
+</div>
+</div>
+
+
+Le regole quindi sono le seguenti:
+
+<div class="flexbox" markdown="1">
+
+|           |              `PMOS`               |            `NMOS`             |
+| :-------: | :-------------------------------: | :---------------------------: |
+|   Serie   |      $\overline{A \cdot B}$       |      $\overline{A + B}$       |
+| Parallelo | $\overline{A} \cdot \overline{B}$ | $\overline{A} + \overline{B}$ |
+
+</div>
+
+
+Per capire come sono fatte le due reti:
+- `PUN`: **trovare $Y$ in funzione delle variabili _negate_**
+- `PDN`: **trovare $Y$ _negato_ in funzione delle variabili**
+
+In generale vale **Proprietà della Dualità**:
+> Nelle porte `CMOS`, una **condizione sufficiente** affinché la porta funzioni è che la `PUN` sia la _duale_ della `PDN` e viceversa.
+> 
+> Ovvero ad ogni _serie_ di una porta si ha un _parallelo_ nell'altra e viceversa.
+
+#### 3.3.3.1. Porta `NOR` a 2 Ingressi
+
+<div class="grid2">
+<div class="">
+
+Nella porta `NOR` a due ingressi abbiamo che:
+$$
+	Y = \overline{A + B}
+$$
+
+Abbiamo quindi che:
+- `PUN`: $Y = \overline{A} \cdot \overline{B}$
+- `PDN`: $\overline{Y} = A + B$
+
+</div>
+<div class="">
+TODO: foto
+<img class="80" src="./images">
+</div>
+</div>
+
+
+#### 3.3.3.2. Porta `NAND` a 2 Ingressi
+
+<div class="grid2">
+<div class="">
+
+Nella porta `NAND` a due ingressi abbiamo che:
+$$
+	Y = \overline{A \cdot B}
+$$
+
+Abbiamo quindi che:
+- `PUN`: $Y = \overline{A} + \overline{B}$
+- `PDN`: $\overline{Y} = A \cdot B$
+
+</div>
+<div class="">
+TODO: foto
+<img class="80" src="./images">
+</div>
+</div>
+
+#### 3.3.3.3. Porta Complessa a 4 Ingressi
+
+Vediamo come capire qual'è il circuito che ha come circuito di uscita:
+$$
+Y = \overline{A \cdot (B + CD)}
+$$
+
+Per quanto riguarda la `PUN` dobbiamo portarla nella forma dove ogni variabile è indipendente:
+$$
+\begin{align*}
+	Y &= \overline{A} + \overline{B + CD} \\
+	  &= \overline{A} + \overline{B} \cdot \overline{CD} \\
+	  &= \overline{A} + (\overline{B} \cdot (\overline{C} + \overline{D})) \\
+\end{align*}
+$$
+
+Per la `PDN` dobbiamo trovare la $\overline{Y}$:
+$$
+\overline{Y} = A \cdot (B + CD)
+$$
+
+
+La rete finale è la seguente:
+
+TODO: foto
+<img class="" src="./images">
