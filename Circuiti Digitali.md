@@ -35,7 +35,6 @@ title: Circuiti Digitali
 			- [3.3.4.1. Rete `NOR` a 4 Ingressi](#3341-rete-nor-a-4-ingressi)
 			- [3.3.4.2. Rete `NAND` a 4 Ingressi](#3342-rete-nand-a-4-ingressi)
 		- [3.3.5. Circuito di Protezione](#335-circuito-di-protezione)
-	- [Ha quindi senso inserire un circuito di protezione **esclusivamente** sui _**contatti verso il mondo esterno**_.](#ha-quindi-senso-inserire-un-circuito-di-protezione-esclusivamente-sui-contatti-verso-il-mondo-esterno)
 
 # 2. Circuiti Digitali
 
@@ -808,7 +807,8 @@ Affinché questo sia vero _**devono necessariamente essere vere entrambe le rela
 - $V_{T_N} = - V_{T_P}$ &emsp; non abbiamo controllo, dobbiamo guardare le specifiche dei transistori
 - $K_P = K_N$ &emsp; possiamo agire sulle dimnesioni dei transistori affinché la relazione sia vera, in quanto:
 $$
-\frac{\mu_N}{\mu_P} = \frac{\Bigl(\frac{W}{L}\Bigr)_P}{\Bigl(\frac{W}{L}\Bigr)_N}
+\Large
+\frac{\mu_N}{\mu_P} = \frac{\Biggl(\frac{W}{L}\Biggr)_P}{\Biggl(\frac{W}{L}\Biggr)_N}
 $$
 
 In questo tipo di porte i punti a derivata in modulo unitario _**sono simmetrici**_.
@@ -816,70 +816,76 @@ In questo tipo di porte i punti a derivata in modulo unitario _**sono simmetrici
 #### 3.3.2.3. Analisi in Potenza
 
 Nella porta inverter costruita con tecnologia `CMOS` abbiamo che:
-- **Potenza Statica Ideale**: $0$. Sui transistori non passa mai corrente
+- **Potenza Statica Ideale**: Sui transistori non passa mai corrente quindi $0$
 - **Potenza Statica Reale**: molto piccola, dovuta a correnti parassite
 - **Potenza Dinamica**: ce ne sono di diversi tipi
   1. _Potenza di "Cortocircuito"_: è la potenza dissipata quando i due transistori sono entrambi in conduzione (zona 3)
-  2. _Carica/Scarica Capacità_
+  2. _Carica/Scarica Capacità intrinseca_
 
-Il secondo tipo di potenza dinamica, deriva perché i due transistori, durante i loro processi, possono agire "parassitivamente" come dei condensatori, che quindi dovranno essere svuotati/caricati per peter far variare l'uscita.
+Il secondo tipo di potenza dinamica è dovuta al fatto che durante due transistori i `MOSFET` possono agire "parassitivamente" come dei condensatori. Dovremo quindi prendere in considerazione il fatto che dovranno essere svuotati/caricati prima di commutare l'uscita.
 
-Per spiegare meglio perché questa capacità è presente, **e non eliminabile** vediamo il circuito di seguito, dove poniamo **2 inverter in serie**.
+Per spiegare meglio perché questa capacità è non solo presente ma **non eliminabile**, vediamo il circuito di seguito, dove poniamo **2 inverter in serie**.
 
 <div class="grid2">
 <div class="">
 
 La prima capacità parassita è identificata da $C_W$, che rappresenta la _Capacità del Filo_. Infatti ogni collegamento presenta resistenza, induttanza e capacità intrinseche non eliminabili.
 
-La seconda e terza capacità parassita si presentano nelle _**Zone di svuotamento tra Drain e Body**_ dei `MOSFET`. Infatti, tra zona $n^+$ del drain e il substrato $p$ è presente una zona di svuotamento, che agisce proprio come un condensatore. La chiamiamo $C_{DB}$.
+La seconda e terza capacità parassita si presentano nelle _**Zone di svuotamento tra Drain e Body**_ dei `MOSFET`. Infatti, tra zona $n^+$ del drain e il substrato $p$ è presente una zona di svuotamento, che agisce proprio come un condensatore. La chiamiamo $C_{DB}$
 
 La quarta e la quinta capacità parassita si trovano nelle _**Sovrapposizioni tra Gate e Drain**_ dei `MOSFET`. Nella piccola intersezione che ha la zona $n^+$ con la sezione del _Gate_, si forma infatti un piccolo condensatore. Chiamiamo questa capacità $C_{GD}$
+
+<img class="60" src="./images/digital/logic-ports/capacity/capacity-location.png">
+
 
 Avendo messo serie un altro _inverter_, si presentano quindi altre due capacità, tra il _Gate_ del secondo inverter e i due substrati dei suoi `MOSFET`. Le chiamiamo $C_{GP}$ e $C_{GN}$
 
 </div>
 <div class="">
-TODO: foto
-<img class="80" src="./images">
+<img class="90" src="./images/digital/logic-ports/capacity/inverter-series.png">
 </div>
 </div>
 
 
-Tutte queste capacità _**condividono un nodo**_. Per calcolare la capacità equivalente dobbiamo ricordare che questo circuito va studiato **per le variazioni**. Infatti, _groud_ e $V_{CC}$, per quanto fisse, durante le variazioni dei transistori possono essere considerati _**come se fossero lo stesso nodo**_.
+Poiché tutte queste capacità _**condividono il nodo**_ $D$, possiamo cercare un modo per trovare una _capacità equivalente_. È però importante ricordare che il circuito non va studiato staticamente, ma **per le variazioni**. Infatti, sia _groud_ chee $V_{CC}$, per quanto siano un valore numericamente fisso, durante le commutazioni possono essere considerati _**come se fossero lo stesso nodo**_, data la variazione simmetrica di condizioni all'interno dei transistori.
 
-Inoltre, per i due condensatori collegati alla $V_i$ dobbiamo fare un discorso particolare. Infatti questi due consensatori non hanno un armatura che ha tensione fissa, infatti se $V_i$ aumenta allora $V_o$ diminuirà, aumentando la differenza tra le armature del doppio della variazione di $V_i$.
-Possiamo quindi dire che:
+Possiamo quindi considerare $C_W$ i due $C_{DB}, C_{GP}$ e $C_{GN}$ come se fossero tutti in _parallelo_.
+
+Per quanto riguarda i due condensatori collegati alla $V_i$ dobbiamo fare un discorso particolare, dato che **non hanno un armatura che ha tensione fissa**.
+
+Infatti, se $V_i$ aumenta di $\Delta V$ allora $V_o$ diminuirà di $\Delta V$, aumentando la differenza tra le armature che sarà adesso $2 \Delta V$:
 $$
 	\Delta Q = C_{GD} \cdot 2 \Delta V
 $$
 
-
-Nelle altre capacità invece, collegate a _ground_, abbiamo che la relazione è:
+Nelle altre capacità collegate a _ground_, abbiamo che la relazione è:
 $$
 	\Delta Q = C \cdot \Delta V
 $$
 
-Possiamo quindi rendere le due espressioni uguali, se consideriamo le capacità connesse a $V_i$ come **se fossero collegate a _ground_, a patto che le consideriamo _con capacità nominale doppia_**.
+Tuttavia, considerando le capacità connesse a $V_i$ come il loro doppio, possiamo rendere le due espressioni matematicamente uguali. Ciò comporta che possiamo trattare anche questi condensatori **se fossero collegate a _ground_**.
 
 Questi condensatori possono quindi essere considerati in parallelo a gli atri, ottenendo una capacità equivalente:
 $$
-\large
+\Large
 \boxed{
 	C_{EQ} = C_W + C_{DB_N} + C_{DB_P} + C_{GN} + C_{GP} + 2 \cdot C_{GD_N} + 2 \cdot C_{GD_P}
 }
 $$
 
-Questo valore dipende sia dal processo tecnologico, che fornisce informazioni sulle capacità per area, sia dalle dimensioni dei transistori che moltiplicano queste densità.
+<img class="20" src="./images/digital/logic-ports/capacity/equivalent.png">
+
+Nella pratica dei nostri transistori, questo valore dipende sia dal processo tecnologico, che fornisce informazioni sulle capacità per area, sia dalle dimensioni dei transistori che moltiplicano queste densità.
 Nei processi moderni queste capacità, per dimensioni minime, si aggirano nell'ordine dei $O(fF) = O(10^{-15} F)$.
 
 È importante sottolineare che questa capacità **aumenta per ogni porta in uscita collegata** aumentando sia il ritardo che la potenza dissipata. Ecco il perché dell'esistenza del **FAN OUT**.
 
-Questa capacità in uscita dovrà quindi essere **caricata e scaricata**. Ignorando i ritardi temporali, andiamo a vedere quanta potenza dissipiamo nei processi di carica/scarica della capacità.
+Durante le commutazioni, la capacità dovrà essere **caricata e scaricata**. Ignorando i ritardi temporali, andiamo a vedere quanta potenza dissipiamo nei processi di carica/scarica della capacità.
+Seppur caricare e/o scaricare un condensatore non consumi l'energia che gli forniamo, il processo di carcia/scarica comporta una dissipazione a carico nelle componenti che utilizziamo per permettere alla corrente di trasportare quest'energia.
 
-Studiamo intanto il processo di scarico del condensatore, ovvero la _Transizione di Uscita Alto $\to$ Basso_.
+Studiamo intanto il processo di _scarica_ del condensatore, ovvero la _Transizione di Uscita Alto $\to$ Basso_.
 
-
-La variazione di energia è quindi:
+Poiché al termine del processo l'energia è nulla, la variazione di energia sarà:
 $$
 \large
 \boxed{
@@ -939,13 +945,15 @@ $$
 }
 $$
 
-Per calcolare la **Potenza Dinamica** ipotizziamo che la commutazione avvenga con una _frequenza_ $f$, ottenendo:
+Per calcolare la **Potenza Dinamica** ipotizziamo che la commutazione avvenga con una _frequenza_ $\nu$, ottenendo:
 $$
 \Large
 \boxed{
-	P_D = f \cdot C_{EQ} \cdot V_{DD}^2
+	P_D = \nu \cdot C_{EQ} \cdot V_{DD}^2
 }
 $$
+
+Ecco spiegato perché storicamente abbiamo sempre cercato di diminuire la tensione di alimentazione di questo tipo di circuiti, passando da $5$ $V$ a $3.3$ $V$. Questa diminuzione però non può essere drastica, dato che è proprio nell'intervallo $[0, V_{DD}]$ che dobbiamo sancire le zone che interpretiamo ccome `0` e `1` logico, perciò diminuendolo troppo rischiamo di perdere tolleranza ai rumori.
 
 ### 3.3.3. Reti Combinatorie
 
@@ -960,8 +968,7 @@ La rete di _PULL-UP_ `PUN`, composta da `PMOS`, e la rete di _PULL-DOWN_ `PDN`, 
 
 </div>
 <div class="">
-TODO: foto
-<img class="80" src="./images">
+<img class="40" src="./images/digital/logic-ports/scheme.png">
 </div>
 </div>
 
@@ -978,23 +985,21 @@ Possiamo vedere facilmente come:-
 <div class="top">
 <p class="p">NMOS - Serie</p>
 
-TODO: foto
-<img class="" src="./images">
+
+<img class="30" src="./images/digital/logic-ports/NMOS-series.png">
 
 $V_y = 0$ sarà vera _**se e solo se**_ i due transistor $Q_A$ e $Q_B$ conducono.
 
 Quindi:
 $$
-\begin{CD}
-	\begin{cases}
-		V_A = V_{DD} \\
-		V_B = V_{DD}
-	\end{cases} @>>>
-	\begin{cases}
-		A = 1 \\
-		B = 1
-	\end{cases}
-\end{CD}
+\begin{cases}
+	V_A = V_{DD} \\
+	V_B = V_{DD}
+\end{cases} \to
+\begin{cases}
+	A = 1 \\
+	B = 1
+\end{cases}
 $$
 
 
@@ -1002,29 +1007,30 @@ Abbiamo quindi che `Y = 0` quando `A = 1` e `B = 1`.
 
 Abbiamo quindi ottenuto una _**Porta NAND**_:
 $$
-	Y = \overline{A \cdot B}
+	\overline{Y} = A \cdot B
 $$
 </div>
 <div class="top">
 <p class="p">NMOS Parallelo</p>
 
-TODO: foto
-<img class="" src="./images">
+<img class="70" src="./images/digital/logic-ports/NMOS-parallel.png">
 
 $V_y = 0$ sarà vera _**se e solo se**_ almeno uno due transistor conduce.
 
-Abbiamo quindi che `Y = 0` quando almeno uno tra `A` e `B` vale `1`.
+Abbiamo quindi che `Y = 1` quando almeno uno tra `A` e `B` vale `1`.
 
 Abbiamo quindi ottenuto una _**Porta NOR**_:
 $$
-	Y = \overline{A + B}
+	\overline{Y} = A + B
 $$
 
 </div>
+<div><hr></div>
+<div><hr></div>
+<div class="top">
 <p class="p">PMOS - Serie</p>
 
-TODO: foto
-<img class="" src="./images">
+<img class="30" src="./images/digital/logic-ports/PMOS-series.png">
 
 $V_y = V_{DD}$ sarà vera _**se e solo se**_ entrambi i transistori sono interdetti.
 
@@ -1032,15 +1038,14 @@ Abbiamo quindi che `Y = 0` quando sia `A = 0` e `B = 0`.
 
 Abbiamo quindi ottenuto una _**Porta NOR**_:
 $$
-	Y = \overline{A} \cdot \overline{B} = \overline{A + B}
+	Y = \overline{A} \cdot \overline{B}
 $$
 
 </div>
 <div class="top">
 <p class="p">PMOS Parallelo</p>
 
-TODO: foto
-<img class="" src="./images">
+<img class="70" src="./images/digital/logic-ports/NMOS-parallel.png">
 
 $V_y = V_{DD}$ sarà vera _**se e solo se**_ almeno uno due transistor è interdetto.
 
@@ -1048,7 +1053,7 @@ Abbiamo quindi che `Y = 1` quando almeno uno tra `A` e `B` vale `0`.
 
 Abbiamo quindi ottenuto una _**Porta NAND**_:
 $$
-	Y = \overline{A} + \overline{B} = \overline{A \cdot B}
+	Y = \overline{A} + \overline{B}
 $$
 
 </div>
@@ -1059,15 +1064,14 @@ Le regole quindi sono le seguenti:
 
 <div class="flexbox" markdown="1">
 
-|           |              `PMOS`               |            `NMOS`             |
-| :-------: | :-------------------------------: | :---------------------------: |
-|   Serie   |      $\overline{A \cdot B}$       |      $\overline{A + B}$       |
-| Parallelo | $\overline{A} \cdot \overline{B}$ | $\overline{A} + \overline{B}$ |
+|           |           `PMOS`           |                `NMOS`                 |
+| :-------: | :------------------------: | :-----------------------------------: |
+|   Serie   | $\overline{Y} = A \cdot B$ | $Y = \overline{A} \cdot \overline{B}$ |
+| Parallelo |   $\overline{Y} = A + B$   |   $Y = \overline{A} + \overline{B}$   |
 
 </div>
 
-
-Per capire come sono fatte le due reti:
+Per sintetizzare le due reti dobbiamo quindi:
 - `PUN`: **trovare $Y$ in funzione delle variabili _negate_** &emsp; $Y = f_1(\overline{A}, \overline{B}, \overline{C}, ...)$
 - `PDN`: **trovare $Y$ _negato_ in funzione delle variabili** &emsp; $\overline{Y} = f_2(A, B, C, ...)$
 
@@ -1087,13 +1091,12 @@ $$
 $$
 
 Abbiamo quindi che:
-- `PUN`: $Y = \overline{A} \cdot \overline{B}$
-- `PDN`: $\overline{Y} = A + B$
+- `PUN` &emsp; $Y = \overline{A} \cdot \overline{B}$
+- `PDN` &emsp; $\overline{Y} = A + B$
 
 </div>
 <div class="">
-TODO: foto
-<img class="80" src="./images">
+<img class="40" src="./images/digital/logic-ports/nor/2-inputs.png">
 </div>
 </div>
 
@@ -1109,24 +1112,26 @@ $$
 $$
 
 Abbiamo quindi che:
-- `PUN`: $Y = \overline{A} + \overline{B}$
-- `PDN`: $\overline{Y} = A \cdot B$
+- `PUN` &emsp; $Y = \overline{A} + \overline{B}$
+- `PDN` &emsp; $\overline{Y} = A \cdot B$
 
 </div>
 <div class="">
-TODO: foto
-<img class="80" src="./images">
+<img class="40" src="./images/digital/logic-ports/nand/2-inputs.png">
 </div>
 </div>
 
 #### 3.3.3.3. Porta Complessa a 4 Ingressi
+
+<div class="grid2">
+<div class="">
 
 Vediamo come capire qual'è il circuito che ha come circuito di uscita:
 $$
 Y = \overline{A \cdot (B + CD)}
 $$
 
-Per quanto riguarda la `PUN` dobbiamo portarla nella forma dove ogni variabile è indipendente:
+Per quanto riguarda la `PUN` dobbiamo portarla nella forma dove ogni variabile è _negata_:
 $$
 \begin{align*}
 	Y &= \overline{A} + \overline{B + CD} \\
@@ -1141,10 +1146,13 @@ $$
 $$
 
 
-La rete finale è la seguente:
+La rete finale è quindi quella sulla destra.
 
-TODO: foto
-<img class="" src="./images">
+</div>
+<div class="">
+<img class="40" src="./images/digital/logic-ports/complex-example.png">
+</div>
+</div>
 
 #### 3.3.3.4. Porta `XOR` a 2 Ingressi
 
@@ -1568,4 +1576,3 @@ Se aumentiamo il numero di inverter pilotati, ognuno con il proprio circuito di 
 In realtà questo _**non è un problema**_ perché il circuito di protezione messo tra due porte dello stesso circuito _**è completamente inutile**_, dato che non si ha accesso diretto a questi punti.
 
 Ha quindi senso inserire un circuito di protezione **esclusivamente** sui _**contatti verso il mondo esterno**_.
-- 
