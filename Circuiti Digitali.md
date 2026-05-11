@@ -30,6 +30,12 @@ title: Circuiti Digitali
 			- [3.3.3.1. Porta `NOR` a 2 Ingressi](#3331-porta-nor-a-2-ingressi)
 			- [3.3.3.2. Porta `NAND` a 2 Ingressi](#3332-porta-nand-a-2-ingressi)
 			- [3.3.3.3. Porta Complessa a 4 Ingressi](#3333-porta-complessa-a-4-ingressi)
+			- [3.3.3.4. Porta `XOR` a 2 Ingressi](#3334-porta-xor-a-2-ingressi)
+		- [3.3.4. Dimensionare i `MOSFET` nelle Reti Combinatorie](#334-dimensionare-i-mosfet-nelle-reti-combinatorie)
+			- [3.3.4.1. Rete `NOR` a 4 Ingressi](#3341-rete-nor-a-4-ingressi)
+			- [3.3.4.2. Rete `NAND` a 4 Ingressi](#3342-rete-nand-a-4-ingressi)
+		- [3.3.5. Circuito di Protezione](#335-circuito-di-protezione)
+	- [Ha quindi senso inserire un circuito di protezione **esclusivamente** sui _**contatti verso il mondo esterno**_.](#ha-quindi-senso-inserire-un-circuito-di-protezione-esclusivamente-sui-contatti-verso-il-mondo-esterno)
 
 # 2. Circuiti Digitali
 
@@ -1062,8 +1068,8 @@ Le regole quindi sono le seguenti:
 
 
 Per capire come sono fatte le due reti:
-- `PUN`: **trovare $Y$ in funzione delle variabili _negate_**
-- `PDN`: **trovare $Y$ _negato_ in funzione delle variabili**
+- `PUN`: **trovare $Y$ in funzione delle variabili _negate_** &emsp; $Y = f_1(\overline{A}, \overline{B}, \overline{C}, ...)$
+- `PDN`: **trovare $Y$ _negato_ in funzione delle variabili** &emsp; $\overline{Y} = f_2(A, B, C, ...)$
 
 In generale vale **Proprietà della Dualità**:
 > Nelle porte `CMOS`, una **condizione sufficiente** affinché la porta funzioni è che la `PUN` sia la _duale_ della `PDN` e viceversa.
@@ -1139,3 +1145,427 @@ La rete finale è la seguente:
 
 TODO: foto
 <img class="" src="./images">
+
+#### 3.3.3.4. Porta `XOR` a 2 Ingressi
+
+Nello `XOR` a due ingressi ha come relazione:
+$$
+	Y = A\overline{B} + \overline{A}B
+$$
+
+La `PUN` abbiamo già la relazione, che però non è come la desideriamo, dato che le variabili di ingresso non sono tutte negate.
+
+Analogamente nella `PDN`:
+$$
+\begin{align*}
+	\overline{Y} &= \overline{A\overline{B} + \overline{A}B} \\
+				 &= \overline{A\overline{B}} \cdot \overline{\overline{A}B} \\
+				 &= (\overline{A} + B) \cdot (A + \overline{B}) \\
+				 &= \cancel{\overline{A}A} + \overline{A}\overline{B} + BA + \cancel{B\overline{B}} \\
+				 &= \overline{A}\overline{B} + AB
+\end{align*}
+$$
+
+Anche in questo caso non riusciamo a trovare una relazione tra $Y$ negato e le entrate non negate come abbiamo fatto per le reti precedenti.
+
+
+Nella costruzione dello schema dobbiamo quindi occuparci di _**negare gli ingressi che non sono come li desideriamo**_.
+
+Per fare ciò dobbiamo _**inserire nello schema tanti inverter quanti sono necessari**_ per invertire tutte le variabili che ne hanno bisogno.
+
+
+<figure class="">
+TODO: foto
+<img class="100" src="./images">
+<figcaption>
+
+Nella `PUN` neghiamo per ogni parallelo la variabile non negata.
+Nella `PDN` neghiamo nel primo parallelo entrambe le variabili negate
+</figcaption>
+</figure>
+
+In generale se non riusciamo a ricavare le formule canoniche per la `PUN` o per la `PDN`, è necessario introdurre tanti _inverter_ quante sono le variabili che non sono validi.
+
+
+### 3.3.4. Dimensionare i `MOSFET` nelle Reti Combinatorie
+
+Abbiamo visto come sintetizzare delle porte logiche in tecnologia `CMOS`.
+
+Tuttavia, avevamo detto precedentemente che il progettista non solo deve scelgiere come collegare i `MOSFET` tra di loro, ma deve anche _**dimensionarli**_.
+
+Esistono diverse tecniche per fare ciò.
+
+La prima tecnica, e anche quella che verrà richiesta all'esame, si basa sull'_**inverter**_.
+
+<div class="grid2">
+<div class="">
+
+Chiamiamo i rapporti:
+$$
+\begin{matrix}
+	p = \Bigl(\frac{W}{L}\Bigr)_P &&
+	n = \Bigl(\frac{W}{L}\Bigr)_N
+\end{matrix}
+$$
+
+Ragionando in termini di costo, possiamo basare le nostre scelte su più parametri.
+
+Una prima scelta piò essere quella di costruirli per avere l'**Area Minima**, cercando di fare i `MOSFET` i _più piccoli possibile_. Tuttavia, poiché $\mu_n \ne \mu_p$, fare troppo piccoli entrambi i `MOSFET` provoca un grande asimmetria.
+
+Infatti la relazione è:
+$$
+\begin{cases}
+	\frac{\mu_n}{\mu_p} = \frac{n}{p} \\
+	\mu_n > \mu_p \\
+	n < p
+\end{cases}
+$$
+
+Il secondo parametro che possiamo quindi seguire è quella di ricercare la _**Simmetria**_, che punta proprio a rendere vera questa relazione.
+
+Una scelta "ibrida", ovvero farli i più piccoli possibili mantenendoli simmetrici, provoca però dei ritardi importanti dal punto di vista dei _**Tempi di Risposta**_.
+
+</div>
+<div class="">
+TODO: foto
+<img class="80" src="./images">
+</div>
+</div>
+
+
+A partire quindi dalle specifiche richieste, possiamo quindi fare la nostra scelta sui valori di $n$ e $p$ affinché si ottengano le dimensioni ottimali.
+
+La dimensione totale dell'_inverter_:
+$$
+\begin{align*}
+	A_{INV} &= W_LL_N + W_PL_P \\
+			&= nL_N^2 + pL_P^2
+\end{align*}
+$$
+
+In generale, se non abbiamo alcuna richiesta particolare di simmetria né tempi di risposta fissati, negli _inverter_ si opta sempre per _**minimizzare l'area**_.
+Per fare ciò si sceglie $L_N = L_P = L_{MIN}$:
+$$
+\Large
+\boxed{
+	A_{INV} = \overbrace{(n+p)}^{\text{Fattore di Area}}L_{min}^2
+}
+$$
+
+
+Nelle reti composte da `PUN` e `PDN`, queste si dimensionano in modo che nel _Worst-Case_ queste abbiamo _**lo stesso tempo di ritardo**_ dell'_inverter_ con dimensioni $(p, n)$
+
+
+<div class="grid2">
+<div class="">
+
+Chiamiamo in questo caso:
+$$
+\begin{matrix}
+	p = \Bigl(\frac{W}{L}\Bigr)_{PMOS} &&
+	n = \Bigl(\frac{W}{L}\Bigr)_{NMOS}
+\end{matrix}
+$$
+
+La corrente che passa nei singoli `MOSFET` sarà:
+$$
+i_{MOS} = \alpha\cdot \frac{W}{L}
+$$
+
+</div>
+<div class="">
+TODO: foto
+<img class="80" src="./images">
+</div>
+</div>
+
+Dobbiamo adesso capire cosa succede quando abbiamo più `MOSFET` in serie/parallelo:
+
+<div class="grid2">
+<div class="top">
+<p class="p">MOSFET in parallelo</p>
+
+TODO: foto
+<img class="" src="./images">
+
+Sappiamo che:
+$$
+	i = i_1 + i_2
+$$
+
+Questi transistori sono sottoposti alla stessa tensione, quindi avranno stesso coefficiente $\alpha$.
+Possiamo quindi scrivere:
+$$
+	i = \alpha (\frac{W}{L})_1 + \alpha(\frac{W}{L})_2 = \alpha((\frac{W}{L})_1 + (\frac{W}{L})_2)
+$$
+
+Abbiamo quindi che il circuito equivalente:
+$$
+\large
+	(\frac{W}{L})_{EQ} = (\frac{W}{L})_1 + (\frac{W}{L})_2
+$$
+
+</div>
+<div class="top">
+<p class="p">MOSFET in serie</p>
+
+Per quanto riguarda invece due `MOSFET` in serie:
+TODO: foto
+<img class="" src="./images">
+
+
+Le due costanti $\alpha$ non saranno più uguali per i due transistori.
+
+Possiamo però vedere la corrente come:
+$$
+i_D = (\frac{W}{L}) \cdot V \cdot k
+$$
+
+La resistenza equivalente di un `MOSFET` in conduzione sarà quindi:
+$$
+R_{ON} = \frac{V}{i_D} = \frac{k}{(\frac{W}{L})}
+$$
+
+Nel nostro circuito quindi, ipotizzando che le due $k$ siano uguali:
+$$
+\begin{align*}
+	R_{EQ} &= R_1 + R_2 \\
+	\frac{k}{(\frac{W}{L})_{EQ}} &= \frac{k}{\frac{k}{(\frac{W}{L})_{1}}} + \frac{k}{(\frac{W}{L})_{2}}
+\end{align*}
+$$
+
+Nel circuito equivalente quindi:
+$$
+\Large
+\boxed{
+	(\frac{W}{L})_{EQ} = \frac{1}{\frac{1}{(\frac{W}{L})_{EQ}} + \frac{1}{(\frac{W}{L})_{2}}}
+}
+$$
+
+</div>
+</div>
+
+#### 3.3.4.1. Rete `NOR` a 4 Ingressi
+
+<div class="grid2">
+<div class="">
+
+Il circuito è ricavato seguendo i ragionamenti [fatti in precedenza sui 2 ingressi](#3331-porta-nor-a-2-ingressi).
+
+Ragioniamo stavolta sul _**dimensionamento**_.
+
+Partiamo dalla `PUN`, nella quale troviamo **4 mosfet in serie**.
+
+L'unica combinazione possibile è quella nella quale conducono tutti e quattro. In questi casi si fa la scelta di **dimensionarli tutti nello strsso modo**.
+
+Chiamiamo:
+$$
+x_1 = (\frac{W}{L})_{1,2,3,4}
+$$
+
+La nostra relazione sarà quindi:
+$$
+\frac{1}{x_1} + \frac{1}{x_1} + \frac{1}{x_1} + \frac{1}{x_1} = \frac{1}{(\frac{W}{L})_{EQ}} = \frac{1}{p}
+$$
+
+Se risolviamo troviamo che:
+$$
+\begin{align*}
+	\frac{4}{x_1} &= \frac{1}{p} \\
+	x_1 &= 4p
+\end{align*}
+$$
+
+Ogni singolo `PMOS` avrà quindi come rapporto largezza/lunghezza un valore di $4p$.
+
+Per quanto riguarda invece la `PDN`, abbiamo **4 mosfet in parallelo**.
+
+In questa combinazione, il nostro _Worst-Case_ è quando abbiamo uno solo dei `NMOS` in conduzione che permette di scaricare la capacità equivalente.
+
+Chiamiamo:
+$$
+x_1 = (\frac{W}{L})_{5,6,7,8}
+$$
+
+**Considerando il _Worst-Case_**:
+$$
+x_1 = n
+$$
+
+Gli `NMOS` avranno rapporto dimensioni $n$.
+
+</div>
+<div class="">
+TODO: foto
+<img class="80" src="./images">
+</div>
+</div>
+
+Per calcolare l'area occupata da questa porta:
+$$
+\begin{align*}
+	A_{EQ} &= A_{PUN} + A_{PDN}
+		   &= \boxed{(16p + 4n)L^2}
+\end{align*}
+$$
+
+#### 3.3.4.2. Rete `NAND` a 4 Ingressi
+
+<div class="grid2">
+<div class="">
+
+Anche questo circuito è stato ricavato seguendo i ragionamenti [fatti in precedenza sui 2 ingressi](#3332-porta-nand-a-2-ingressi).
+
+Ragioniamo nuovamente separando `PUN` e `PDN`.
+
+Il _Worst-Case_ nella `PUN` è sempre quando conduce solo uno dei `PMOS`, perciò:
+$$
+(\frac{W}{L})_{1,2,3,4} = p
+$$
+
+Nel `PDN`, essendo in serie **tutti conducono contemporaneamente**, quindi chiamando
+$$
+(\frac{W}{L})_{5,6,7,8} = x
+$$
+
+Otteniamo come prima che:
+$$
+\begin{align*}
+	\frac{4}{x} &= \frac{1}{n} \\
+	x &= 4n
+\end{align*}
+$$
+
+</div>
+<div class="">
+TODO: foto
+<img class="" src="./images">
+
+</div>
+</div>
+
+Per calcolare l'area occupata da questa porta:
+$$
+\begin{align*}
+	A_{EQ} &= A_{PUN} + A_{PDN}
+		   &= \boxed{(4p + 16n)L^2}
+\end{align*}
+$$
+
+Sembrerebbe quindi che le dimensioni siano simili a quelle calcolapte prima per la `NOR`.
+
+Tuttavia, nei vari processi tecnologici i valori di $p$ e $n$ sono diversi.
+Tipicamente $n = 2$ e $p = 5$.
+
+Questo significa che:
+$$
+\begin{matrix}
+	\text{Area NOR} && \text{Area NAND} \\ \hline
+	\\
+	(80 + 8)L^2 = 88L^2 && (20 + 32)L^2 = 52L^2
+\end{matrix}
+$$
+
+Notiamo quindi che la porta `NOR` è $1.7$ volte più grande della `NAND`.
+
+Questo è il motivo principale per il quale storicamente le porte in tecnologia `CMOS` sono costruite a partire da **porte `NAND`**.
+Inoltre, la regola tipicamente dice di evitare le porte con **più di 4 ingressi**, poiché si hanno peggiormaneti notevoli sui tempi di risposta.
+
+
+### 3.3.5. Circuito di Protezione
+
+Prendendo sempre come riferimento un _inverter_, sappiamo che si comporta come un condensatore:
+$$
+V = \frac{Q}{C}
+$$
+
+Tipicamente il valore di $C \approx 10^{-15} F$
+
+
+La tensione ai capi è quindi:
+$$
+V = Q \cdot 10^{15}\;[V]
+$$
+
+Per ogni carica che si aggiunge, la tensione aumenta di un fattore di $10^{15}$.
+Il componente quindi potrebbe **bruciarsi** se nemmeno troppe cariche estranee (cariche elettrostatiche, mero tocco con il dito, ...) entrano in contatto con il `MOSFET`.
+
+Esistono diversi metodi di protezione "esterni", come _buste elettrostatiche_ per i trasporti, anelli di metallo collegati a ground agganciati al polso di chi deve maneggiarli, ...
+
+Internamente alla porta quello che possiamo fare è aggiungere un _**Circuito di Protezione**_.
+
+<div class="grid2">
+<div class="">
+
+Questo circuito, composto da 2 _diodi_ (che trattiamo con il modello ideale), permette di evitare problemi di carica.
+
+Infatti, quando $0 \le V_k \le V_{DD}$, entrambi i diodi sono $OFF$, e la nostra porta funziona come desiderato.
+
+Se la $V_K \ge V_{DD} + V_\gamma$, il diodo $1$ entra in _conduzione_ imponendo la tensione a $V_{DD} + V_\gamma$
+
+Analogamente, se $V_K \le -V_\gamma$ il diodo $2$ entra in _conduzione_, imponendo la tensione a $-V_\gamma$
+
+</div>
+<div class="">
+<figure class="80">
+<img class="100" src="./images">
+<figcaption>
+
+La resistenza $R$ serve a limitare la corrente che potrebbe scorrere nei diodi quando entrano in conduzione.
+</figcaption>
+</figure>
+
+
+</div>
+</div>
+
+Il circuito di protezione impone quindi che _**la tensione al nodo $K$**_:
+$$
+\large
+\boxed{
+	-V_\gamma \le V_K \le V_{DD} + V_\gamma
+}
+$$
+
+
+Questo circuito, perfettamente funzionante, va però utilizzato _**con parsimonia**_. Questo è dovuto al fatto che se lo interponiamo tra due porte logiche (ad esempio 2 _inverter_), quando i diodi sono in interdizione su di loro in realtà passa una corrente $I_S$.
+
+<div class="grid2">
+<div class="">
+
+Al nodo $K$ vorremmo che in condizione statiche sui `MOSFET` **non passa corrente**.
+
+Tuttavia al nodo $K$:
+$$
+I = I_{S1} - I_{S2}
+$$
+
+La nostra richiesta diventa quindi vera se:
+- Entrambe le correnti sono nulle
+- Le due correnti sono uguali
+
+Se analizziamo il caso quando $V_K = 0$:
+- $V_{D1} = -V_{DD}$ &emsp; Passa una piccola corrente $I_{S1}$
+- $V_{D2} = 0$ $V$ &emsp; Non passa corrente $I_{S2}$
+
+La corrente $I = I_{S1} \ne 0$ comporta che _**passa corrente sull'`NMOS` staticamente**_.
+
+</div>
+<div class="">
+TODO: foto
+<img class="80" src="./images">
+</div>
+</div>
+
+Questa corrente va a cambiare il punto di lavoro nell'`NMOS`, che _**sposta la tensione associata allo `0` logico**_.
+
+TODO: foto
+<img class="" src="./images">
+
+
+Se aumentiamo il numero di inverter pilotati, ognuno con il proprio circuito di protezione, aumenta anche la tensione associata allo `0` logico, _diminuendo il margine di rumore_, _FAN IN_, _FAN OUT_, ...
+
+In realtà questo _**non è un problema**_ perché il circuito di protezione messo tra due porte dello stesso circuito _**è completamente inutile**_, dato che non si ha accesso diretto a questi punti.
+
+Ha quindi senso inserire un circuito di protezione **esclusivamente** sui _**contatti verso il mondo esterno**_.
+- 
