@@ -11,9 +11,10 @@ title: Circuiti Digitali
 		- [2.1.2. Margini di Rumore](#212-margini-di-rumore)
 		- [2.1.3. Porte Rigenerative](#213-porte-rigenerative)
 		- [2.1.4. Potenza Dissipata](#214-potenza-dissipata)
-		- [2.1.5. Tempo di propagazione](#215-tempo-di-propagazione)
-		- [2.1.6. Power Delay Product - PDP](#216-power-delay-product---pdp)
-		- [2.1.7. Fan IN - OUT](#217-fan-in---out)
+		- [2.1.5. Potenza Dissipata](#215-potenza-dissipata)
+		- [2.1.6. Tempo di propagazione](#216-tempo-di-propagazione)
+		- [2.1.7. Power Delay Product - PDP](#217-power-delay-product---pdp)
+		- [2.1.8. Fan IN - OUT](#218-fan-in---out)
 - [3. Porte Logiche](#3-porte-logiche)
 	- [3.1. Famiglie Logiche](#31-famiglie-logiche)
 	- [3.2. Logica a Diodi](#32-logica-a-diodi)
@@ -30,11 +31,20 @@ title: Circuiti Digitali
 			- [3.3.3.1. Porta `NOR` a 2 Ingressi](#3331-porta-nor-a-2-ingressi)
 			- [3.3.3.2. Porta `NAND` a 2 Ingressi](#3332-porta-nand-a-2-ingressi)
 			- [3.3.3.3. Porta Complessa a 4 Ingressi](#3333-porta-complessa-a-4-ingressi)
-			- [3.3.3.4. Porta `XOR` a 2 Ingressi](#3334-porta-xor-a-2-ingressi)
+			- [3.3.3.4. Porta Complessa a 4 Ingressi](#3334-porta-complessa-a-4-ingressi)
+			- [3.3.3.5. Porta `XOR` a 2 Ingressi](#3335-porta-xor-a-2-ingressi)
 		- [3.3.4. Dimensionare i `MOSFET` nelle Reti Combinatorie](#334-dimensionare-i-mosfet-nelle-reti-combinatorie)
 			- [3.3.4.1. Rete `NOR` a 4 Ingressi](#3341-rete-nor-a-4-ingressi)
 			- [3.3.4.2. Rete `NAND` a 4 Ingressi](#3342-rete-nand-a-4-ingressi)
 		- [3.3.5. Circuito di Protezione](#335-circuito-di-protezione)
+	- [3.4. Famiglia Logica Pass-Transistor](#34-famiglia-logica-pass-transistor)
+		- [3.4.1. Interruttori Ideali](#341-interruttori-ideali)
+			- [3.4.1.1. Interruttore `NMOS`](#3411-interruttore-nmos)
+			- [3.4.1.2. Interruttore PMOS](#3412-interruttore-pmos)
+			- [3.4.1.3. Pass-Gate `CMOS`](#3413-pass-gate-cmos)
+		- [3.4.2. Porte Logiche](#342-porte-logiche)
+			- [3.4.2.1. Multiplexer 2x1](#3421-multiplexer-2x1)
+			- [3.4.2.2. Porta `XOR` a 2 Ingressi](#3422-porta-xor-a-2-ingressi)
 
 # 2. Circuiti Digitali
 
@@ -109,7 +119,6 @@ A questo punto chiamiamo le tensioni associate ai due punti:
 <img class="60" src="./images/digital/VTC-parameters.png">
 </div>
 </div>
-
 
 ### 2.1.2. Margini di Rumore
 
@@ -203,8 +212,8 @@ Questo comportamento è dato proprio dal fatto che la derivata nella zona interm
 <img class="80" src="./images/digital/regenerative-ports.png">
 </div>
 </div>
-
 ### 2.1.4. Potenza Dissipata
+### 2.1.5. Potenza Dissipata
 
 La potenza dissipata $P_D$ si divide in due tipologie:
 - _**Statica**_: è la potenza dissipata quando la porta **non sta lavorando**
@@ -215,7 +224,7 @@ Dobbiamo cercare di:
 - **Eliminare la potenza statica**: cercheremo un modo per rimuovere questo costo durante i periodi di _idle_
 - **Minimizzare la potenza dinamica**: non possiamo eliminarla perché è necessaria energia per poter modificare un segnale. Tuttavia cerchiamo di ridurla al minimo
 
-### 2.1.5. Tempo di propagazione
+### 2.1.6. Tempo di propagazione
 
 <div class="grid2">
 <div class="">
@@ -243,7 +252,7 @@ $$
 t_P := \frac{t_{P_{HL}} + t_{P_{LH}}}{2}
 $$
 
-### 2.1.6. Power Delay Product - PDP
+### 2.1.7. Power Delay Product - PDP
 
 Mette in relazione la _Potenza Dissipata_ e il _Tempo di Propagazione_:
 $$
@@ -257,7 +266,7 @@ Questo parametro ci permette di capire quale tra due porte è più efficiente, i
 - Porte che dissipano poca potenza
 - Porte con tempi di risposta ridotti
 
-### 2.1.7. Fan IN - OUT
+### 2.1.8. Fan IN - OUT
 
 Definiamo **Fan OUT** di una porta:
 > Numero massimo di ingressi di una stessa porta collegabili all'uscita della porta
@@ -284,16 +293,16 @@ Le porte logiche più utilizzate sono quelle basate su _**Tecnologia `CMOS`**_, 
 
 Tra le famiglie che utilizzano questa tecnologia distinguiamo
 1. _**Logica a Diodi**_
-1. _**Famiglia `CMOS` Complementare**_
-2. _**Famiglia Logica Pass-Transistor**_
-3. **Famiglia Logica Dinamica**
-4. **Famiglia Pseudo `NMOS`**
+2. _**Famiglia `CMOS` Complementare**_
+3. _**Famiglia Logica Pass-Transistor**_
+4. **Famiglia Logica Dinamica**
+5. **Famiglia Pseudo `NMOS`**
 
 Nel corso vedremo le prime tre.
 
 Esiste anche la famiglia che sfrutta transistori bipolari, ma oggi sono praticamente inutilizzati poiché i `CMOS` offrono molti più vantaggi.
-
 ## 3.2. Logica a Diodi
+
 
 ### 3.2.1. Porta `AND` a Diodi
 
@@ -478,8 +487,8 @@ La logica a diodi quindi non permette di costruire reti combinatorio complesse.
 
 Tuttavia, queste porte non sono "inutili". Infatti vedremo più avanti che la porta `AND` a diodi, messa in cascata con un **inverter** costruito con un **transistor** è stata per tutti gli anni '50 e '60 la porta logica `NAND` utilizzata in quasi tutti i componenti.
 
-
 ## 3.3. Famiglia CMOS Complementare
+
 
 ### 3.3.1. Notazione
 
@@ -1120,8 +1129,8 @@ Abbiamo quindi che:
 <img class="40" src="./images/digital/logic-ports/nand/2-inputs.png">
 </div>
 </div>
-
 #### 3.3.3.3. Porta Complessa a 4 Ingressi
+#### 3.3.3.4. Porta Complessa a 4 Ingressi
 
 <div class="grid2">
 <div class="">
@@ -1154,7 +1163,7 @@ La rete finale è quindi quella sulla destra.
 </div>
 </div>
 
-#### 3.3.3.4. Porta `XOR` a 2 Ingressi
+#### 3.3.3.5. Porta `XOR` a 2 Ingressi
 
 Nello `XOR` a due ingressi ha come relazione:
 $$
@@ -1192,7 +1201,7 @@ Nella `PDN` neghiamo nel primo parallelo entrambe le variabili negate
 </figcaption>
 </figure>
 
-In generale se non riusciamo a ricavare le formule canoniche per la `PUN` o per la `PDN`, è necessario introdurre tanti _inverter_ quante sono le variabili che non sono validi.
+In generale se non riusciamo a ricavare le formule canoniche per la `PUN` o per la `PDN`, è necessario introdurre tanti _inverter_ quante sono le variabili che non sono nel segno corretto.
 
 
 ### 3.3.4. Dimensionare i `MOSFET` nelle Reti Combinatorie
@@ -1218,7 +1227,7 @@ $$
 
 Ragionando in termini di costo, possiamo basare le nostre scelte su più parametri.
 
-Una prima scelta piò essere quella di costruirli per avere l'**Area Minima**, cercando di fare i `MOSFET` i _più piccoli possibile_. Tuttavia, poiché $\mu_n \ne \mu_p$, fare troppo piccoli entrambi i `MOSFET` provoca un grande asimmetria.
+Una prima scelta può essere quella di costruirli per avere l'**Area Minima**, cercando di fare i `MOSFET` il _più piccolo possibile_. Tuttavia, poiché $\mu_n \ne \mu_p$, fare troppo piccoli entrambi i `MOSFET` renderebbe le loro dimesioni comparabili, provocando una grande asimmetria tra i transistori del `CMOS`, che sappiamo devono essere quanto più simili possibile per funzionare correttamente.
 
 Infatti la relazione è:
 $$
@@ -1229,7 +1238,7 @@ $$
 \end{cases}
 $$
 
-Il secondo parametro che possiamo quindi seguire è quella di ricercare la _**Simmetria**_, che punta proprio a rendere vera questa relazione.
+Il secondo parametro che possiamo quindi seguire è quella di ricercare proprio la _**Simmetria**_.
 
 Una scelta "ibrida", ovvero farli i più piccoli possibili mantenendoli simmetrici, provoca però dei ritardi importanti dal punto di vista dei _**Tempi di Risposta**_.
 
@@ -1243,7 +1252,7 @@ TODO: foto
 
 A partire quindi dalle specifiche richieste, possiamo quindi fare la nostra scelta sui valori di $n$ e $p$ affinché si ottengano le dimensioni ottimali.
 
-La dimensione totale dell'_inverter_:
+Nel caso dell'_inverter_, la dimensione totale della porta in tecnologia `CMOS`:
 $$
 \begin{align*}
 	A_{INV} &= W_LL_N + W_PL_P \\
@@ -1252,7 +1261,7 @@ $$
 $$
 
 In generale, se non abbiamo alcuna richiesta particolare di simmetria né tempi di risposta fissati, negli _inverter_ si opta sempre per _**minimizzare l'area**_.
-Per fare ciò si sceglie $L_N = L_P = L_{MIN}$:
+Per fare ciò si sceglie $L_N = L_P = L_{min}$:
 $$
 \Large
 \boxed{
@@ -1260,9 +1269,7 @@ $$
 }
 $$
 
-
-Nelle reti composte da `PUN` e `PDN`, queste si dimensionano in modo che nel _Worst-Case_ queste abbiamo _**lo stesso tempo di ritardo**_ dell'_inverter_ con dimensioni $(p, n)$
-
+Nelle reti composte da `PUN` e `PDN`, l'_inverter_ diventa un _**punto di riferimento**_. Queste infatti, si dimensionano in modo che nel _Worst-Case_ queste abbiamo _**lo stesso tempo di ritardo**_ dell'_inverter_ con dimensioni $(p, n)$
 
 <div class="grid2">
 <div class="">
@@ -1304,13 +1311,13 @@ $$
 Questi transistori sono sottoposti alla stessa tensione, quindi avranno stesso coefficiente $\alpha$.
 Possiamo quindi scrivere:
 $$
-	i = \alpha (\frac{W}{L})_1 + \alpha(\frac{W}{L})_2 = \alpha((\frac{W}{L})_1 + (\frac{W}{L})_2)
+	i = \alpha \Biggl(\frac{W}{L}\Biggr)_1 + \alpha\Biggl(\frac{W}{L}\Biggr)_2 = \alpha\Biggl(\Biggl(\frac{W}{L}\Biggr)_1 + \Biggl(\frac{W}{L}\Biggr)_2\Biggr)
 $$
 
 Abbiamo quindi che il circuito equivalente:
 $$
 \large
-	(\frac{W}{L})_{EQ} = (\frac{W}{L})_1 + (\frac{W}{L})_2
+	\Biggl(\frac{W}{L}\Biggr)_{EQ} = \Biggl(\frac{W}{L}\Biggr)_1 + \Biggl(\frac{W}{L}\Biggr)_2
 $$
 
 </div>
@@ -1326,19 +1333,19 @@ Le due costanti $\alpha$ non saranno più uguali per i due transistori.
 
 Possiamo però vedere la corrente come:
 $$
-i_D = (\frac{W}{L}) \cdot V \cdot k
+i_D = \Biggl(\frac{W}{L}\Biggr) \cdot V \cdot k
 $$
 
 La resistenza equivalente di un `MOSFET` in conduzione sarà quindi:
 $$
-R_{ON} = \frac{V}{i_D} = \frac{k}{(\frac{W}{L})}
+R_{ON} = \frac{V}{i_D} = \frac{k}{\Bigl(\frac{W}{L}\Bigr)}
 $$
 
 Nel nostro circuito quindi, ipotizzando che le due $k$ siano uguali:
 $$
 \begin{align*}
 	R_{EQ} &= R_1 + R_2 \\
-	\frac{k}{(\frac{W}{L})_{EQ}} &= \frac{k}{\frac{k}{(\frac{W}{L})_{1}}} + \frac{k}{(\frac{W}{L})_{2}}
+	\frac{k}{\Bigl(\frac{W}{L}\Bigr)_{EQ}} &= \frac{k}{\Bigl(\frac{W}{L}\Bigr)_{1}} + \frac{k}{\Bigl(\frac{W}{L}\Bigr)_{2}}
 \end{align*}
 $$
 
@@ -1346,7 +1353,7 @@ Nel circuito equivalente quindi:
 $$
 \Large
 \boxed{
-	(\frac{W}{L})_{EQ} = \frac{1}{\frac{1}{(\frac{W}{L})_{EQ}} + \frac{1}{(\frac{W}{L})_{2}}}
+	\Biggl(\frac{W}{L}\Biggr)_{EQ} = \frac{1}{\frac{1}{\Bigl(\frac{W}{L}\Bigr)_{EQ}} + \frac{1}{\Bigl(\frac{W}{L}\Bigr)_{2}}}
 }
 $$
 
@@ -1364,16 +1371,16 @@ Ragioniamo stavolta sul _**dimensionamento**_.
 
 Partiamo dalla `PUN`, nella quale troviamo **4 mosfet in serie**.
 
-L'unica combinazione possibile è quella nella quale conducono tutti e quattro. In questi casi si fa la scelta di **dimensionarli tutti nello strsso modo**.
+L'unica combinazione possibile è quella nella quale conducono tutti e quattro. In questi casi si fa la scelta di **dimensionarli tutti nello stesso modo**.
 
 Chiamiamo:
 $$
-x_1 = (\frac{W}{L})_{1,2,3,4}
+x_1 = \Biggl(\frac{W}{L}\Biggr)_{1,2,3,4}
 $$
 
 La nostra relazione sarà quindi:
 $$
-\frac{1}{x_1} + \frac{1}{x_1} + \frac{1}{x_1} + \frac{1}{x_1} = \frac{1}{(\frac{W}{L})_{EQ}} = \frac{1}{p}
+\frac{1}{x_1} + \frac{1}{x_1} + \frac{1}{x_1} + \frac{1}{x_1} = \frac{1}{\Bigl(\frac{W}{L}\Bigr)_{EQ}} = \frac{1}{p}
 $$
 
 Se risolviamo troviamo che:
@@ -1388,11 +1395,11 @@ Ogni singolo `PMOS` avrà quindi come rapporto largezza/lunghezza un valore di $
 
 Per quanto riguarda invece la `PDN`, abbiamo **4 mosfet in parallelo**.
 
-In questa combinazione, il nostro _Worst-Case_ è quando abbiamo uno solo dei `NMOS` in conduzione che permette di scaricare la capacità equivalente.
+In questa combinazione, il nostro _Worst-Case_ è quando è necessario più tempo per commutare la capacità equivalente. Questo accade quando la corrente è minima, ovvero abbiamo uno solo degli `NMOS` in conduzione.
 
 Chiamiamo:
 $$
-x_1 = (\frac{W}{L})_{5,6,7,8}
+x_1 = \Biggl(\frac{W}{L}\Biggr)_{5,6,7,8}
 $$
 
 **Considerando il _Worst-Case_**:
@@ -1428,12 +1435,12 @@ Ragioniamo nuovamente separando `PUN` e `PDN`.
 
 Il _Worst-Case_ nella `PUN` è sempre quando conduce solo uno dei `PMOS`, perciò:
 $$
-(\frac{W}{L})_{1,2,3,4} = p
+\Biggl(\frac{W}{L}\Biggr)_{1,2,3,4} = p
 $$
 
 Nel `PDN`, essendo in serie **tutti conducono contemporaneamente**, quindi chiamando
 $$
-(\frac{W}{L})_{5,6,7,8} = x
+\Biggl(\frac{W}{L}\Biggr)_{5,6,7,8} = x
 $$
 
 Otteniamo come prima che:
@@ -1460,7 +1467,7 @@ $$
 \end{align*}
 $$
 
-Sembrerebbe quindi che le dimensioni siano simili a quelle calcolapte prima per la `NOR`.
+Sembrerebbe quindi che le dimensioni siano simili a quelle calcolate prima per la `NOR`.
 
 Tuttavia, nei vari processi tecnologici i valori di $p$ e $n$ sono diversi.
 Tipicamente $n = 2$ e $p = 5$.
@@ -1479,39 +1486,41 @@ Notiamo quindi che la porta `NOR` è $1.7$ volte più grande della `NAND`.
 Questo è il motivo principale per il quale storicamente le porte in tecnologia `CMOS` sono costruite a partire da **porte `NAND`**.
 Inoltre, la regola tipicamente dice di evitare le porte con **più di 4 ingressi**, poiché si hanno peggiormaneti notevoli sui tempi di risposta.
 
-
 ### 3.3.5. Circuito di Protezione
 
-Prendendo sempre come riferimento un _inverter_, sappiamo che si comporta come un condensatore:
+Prendendo sempre come riferimento un _inverter_, sappiamo che si questo comporta come un condensatore, per il quale sarà vera la relazione:
 $$
 V = \frac{Q}{C}
 $$
 
-Tipicamente il valore di $C \approx 10^{-15} F$
+Con un valore $C \approx 10^{-15} F$
 
 
-La tensione ai capi è quindi:
+La tensione ai capi del transistore è quindi direttamente proporzionale al numero di cariche:
 $$
 V = Q \cdot 10^{15}\;[V]
 $$
 
 Per ogni carica che si aggiunge, la tensione aumenta di un fattore di $10^{15}$.
-Il componente quindi potrebbe **bruciarsi** se nemmeno troppe cariche estranee (cariche elettrostatiche, mero tocco con il dito, ...) entrano in contatto con il `MOSFET`.
+Nel caso in cui un numeor nemmeno così elevato di _cariche esterne_ (elettrostatiche, contatto, ...) dovesse entrare in contatto con il `MOSFET`, il componente **potrebbe bruciarsi**.
 
-Esistono diversi metodi di protezione "esterni", come _buste elettrostatiche_ per i trasporti, anelli di metallo collegati a ground agganciati al polso di chi deve maneggiarli, ...
+Esistono diversi metodi di protezione "esterni" al circuito, ad esempio:
+- _Buste Elettrostatiche_ per i trasporti
+- Anelli di Metallo: collegati a ground e agganciati al polso di chi deve maneggiare i componenti
+- ...
 
 Internamente alla porta quello che possiamo fare è aggiungere un _**Circuito di Protezione**_.
 
 <div class="grid2">
 <div class="">
 
-Questo circuito, composto da 2 _diodi_ (che trattiamo con il modello ideale), permette di evitare problemi di carica.
+Questo circuito, composto da 2 _diodi_ (che trattiamo con il modello ideale), permette di evitare i problemi relativi alle cariche esterne, mantenendo il funzionamento corretto della porta come da specifiche.
 
 Infatti, quando $0 \le V_k \le V_{DD}$, entrambi i diodi sono $OFF$, e la nostra porta funziona come desiderato.
 
-Se la $V_K \ge V_{DD} + V_\gamma$, il diodo $1$ entra in _conduzione_ imponendo la tensione a $V_{DD} + V_\gamma$
+Se la tensione sale a $V_K \ge V_{DD} + V_\gamma$, il diodo $1$ entra in _conduzione_ imponendo la tensione a $V_{DD} + V_\gamma$
 
-Analogamente, se $V_K \le -V_\gamma$ il diodo $2$ entra in _conduzione_, imponendo la tensione a $-V_\gamma$
+Analogamente, se scende $V_K \le -V_\gamma$ è il diodo $2$ ad entrare in _conduzione_, imponendo la tensione a $-V_\gamma$
 
 </div>
 <div class="">
@@ -1541,22 +1550,21 @@ Questo circuito, perfettamente funzionante, va però utilizzato _**con parsimoni
 <div class="grid2">
 <div class="">
 
-Al nodo $K$ vorremmo che in condizione statiche sui `MOSFET` **non passa corrente**.
-
-Tuttavia al nodo $K$:
+Al nodo $K$  i condizione statiche vorremmo che sui `MOSFET` **non passasse corrente**.
+Tuttavia con l'introduzione dei diodi, al nodo $K$:
 $$
-I = I_{S1} - I_{S2}
+	I = I_{S1} - I_{S2}
 $$
 
 La nostra richiesta diventa quindi vera se:
 - Entrambe le correnti sono nulle
-- Le due correnti sono uguali
+- Le due correnti sono uguali tra loro
 
 Se analizziamo il caso quando $V_K = 0$:
 - $V_{D1} = -V_{DD}$ &emsp; Passa una piccola corrente $I_{S1}$
 - $V_{D2} = 0$ $V$ &emsp; Non passa corrente $I_{S2}$
 
-La corrente $I = I_{S1} \ne 0$ comporta che _**passa corrente sull'`NMOS` staticamente**_.
+La corrente $I = I_{S1} \ne 0$ comporta che _**staticamente, passa corrente sull'`NMOS`**_.
 
 </div>
 <div class="">
@@ -1571,8 +1579,386 @@ TODO: foto
 <img class="" src="./images">
 
 
-Se aumentiamo il numero di inverter pilotati, ognuno con il proprio circuito di protezione, aumenta anche la tensione associata allo `0` logico, _diminuendo il margine di rumore_, _FAN IN_, _FAN OUT_, ...
+Se aumentassimo il numero di inverter pilotati, ognuno con il proprio circuito di protezione, aumenteremmo ancora di più la tensione associata allo `0` logico, provocando diversi effetti negativi sul _margine di rumore_, sul _FAN IN_, sul _FAN OUT_, ...
 
-In realtà questo _**non è un problema**_ perché il circuito di protezione messo tra due porte dello stesso circuito _**è completamente inutile**_, dato che non si ha accesso diretto a questi punti.
+In realtà questo _**non è un vero problema**_ perché il circuito di protezione messo tra due porte dello stesso circuito _**è completamente inutile e privo di senso**_, dato che non si ha accesso diretto a quei punti del circuito.
 
-Ha quindi senso inserire un circuito di protezione **esclusivamente** sui _**contatti verso il mondo esterno**_.
+Ha senso inserire un circuito di protezione **esclusivamente** sui _**contatti verso il mondo esterno**_.
+
+## 3.4. Famiglia Logica Pass-Transistor
+
+Il problema di creare porte logiche in tecnologia `CMOS` è che per ogni variabile logica _**dobbiamo aggiungere due porte**_.
+Questo comporta che in porte più complesse, necessitiamo un elevato numero di `MOSFET` e quindi un ampia area.
+
+Per ovviare a questo problema vediamo quindi la famiglia di porte  _**Pass-Transistor Logic**_. Quetsa famiglia tratta i transistori come interruttori, permettendo di generare porte logiche molto compatte.
+
+<div class="grid2">
+<div class="">
+
+Immaginiamo di avere una una tensione $V_A$ alla quale è associata una _variabile logica_ `A`.
+A questa tensione mettiamo in serie due interruttori, il primo associato alla _variabile logica_ `B` e il secondo alla _variabile logica_ `C`.
+
+Alla tensione $V_Y$ ai capi del carico del circuito $R$, associamo la _variabile logica_ `Y`
+
+In termini logici abbiamo che:
+$$
+	Y = A \cdot B \cdot C
+$$
+
+Abbiamo quindi apparentemente costruito un `AND` a 3 ingressi utilizzando solo 2 `MOSFET`, invece dei **6** che avremmo utilizzato in logica `CMOS` complementare
+</div>
+<div class="">
+TODO: foto
+<img class="80" src="./images">
+</div>
+</div>
+
+Dobbiamo però fare attenzione ad un dettaglio. Mentre in `CMOS` complementare abbiamo la certezza che l'uscita sia o a $V_{DD}$ o a _ground_, data la bassa impedenza delle `PUN` e `PDN`, non abbiamo questa certezza in questo tipo di porte.
+
+<div class="grid2">
+<div class="">
+
+Immaginiamo di avere due inverter in cascata in tecnologia `CMOS` complementare, collegati tra loro da un interruttore associato alla variabile logica `B`.
+
+Quando `B = 1`, ovvero l'interruttore è chiuso, abbiamo la certezza che _**la tensione sul nodo $K$ è ben definita**_, e vale o $0$ o $V_{DD}$.
+
+Quando invece `B = 0`, _**non abbiamo una tensione ben definita su $K$**_, ma il suo valore dipende da cosa è avvenuto prima dell'apertura.
+
+Se prima il circuito era collegato a _ground_ $(V_K = 0)$, allora si manterrà a $0$.
+Se invece il circuito prima era collegato a $V_{DD}$ invece, questo valore _**non si mantiene**_. Infatti sono presenti delle correnti di perdita che scaricano i condensatori dei `MOSFET`, portando ad una _**incertezza sul valore di**_ $V_K$ _**nel tempo**_
+
+</div>
+<div class="">
+TODO: foto
+<img class="80" src="./images">
+</div>
+</div>
+
+La presenza di nodi impredicibili, comporta che a livello statico **abbiamo delle incertezze sui nostri valori**. Una prima soluzione è quella di _**aggiungere dei percorsi che definiscono i valori statici**_.
+
+Nell'esempio di prima potremmo quindi aggiungere un interruttore tra il nodo $K$ e _ground_ pilotato da $\overline{B}$.
+
+### 3.4.1. Interruttori Ideali
+
+<div class="grid2">
+<div class="">
+
+Dobbiamo quindi capire come riuscire a creare fisicamente degli _**Interruttori Ideali**_, come quello sulla destra.
+
+Per fare ciò ci sono diverse possibilità:
+1. Utilizzare gli `NMOS`
+
+
+</div>
+<div class="">
+TODO: foto
+<img class="80" src="./images">
+</div>
+</div>
+
+#### 3.4.1.1. Interruttore `NMOS`
+
+Ipotizziamo di utilizzare un transistore `NMOS` integrato, ovvero un transistore nel quale il _drain_ e il _source_ sono **perfettamente intersambiabili**.
+
+Per capire il funzionamento o meno della nostra scelta andiamo a studiare la tensione ai capi del condensatore
+
+
+<div class="grid2">
+<div class="">
+
+Iniziamo studiando la **carica del condensatore**, ovvero che all'istante $t = 0$:
+$$
+\begin{cases}
+	V_C = 0 \\
+	V_i = 0
+\end{cases}
+$$
+
+Successivamente la tensione di ingresso viene commutata a $V_{DD}$. Se l'interruttore funzionasse come ci aspettiamo, dopo un certo tempo $t'$ la tensione ai capi del condensatore varrà anch'essa $V_{DD}$.
+
+Poiché dobbiamo caricare il condensatore, il quest'applicazione il _Drain_ e il _Source_ sono presi come in figura, in accordo con il passaggio di corrente.
+
+Per far funzionare correttamente il nostro `NMOS` necessitiamo che la tensione al _Gate_ sia sufficientemente alta. Colleghiamo quindi anche $V_G = V_{DD}$.
+
+</div>
+<div class="">
+<img class="80" src="./images">
+</div>
+</div>
+
+Nell'istante $t = 0$:
+$$
+\begin{align*}
+	V_{GS} &= V_G - V_S \\
+		   &= V_{DD} - V_C && \text{Il condensatore è ancora scarico}\\
+		   &= V_{DD}
+\end{align*}
+$$
+
+Dato che la tensione di soglia $V_T$ è **sicuramente inferiore a $V_{DD}$**, abbiamo che l'`NMOS` conduce.
+Per capire in che modo è in donduzione analizziamo la $V_{DS}$:
+$$
+\begin{align*}
+	V_{DS} &= V_D - V_S \\
+		   &= V_{DD} - V_C \\
+		   &= V_{DD}
+\end{align*}
+$$
+
+Sappiamo che il transistore è **saturo** se $V_{DS} \ge V_{GS} - V_T$, cosa è quindi è verificata.
+
+In questa fase quindi il **transistore è saturo e inizia a caricarsi in modo esponenziale**.
+
+Al passare del tempo il _condensatore si carica_, aumentando la tensione $V_C$ e di conseguenza $V_S$.
+
+L'aumento di $V_S$ provoca effetti sul `MOSFET` che conduce solo finché $V_{GS} \ge V_T$, ovvero finché $V_C \le V_{DD} - V_T$.
+
+Quello che succede è che il condensatore _**può essere caricato solo fino a $V_{DD} - V_T$**_.
+
+La condizione di saturazione è invece indipendente dalla tensione ai capi del condensatore, infatti:
+$$
+\begin{align*}
+	V_{DS} &\ge V_{GS} - V_T \\
+	V_D - V_S &\ge V_G - V_S - V_T \\
+	V_D &\ge V_G - V_T \\
+	V_{DD} &\ge V_{DD} - V_T \\
+	0 &\ge - V_T
+\end{align*}
+$$
+
+Ciò significa che l'`NMOS` è _**sempre saturo**_. Questa cosa ci permette di studiare cosa accade durante il transitorio di carica senza dover fare attenzione a transizioni tra le diverse ipotesi di lavoro.
+
+<div class="grid2">
+<div class="">
+
+Nel grafico sulla destra possiamo vedere l'andamento della corrente durante il transitorio.
+
+Infatti nella saturazione in questo caso:
+$$
+\begin{cases}
+	i_D = k \cdot (V_{GS} - V_T)^2 \\
+	V_{GS} = V_{DS}
+\end{cases}
+$$
+
+Che ci permette di dire:
+$$
+\Large
+\boxed{
+	i_D = K \cdot (V_{DS} - V_T)^2
+}
+$$
+
+Questa relazione ci dice proprio che la corrente, al passare del tempo, si muove sulla **parabola rossa centrata in** $(V_T, 0)$
+</div>
+<div class="">
+<img class="80" src="./images">
+</div>
+</div>
+
+
+Per tempi $t \to \infty$ (o comunque sufficientemente grandi):
+$$
+\begin{cases}
+	V_{DS} = V_T \\
+	V_C = V_{DD} - V_T
+\end{cases}
+$$
+
+Utilizzare un `NMOS` per trasmettere un livello logico alto comporta una **perdita**.
+
+
+<div class="grid2">
+<div class="">
+
+Studiamo adesso la **scarica del condensatore**, ovvero che a $t = 0$:
+$$
+\begin{cases}
+	V_C = 0 \\
+	V_i = 0
+\end{cases}
+$$
+
+Come prima, il nostro _Gate_ è ancora collegato a $V_{DD}$.
+
+In questo caso la corrente scorrerà nel verso opposto, quindi il _Drain_ e il _Source_ si **scambiano di ruolo**. Questo è possibile solo grazie al fatto che il `MOSFET` è **_integrato_**.
+
+Studiamo se il `MOSFET` conduce:
+$$
+\begin{align*}
+	V_{GS} = V_G - V_S \\
+	&= V_{DD} - 0 \\
+	&= V_{DD} > V_T
+\end{align*}
+$$
+
+Il `MOSFET` quindi non solo è _**sempre in conduzione**_, ma lavora sempre seguendo **la stessa caratteristica** $V_{GS} = V_{DD}$.
+
+</div>
+<div class="">
+<img class="80" src="./images">
+</div>
+</div>
+
+Analogamente a prima studiamo in che ipotesi di lavoro ci troviamo:
+$$
+\begin{CD}
+	{V_{DS} = V_D - V_S = V_{DD}} \\
+	@VVV \\
+	\begin{aligned}
+		V_{DS} &\ge V_{GS} - V_T \\
+		V_{DD} &\ge V_{DD} - V_T
+	\end{aligned}
+\end{CD}
+$$
+
+Anche in questo caso abbiamo che l'`NMOS` lavora **sempre in saturazione**.
+
+La scarica quindi procederà a diminuire $V_S$, che farà diminuire $V_{DS}$ finché il transistore continua a condurre corrente. Questo avviene fino a quando $i_{DS} = 0$, che accade quando $V_{DS} = 0$ ovvero $V_S = 0$.
+
+Ciò significa che il nostro condensatore **_si scarica completamente_**.
+
+L'`NMOS` è quindi un **_ottimo interruttore nella trasmissione di livelli bassi_**.
+
+
+TODO: foto grafici tensione messi insieme
+<img class="" src="./images">
+
+#### 3.4.1.2. Interruttore PMOS
+
+Imagginiamo stavolta di utilizzare un `PMOS` integrato come interruttore.
+
+Ancora una volta vediamo i due processi di carica e scarica, stavolta recuperando i ragionamenti già fatti.
+
+<div class="grid2">
+<div class="top">
+<p class="p">Carica</p>
+
+Per quanto riguarda la carica:
+
+TODO: foto
+<img class="" src="./images">
+
+Stavolta colleghiamo a _ground_ il _Gate_.
+
+Notiamo subito che la $V_{GS} = V_G - V_S = -V_{DD}$
+
+È quindi sempre verificata $V_{GS} = -V_{DD} < V_T$, quindi il nostro `PMOS` è sempre in saturazione.
+
+Inoltre, essendo $V_{GS}$ costante, abbiamo che la corrente segue una sola caratteristica.
+
+Al passare del tempo il condensatore si carica, aumentando $V_C$ e diminuendo in modulo la $V_{DS}$, spostando il punto di lavoro **lungo la caratteristica**, fino ad arrivare nell'istante finale quando $i_{DS} = 0$, ovvero $V_{DS} = 0$.
+
+TODO: foto
+<img class="" src="./images">
+
+Ciò comporta che $V_D = V_C = V_{DD}$.
+
+L'interruttore `PMOS` è quindi un **_ottimo interruttore nella trasmissione di livelli alti_**.
+
+</div>
+<div class="top">
+<p class="p">Scarica</p>
+
+Per quanto riguarda la scarica:
+
+TODO: foto
+<img class="" src="./images">
+
+Colleghiamo ancora il _Gate_ a _ground_.
+
+Notiamo stavolta che la $V_{GS} = V_G - V_S = 0$
+
+Stavolta la tensione $V_{GS} = V_G - V_S = -V_C$ non è più costante, ma dipende dalla tensione ai capi del condensatore.
+
+All'inizio $V_C = V_{DD}$ quindi $V_{GS} = -V_C = -V_{DD} \le V_T$, ovvero il nostro transistore **conduce**.
+
+L'ipotesi di lavoro di saturazione è ancora una volta sempre rispettata dato che $V_{DS} = V_D - V_S = -V_C \le V_{GS} - V_T$, condizione vera avendo $V_T < 0$
+
+Al passare del tempo il condensatore si scarica, diminuendo $V_C$ arrivando quindi alla condizione in cui $V_C = -V_T$, che comporta che la corrente sul transistore si annulla prima di aver scaricato completamente il condensatore.
+
+TODO: foto
+<img class="" src="./images">
+
+Ciò comporta che per $t \to \infty$:
+$$
+\begin{cases}
+	V_{DS} = V_T < 0 \\
+	V_C = -V_T
+\end{cases}
+$$
+
+Utilizzare un `PMOS` per trasmettere un livello logico basso comporta quindi una **perdita**.
+
+</div>
+</div>
+
+#### 3.4.1.3. Pass-Gate `CMOS`
+
+Questa tecnica mette in parallelo un transisore `NMOS` con un `PMOS` comandato dalla stessa variabile logica negata.
+
+TODO: foto
+<img class="" src="./images">
+
+I due transistori opereranno parallelamente durante i periodi intermedi, e uno solo dei due procedera a scaricare/caricare la tensione che l'altro perdeva
+
+
+### 3.4.2. Porte Logiche
+
+#### 3.4.2.1. Multiplexer 2x1
+
+Un multiplexer 2x1 è rappresentato dal seguente schema:
+
+TODO: foto
+<img class="" src="./images">
+
+
+<div class="grid2">
+<div class="">
+
+Questo circuito ha come uscita:
+$$
+Y = AB + B\overline{C}
+$$
+
+In tecnologia `CMOS` complementare abbiamo 4 variabili logiche 3 delle quali necessitano un inverter, per un totale di **14 transistori**.
+
+In tecnologia _Pass-Gate_ `CMOS` invece lo schema è quello sulla destra, infatti ci è sufficiente inserire un inverter per $\overline{C}$ e sostituire agli interruttori due pass-gate, per un totale di soli **6 transistori**
+
+
+</div>
+<div class="">
+TODO: foto
+<img class="80" src="./images">
+</div>
+</div>
+
+#### 3.4.2.2. Porta `XOR` a 2 Ingressi
+
+Avevamo [già visto in precedenza](#3335-porta-xor-a-2-ingressi) come sintetizzare uno `XOR` a due ingressi in tecnologia `CMOS` complementare.
+
+Vediamo adesso la logica ad interruttori.
+
+La relazione logica è sempre la solita:
+$$
+Y = A\overline{B} + \overline{A}B
+$$
+
+<div class="grid2">
+<div class="">
+
+Possiamo quindi immaginare di avere la variabile $A$ che è in serie con un interruttore pilotato da $\overline{B}$, in parallelo alla variabile $\overline{A}$ in serie all'interruttore pilotato da $B$, come nella figura sotto.
+
+TODO: foto
+<img class="" src="./images">
+
+
+Possiamo quindi sostituire agli interruttori i circuiti di _pass-gate_ `CMOS` e aggiungere i due _inverter_ per generare $\overline{A}$ e $\overline{B}$, per un totale di **8 transistori**, a fronte dei **12** utilizzati nella tecnologia `CMOS` complementare.
+
+</div>
+<div class="">
+TODO: foto
+<img class="80" src="./images">
+</div>
+</div>
+
