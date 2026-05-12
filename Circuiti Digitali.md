@@ -1191,9 +1191,8 @@ Nella costruzione dello schema dobbiamo quindi occuparci di _**negare gli ingres
 Per fare ciò dobbiamo _**inserire nello schema tanti inverter quanti sono necessari**_ per invertire tutte le variabili che ne hanno bisogno.
 
 
-<figure class="">
-TODO: foto
-<img class="100" src="./images">
+<figure class="70">
+<img class="40" src="./images/digital/logic-ports/xor/2-inputs.png">
 <figcaption>
 
 Nella `PUN` neghiamo per ogni parallelo la variabile non negata.
@@ -1244,8 +1243,7 @@ Una scelta "ibrida", ovvero farli i più piccoli possibili mantenendoli simmetri
 
 </div>
 <div class="">
-TODO: foto
-<img class="80" src="./images">
+<img class="50" src="./images/digital/logic-ports/inverter/digital-inverter-circuit.png">
 </div>
 </div>
 
@@ -1271,9 +1269,6 @@ $$
 
 Nelle reti composte da `PUN` e `PDN`, l'_inverter_ diventa un _**punto di riferimento**_. Queste infatti, si dimensionano in modo che nel _Worst-Case_ queste abbiamo _**lo stesso tempo di ritardo**_ dell'_inverter_ con dimensioni $(p, n)$
 
-<div class="grid2">
-<div class="">
-
 Chiamiamo in questo caso:
 $$
 \begin{matrix}
@@ -1287,21 +1282,15 @@ $$
 i_{MOS} = \alpha\cdot \frac{W}{L}
 $$
 
-</div>
-<div class="">
-TODO: foto
-<img class="80" src="./images">
-</div>
-</div>
-
 Dobbiamo adesso capire cosa succede quando abbiamo più `MOSFET` in serie/parallelo:
 
 <div class="grid2">
 <div class="top">
 <p class="p">MOSFET in parallelo</p>
 
-TODO: foto
-<img class="" src="./images">
+Nei `MOSFET` in parallelo:
+
+<img class="40" src="./images/digital/logic-ports/power-parallel.png">
 
 Sappiamo che:
 $$
@@ -1325,8 +1314,8 @@ $$
 <p class="p">MOSFET in serie</p>
 
 Per quanto riguarda invece due `MOSFET` in serie:
-TODO: foto
-<img class="" src="./images">
+
+<img class="40" src="./images/digital/logic-ports/power-series.png">
 
 
 Le due costanti $\alpha$ non saranno più uguali per i due transistori.
@@ -1411,8 +1400,7 @@ Gli `NMOS` avranno rapporto dimensioni $n$.
 
 </div>
 <div class="">
-TODO: foto
-<img class="80" src="./images">
+<img class="70" src="./images/digital/logic-ports/nor/4-inputs.png">
 </div>
 </div>
 
@@ -1453,9 +1441,7 @@ $$
 
 </div>
 <div class="">
-TODO: foto
-<img class="" src="./images">
-
+<img class="70" src="./images/digital/logic-ports/nand/4-inputs.png">
 </div>
 </div>
 
@@ -1524,8 +1510,8 @@ Analogamente, se scende $V_K \le -V_\gamma$ è il diodo $2$ ad entrare in _condu
 
 </div>
 <div class="">
-<figure class="80">
-<img class="100" src="./images">
+<figure class="70">
+<img class="70" src="./images/digital/logic-ports/circuito-protezione-scariche.png">
 <figcaption>
 
 La resistenza $R$ serve a limitare la corrente che potrebbe scorrere nei diodi quando entrano in conduzione.
@@ -1568,8 +1554,7 @@ La corrente $I = I_{S1} \ne 0$ comporta che _**staticamente, passa corrente sull
 
 </div>
 <div class="">
-TODO: foto
-<img class="80" src="./images">
+<img class="80" src="./images/digital/logic-ports/circuito-protezione-scariche-serie.png">
 </div>
 </div>
 
