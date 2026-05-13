@@ -68,7 +68,7 @@ Affinché tutto funzioni correttamente i due intervalli di tensione _**devono es
 Prendiamo per esempio un _**Inverter**_:
 
 <figure class="">
-<img class="" src="./images/digital/logic-ports/inverter/inverter.png">
+<img class="" src="./images/digital/circuit-diff.png">
 <figcaption>
 
 Lo schema digitale è quello sulla sinistra, quello circuitale sulla destra
@@ -136,7 +136,7 @@ Affinché il secondo _inverter_ funzioni correttamente, è necessario che le ten
 
 </div>
 <div class="">
-<img class="80" src="./images/digital/logic-ports/inverter/series-inverter.png">
+<img class="80" src="./images/digital/example-series.png">
 </div>
 </div>
 
@@ -332,10 +332,10 @@ $$
 
 </div>
 <div class="">
-<img class="60" src="./images/diode/logic-ports/and-1.png">
+<img class="60" src="./images/digital/logic-ports/diode/and-1.png">
 </div>
 <div class="">
-<img class="60" src="./images/diode/logic-ports/and-2.png">
+<img class="60" src="./images/digital/logic-ports/diode/and-2.png">
 </div>
 <div class="">
 
@@ -364,7 +364,7 @@ Per quanto riguarda la verifica effettuiamo le stesse considerazioni fatte prima
 
 </div>
 <div class="">
-<img class="60" src="./images/diode/logic-ports/and-3.png">
+<img class="60" src="./images/digital/logic-ports/diode/and-3.png">
 </div>
 </div>
 
@@ -382,7 +382,7 @@ Riassumedo abbiamo ottenuto che:
 
 Notiamo che se associamo le tensioni $5$ $V$ con un `1` logico, e le tensioni $0$ $V$ le associamo lo `0` logico, quello che abbiamo appena costruito è una **_Porta `AND`_**.
 
-<img class="20" src="./images/diode/logic-ports/and.png">
+<img class="20" src="./images/digital/logic-ports/diode/and.png">
 
 ### 3.2.2. Porta `OR`
 
@@ -399,10 +399,10 @@ La verifica è semplice in quanto: &emsp; $I_{D_A} = I_{D_B} = \frac{V_{CC}}{R} 
 
 </div>
 <div class="">
-<img class="60" src="./images/diode/logic-ports/or-1.png">
+<img class="60" src="./images/digital/logic-ports/diode/or-1.png">
 </div>
 <div class="">
-<img class="60" src="./images/diode/logic-ports/or-2.png">
+<img class="60" src="./images/digital/logic-ports/diode/or-2.png">
 </div>
 <div class="">
 
@@ -434,7 +434,7 @@ Otteniamo quindi che $V_u = 0$ $V$.
 
 </div>
 <div class="">
-<img class="60" src="./images/diode/logic-ports/or-3.png">
+<img class="60" src="./images/digital/logic-ports/diode/or-3.png">
 </div>
 </div>
 
@@ -453,7 +453,7 @@ Riassumedo abbiamo adesso ottenuto che:
 
 Notiamo che se associamo le tensioni $5$ $V$ con un `1` logico, e le tensioni $0$ $V$ le associamo lo `0` logico, quello che abbiamo appena costruito è una **_Porta `OR`_**.
 
-<img class="20" src="./images/diode/logic-ports/or.png">
+<img class="20" src="./images/digital/logic-ports/diode/or.png">
 
 ### 3.2.3. Difetti Principali
 
@@ -477,7 +477,7 @@ Questo fenomeno si chiama **_Degrado dei Livelli Logici_**, e va a **limitare il
 
 </div>
 <div class="">
-<img class="60" src="./images/diode/logic-ports/double-or.png">
+<img class="60" src="./images/digital/logic-ports/diode/double-or.png">
 </div>
 </div>
 
@@ -844,14 +844,14 @@ La seconda e terza capacità parassita si presentano nelle _**Zone di svuotament
 
 La quarta e la quinta capacità parassita si trovano nelle _**Sovrapposizioni tra Gate e Drain**_ dei `MOSFET`. Nella piccola intersezione che ha la zona $n^+$ con la sezione del _Gate_, si forma infatti un piccolo condensatore. Chiamiamo questa capacità $C_{GD}$
 
-<img class="60" src="./images/digital/logic-ports/capacity/capacity-location.png">
+<img class="60" src="./images/digital/logic-ports/cmos/capacity/capacity-location.png">
 
 
 Avendo messo serie un altro _inverter_, si presentano quindi altre due capacità, tra il _Gate_ del secondo inverter e i due substrati dei suoi `MOSFET`. Le chiamiamo $C_{GP}$ e $C_{GN}$
 
 </div>
 <div class="">
-<img class="90" src="./images/digital/logic-ports/capacity/inverter-series.png">
+<img class="90" src="./images/digital/logic-ports/cmos/capacity/inverter-series.png">
 </div>
 </div>
 
@@ -882,7 +882,7 @@ $$
 }
 $$
 
-<img class="20" src="./images/digital/logic-ports/capacity/equivalent.png">
+<img class="20" src="./images/digital/logic-ports/cmos/capacity/equivalent.png">
 
 Nella pratica dei nostri transistori, questo valore dipende sia dal processo tecnologico, che fornisce informazioni sulle capacità per area, sia dalle dimensioni dei transistori che moltiplicano queste densità.
 Nei processi moderni queste capacità, per dimensioni minime, si aggirano nell'ordine dei $O(fF) = O(10^{-15} F)$.
@@ -977,7 +977,7 @@ La rete di _PULL-UP_ `PUN`, composta da `PMOS`, e la rete di _PULL-DOWN_ `PDN`, 
 
 </div>
 <div class="">
-<img class="40" src="./images/digital/logic-ports/scheme.png">
+<img class="40" src="./images/digital/logic-ports/cmos/scheme.png">
 </div>
 </div>
 
@@ -995,7 +995,7 @@ Possiamo vedere facilmente come:-
 <p class="p">NMOS - Serie</p>
 
 
-<img class="30" src="./images/digital/logic-ports/NMOS-series.png">
+<img class="30" src="./images/digital/logic-ports/cmos/NMOS-series.png">
 
 $V_y = 0$ sarà vera _**se e solo se**_ i due transistor $Q_A$ e $Q_B$ conducono.
 
@@ -1022,7 +1022,7 @@ $$
 <div class="top">
 <p class="p">NMOS Parallelo</p>
 
-<img class="70" src="./images/digital/logic-ports/NMOS-parallel.png">
+<img class="70" src="./images/digital/logic-ports/cmos/NMOS-parallel.png">
 
 $V_y = 0$ sarà vera _**se e solo se**_ almeno uno due transistor conduce.
 
@@ -1039,7 +1039,7 @@ $$
 <div class="top">
 <p class="p">PMOS - Serie</p>
 
-<img class="30" src="./images/digital/logic-ports/PMOS-series.png">
+<img class="30" src="./images/digital/logic-ports/cmos/PMOS-series.png">
 
 $V_y = V_{DD}$ sarà vera _**se e solo se**_ entrambi i transistori sono interdetti.
 
@@ -1054,7 +1054,7 @@ $$
 <div class="top">
 <p class="p">PMOS Parallelo</p>
 
-<img class="70" src="./images/digital/logic-ports/NMOS-parallel.png">
+<img class="70" src="./images/digital/logic-ports/cmos/NMOS-parallel.png">
 
 $V_y = V_{DD}$ sarà vera _**se e solo se**_ almeno uno due transistor è interdetto.
 
@@ -1105,7 +1105,7 @@ Abbiamo quindi che:
 
 </div>
 <div class="">
-<img class="40" src="./images/digital/logic-ports/nor/2-inputs.png">
+<img class="40" src="./images/digital/logic-ports/cmos/nor-2-inputs.png">
 </div>
 </div>
 
@@ -1126,7 +1126,7 @@ Abbiamo quindi che:
 
 </div>
 <div class="">
-<img class="40" src="./images/digital/logic-ports/nand/2-inputs.png">
+<img class="40" src="./images/digital/logic-ports/cmos/nand-2-inputs.png">
 </div>
 </div>
 #### 3.3.3.3. Porta Complessa a 4 Ingressi
@@ -1159,7 +1159,7 @@ La rete finale è quindi quella sulla destra.
 
 </div>
 <div class="">
-<img class="40" src="./images/digital/logic-ports/complex-example.png">
+<img class="40" src="./images/digital/logic-ports/cmos/complex-example.png">
 </div>
 </div>
 
@@ -1192,7 +1192,7 @@ Per fare ciò dobbiamo _**inserire nello schema tanti inverter quanti sono neces
 
 
 <figure class="70">
-<img class="40" src="./images/digital/logic-ports/xor/2-inputs.png">
+<img class="40" src="./images/digital/logic-ports/cmos/xor-2-inputs.png">
 <figcaption>
 
 Nella `PUN` neghiamo per ogni parallelo la variabile non negata.
@@ -1290,7 +1290,7 @@ Dobbiamo adesso capire cosa succede quando abbiamo più `MOSFET` in serie/parall
 
 Nei `MOSFET` in parallelo:
 
-<img class="40" src="./images/digital/logic-ports/power-parallel.png">
+<img class="40" src="./images/digital/logic-ports/cmos/power-parallel.png">
 
 Sappiamo che:
 $$
@@ -1315,7 +1315,7 @@ $$
 
 Per quanto riguarda invece due `MOSFET` in serie:
 
-<img class="40" src="./images/digital/logic-ports/power-series.png">
+<img class="40" src="./images/digital/logic-ports/cmos/power-series.png">
 
 
 Le due costanti $\alpha$ non saranno più uguali per i due transistori.
@@ -1400,7 +1400,7 @@ Gli `NMOS` avranno rapporto dimensioni $n$.
 
 </div>
 <div class="">
-<img class="70" src="./images/digital/logic-ports/nor/4-inputs.png">
+<img class="70" src="./images/digital/logic-ports/cmos/nor-4-inputs.png">
 </div>
 </div>
 
@@ -1441,7 +1441,7 @@ $$
 
 </div>
 <div class="">
-<img class="70" src="./images/digital/logic-ports/nand/4-inputs.png">
+<img class="70" src="./images/digital/logic-ports/cmos/nand-4-inputs.png">
 </div>
 </div>
 
@@ -1511,7 +1511,7 @@ Analogamente, se scende $V_K \le -V_\gamma$ è il diodo $2$ ad entrare in _condu
 </div>
 <div class="">
 <figure class="70">
-<img class="70" src="./images/digital/logic-ports/circuito-protezione-scariche.png">
+<img class="70" src="./images/digital/logic-ports/cmos/protection/circuit.png">
 <figcaption>
 
 La resistenza $R$ serve a limitare la corrente che potrebbe scorrere nei diodi quando entrano in conduzione.
@@ -1554,14 +1554,13 @@ La corrente $I = I_{S1} \ne 0$ comporta che _**staticamente, passa corrente sull
 
 </div>
 <div class="">
-<img class="80" src="./images/digital/logic-ports/circuito-protezione-scariche-serie.png">
+<img class="80" src="./images/digital/logic-ports/cmos/protection/circuit-series.png">
 </div>
 </div>
 
 Questa corrente va a cambiare il punto di lavoro nell'`NMOS`, che _**sposta la tensione associata allo `0` logico**_.
 
-TODO: foto
-<img class="" src="./images">
+<img class="40" src="./images/digital/logic-ports/cmos/protection/graph.png">
 
 
 Se aumentassimo il numero di inverter pilotati, ognuno con il proprio circuito di protezione, aumenteremmo ancora di più la tensione associata allo `0` logico, provocando diversi effetti negativi sul _margine di rumore_, sul _FAN IN_, sul _FAN OUT_, ...
@@ -1572,10 +1571,9 @@ Ha senso inserire un circuito di protezione **esclusivamente** sui _**contatti v
 
 ## 3.4. Famiglia Logica Pass-Transistor
 
-Il problema di creare porte logiche in tecnologia `CMOS` è che per ogni variabile logica _**dobbiamo aggiungere due porte**_.
-Questo comporta che in porte più complesse, necessitiamo un elevato numero di `MOSFET` e quindi un ampia area.
+Il problema di creare porte logiche in tecnologia `CMOS` è che per ogni variabile logica _**dobbiamo aggiungere due transistor**_. Questo comporta che in porte più complesse, necessitiamo un elevato numero di `MOSFET` e quindi un ampia area.
 
-Per ovviare a questo problema vediamo quindi la famiglia di porte  _**Pass-Transistor Logic**_. Quetsa famiglia tratta i transistori come interruttori, permettendo di generare porte logiche molto compatte.
+Per ovviare a questo problema vediamo quindi la famiglia di porte _**Pass-Transistor Logic**_, che tratta i transistori come interruttori.
 
 <div class="grid2">
 <div class="">
@@ -1593,8 +1591,7 @@ $$
 Abbiamo quindi apparentemente costruito un `AND` a 3 ingressi utilizzando solo 2 `MOSFET`, invece dei **6** che avremmo utilizzato in logica `CMOS` complementare
 </div>
 <div class="">
-TODO: foto
-<img class="80" src="./images">
+<img class="80" src="./images/digital/logic-ports/pass-trans/and-gate.png">
 </div>
 </div>
 
@@ -1605,23 +1602,26 @@ Dobbiamo però fare attenzione ad un dettaglio. Mentre in `CMOS` complementare a
 
 Immaginiamo di avere due inverter in cascata in tecnologia `CMOS` complementare, collegati tra loro da un interruttore associato alla variabile logica `B`.
 
-Quando `B = 1`, ovvero l'interruttore è chiuso, abbiamo la certezza che _**la tensione sul nodo $K$ è ben definita**_, e vale o $0$ o $V_{DD}$.
+Quando `B = 1`, ovvero l'interruttore è chiuso, abbiamo la certezza che _**la tensione sul nodo $K$ è ben definita**_: vale $0$ o $V_{DD}$.
 
-Quando invece `B = 0`, _**non abbiamo una tensione ben definita su $K$**_, ma il suo valore dipende da cosa è avvenuto prima dell'apertura.
+Quando invece `B = 0`, _**non abbiamo una tensione ben definita su $K$**_, ma il suo valore dipende da cosa è avvenuto prima dell'apertura:
 
-Se prima il circuito era collegato a _ground_ $(V_K = 0)$, allora si manterrà a $0$.
-Se invece il circuito prima era collegato a $V_{DD}$ invece, questo valore _**non si mantiene**_. Infatti sono presenti delle correnti di perdita che scaricano i condensatori dei `MOSFET`, portando ad una _**incertezza sul valore di**_ $V_K$ _**nel tempo**_
-
-</div>
-<div class="">
-TODO: foto
-<img class="80" src="./images">
-</div>
-</div>
+- Se prima il circuito era collegato a _ground_ $(V_K = 0)$, allora si manterrà a $0$.
+- Se prima il circuito era collegato a $V_{DD}$, questo valore _**non si mantiene**_. Infatti sono presenti delle correnti di perdita che scaricano i condensatori dei `MOSFET`, portando ad una _**incertezza sul valore di**_ $V_K$ _**nel tempo**_
 
 La presenza di nodi impredicibili, comporta che a livello statico **abbiamo delle incertezze sui nostri valori**. Una prima soluzione è quella di _**aggiungere dei percorsi che definiscono i valori statici**_.
 
-Nell'esempio di prima potremmo quindi aggiungere un interruttore tra il nodo $K$ e _ground_ pilotato da $\overline{B}$.
+</div>
+<div class="">
+<figure class="100">
+<img class="80" src="./images/digital/logic-ports/pass-trans/series-problem.png">
+<figcaption>
+
+Aggiungiamo un interruttore tra il nodo $K$ e _ground_ pilotato da $\overline{B}$ per avere un percorso a valore statico.
+</figcaption>
+</figure>
+</div>
+</div>
 
 ### 3.4.1. Interruttori Ideali
 
@@ -1631,13 +1631,13 @@ Nell'esempio di prima potremmo quindi aggiungere un interruttore tra il nodo $K$
 Dobbiamo quindi capire come riuscire a creare fisicamente degli _**Interruttori Ideali**_, come quello sulla destra.
 
 Per fare ciò ci sono diverse possibilità:
-1. Utilizzare gli `NMOS`
-
+1. [Utilizzare gli `NMOS`](#3411-interruttore-nmos)
+2. [Utilizzare i `PMOS`](#3412-interruttore-pmos)
+3. [Utilizzare i `CMOS`](#3413-pass-gate-cmos)
 
 </div>
 <div class="">
-TODO: foto
-<img class="80" src="./images">
+<img class="40" src="./images/digital/logic-ports/pass-trans/switches/ideal-switch.png">
 </div>
 </div>
 
@@ -1661,13 +1661,13 @@ $$
 
 Successivamente la tensione di ingresso viene commutata a $V_{DD}$. Se l'interruttore funzionasse come ci aspettiamo, dopo un certo tempo $t'$ la tensione ai capi del condensatore varrà anch'essa $V_{DD}$.
 
-Poiché dobbiamo caricare il condensatore, il quest'applicazione il _Drain_ e il _Source_ sono presi come in figura, in accordo con il passaggio di corrente.
+Poiché dobbiamo caricare il condensatore, in questa commutazione il _Drain_ e il _Source_ sono presi come in figura, in accordo con il passaggio di corrente.
 
 Per far funzionare correttamente il nostro `NMOS` necessitiamo che la tensione al _Gate_ sia sufficientemente alta. Colleghiamo quindi anche $V_G = V_{DD}$.
 
 </div>
 <div class="">
-<img class="80" src="./images">
+<img class="70" src="./images/digital/logic-ports/pass-trans/switches/nmos-charge.png">
 </div>
 </div>
 
@@ -1690,11 +1690,7 @@ $$
 \end{align*}
 $$
 
-Sappiamo che il transistore è **saturo** se $V_{DS} \ge V_{GS} - V_T$, cosa è quindi è verificata.
-
-In questa fase quindi il **transistore è saturo e inizia a caricarsi in modo esponenziale**.
-
-Al passare del tempo il _condensatore si carica_, aumentando la tensione $V_C$ e di conseguenza $V_S$.
+Il transistore è quindi **saturo**, dato che $V_{DS}  = V_{DD} \ge V_{GS} - V_T = V_{DD} - V_T$, e il condensatore inizia a caricarsi, aumentando nel tempo la tensione $V_C$ e, di conseguenza, anche $V_S$.
 
 L'aumento di $V_S$ provoca effetti sul `MOSFET` che conduce solo finché $V_{GS} \ge V_T$, ovvero finché $V_C \le V_{DD} - V_T$.
 
@@ -1737,7 +1733,7 @@ $$
 Questa relazione ci dice proprio che la corrente, al passare del tempo, si muove sulla **parabola rossa centrata in** $(V_T, 0)$
 </div>
 <div class="">
-<img class="80" src="./images">
+<img class="70" src="./images/digital/logic-ports/pass-trans/switches/current-nmos-charge.png">
 </div>
 </div>
 
@@ -1781,7 +1777,7 @@ Il `MOSFET` quindi non solo è _**sempre in conduzione**_, ma lavora sempre segu
 
 </div>
 <div class="">
-<img class="80" src="./images">
+<img class="70" src="./images/digital/logic-ports/pass-trans/switches/nmos-discharge.png">
 </div>
 </div>
 
@@ -1805,9 +1801,7 @@ Ciò significa che il nostro condensatore **_si scarica completamente_**.
 
 L'`NMOS` è quindi un **_ottimo interruttore nella trasmissione di livelli bassi_**.
 
-
-TODO: foto grafici tensione messi insieme
-<img class="" src="./images">
+<img class="40" src="./images/digital/logic-ports/pass-trans/switches/nmos-tension.png">
 
 #### 3.4.1.2. Interruttore PMOS
 
@@ -1821,8 +1815,7 @@ Ancora una volta vediamo i due processi di carica e scarica, stavolta recuperand
 
 Per quanto riguarda la carica:
 
-TODO: foto
-<img class="" src="./images">
+<img class="" src="./images/digital/logic-ports/pass-trans/switches/pmos-charge.png">
 
 Stavolta colleghiamo a _ground_ il _Gate_.
 
@@ -1834,8 +1827,7 @@ Inoltre, essendo $V_{GS}$ costante, abbiamo che la corrente segue una sola carat
 
 Al passare del tempo il condensatore si carica, aumentando $V_C$ e diminuendo in modulo la $V_{DS}$, spostando il punto di lavoro **lungo la caratteristica**, fino ad arrivare nell'istante finale quando $i_{DS} = 0$, ovvero $V_{DS} = 0$.
 
-TODO: foto
-<img class="" src="./images">
+<img class="80" src="./images/digital/logic-ports/pass-trans/switches/current-pmos-charge.png">
 
 Ciò comporta che $V_D = V_C = V_{DD}$.
 
@@ -1847,8 +1839,7 @@ L'interruttore `PMOS` è quindi un **_ottimo interruttore nella trasmissione di 
 
 Per quanto riguarda la scarica:
 
-TODO: foto
-<img class="" src="./images">
+<img class="" src="./images/digital/logic-ports/pass-trans/switches/pmos-discharge.png">
 
 Colleghiamo ancora il _Gate_ a _ground_.
 
@@ -1861,9 +1852,6 @@ All'inizio $V_C = V_{DD}$ quindi $V_{GS} = -V_C = -V_{DD} \le V_T$, ovvero il no
 L'ipotesi di lavoro di saturazione è ancora una volta sempre rispettata dato che $V_{DS} = V_D - V_S = -V_C \le V_{GS} - V_T$, condizione vera avendo $V_T < 0$
 
 Al passare del tempo il condensatore si scarica, diminuendo $V_C$ arrivando quindi alla condizione in cui $V_C = -V_T$, che comporta che la corrente sul transistore si annulla prima di aver scaricato completamente il condensatore.
-
-TODO: foto
-<img class="" src="./images">
 
 Ciò comporta che per $t \to \infty$:
 $$
@@ -1878,12 +1866,25 @@ Utilizzare un `PMOS` per trasmettere un livello logico basso comporta quindi una
 </div>
 </div>
 
+La tensione ai capi del condensatore quindi ha il seguente andamento nel tempo quando la commutiamo:
+
+<figure class="50">
+<img class="80" src="./images/digital/logic-ports/pass-trans/switches/pmos-tension.png">
+<figcaption>
+
+Immaginiamo che la porta sia appena stata attivata per la trima volta.
+Dopo una doppia commutazione, la tensione di partenza sarà $-V_T$.
+</figcaption>
+</figure>
+
+
+
 #### 3.4.1.3. Pass-Gate `CMOS`
 
 Questa tecnica mette in parallelo un transisore `NMOS` con un `PMOS` comandato dalla stessa variabile logica negata.
 
 TODO: foto
-<img class="" src="./images">
+<img class="" src="./images/digital/logic-ports/pass-trans">
 
 I due transistori opereranno parallelamente durante i periodi intermedi, e uno solo dei due procedera a scaricare/caricare la tensione che l'altro perdeva
 
@@ -1895,7 +1896,7 @@ I due transistori opereranno parallelamente durante i periodi intermedi, e uno s
 Un multiplexer 2x1 è rappresentato dal seguente schema:
 
 TODO: foto
-<img class="" src="./images">
+<img class="" src="./images/digital/logic-ports/pass-trans">
 
 
 <div class="grid2">
@@ -1914,7 +1915,7 @@ In tecnologia _Pass-Gate_ `CMOS` invece lo schema è quello sulla destra, infatt
 </div>
 <div class="">
 TODO: foto
-<img class="80" src="./images">
+<img class="80" src="./images/digital/logic-ports/pass-trans">
 </div>
 </div>
 
@@ -1935,7 +1936,7 @@ $$
 Possiamo quindi immaginare di avere la variabile $A$ che è in serie con un interruttore pilotato da $\overline{B}$, in parallelo alla variabile $\overline{A}$ in serie all'interruttore pilotato da $B$, come nella figura sotto.
 
 TODO: foto
-<img class="" src="./images">
+<img class="" src="./images/digital/logic-ports/pass-trans">
 
 
 Possiamo quindi sostituire agli interruttori i circuiti di _pass-gate_ `CMOS` e aggiungere i due _inverter_ per generare $\overline{A}$ e $\overline{B}$, per un totale di **8 transistori**, a fronte dei **12** utilizzati nella tecnologia `CMOS` complementare.
@@ -1943,7 +1944,7 @@ Possiamo quindi sostituire agli interruttori i circuiti di _pass-gate_ `CMOS` e 
 </div>
 <div class="">
 TODO: foto
-<img class="80" src="./images">
+<img class="80" src="./images/digital/logic-ports/pass-trans">
 </div>
 </div>
 
