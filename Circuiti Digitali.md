@@ -1883,11 +1883,11 @@ Dopo una doppia commutazione, la tensione di partenza sarà $-V_T$.
 
 Questa tecnica mette in parallelo un transisore `NMOS` con un `PMOS` comandato dalla stessa variabile logica negata.
 
-TODO: foto
-<img class="" src="./images/digital/logic-ports/pass-trans">
+<img class="30" src="./images/digital/logic-ports/pass-trans/switches/cmos.png">
 
-I due transistori opereranno parallelamente durante i periodi intermedi, e uno solo dei due procedera a scaricare/caricare la tensione che l'altro perdeva
-
+In questo modo riusciamo a **non avere perdite di tensione durante le commutazioni**, in quanto:
+- Durante la commutazione $LH$ i due transistori caricheranno in parallelo fino a $V_{DD} - V_{T_N}$, successivamente l'`NMOS` sarà interdetto mentre il `PMOS` continuerà a caricare il condensatore fino a $V_{DD}$
+- Durante la commutazione $HL$ i due transistori scaricherano in parallelo fino a $-V_{T_P}$, successivamente il `PMOS` sarà interdetto mentre l'`NMOS` continuerà a scaricare completamente il condensatore.
 
 ### 3.4.2. Porte Logiche
 
@@ -1895,8 +1895,7 @@ I due transistori opereranno parallelamente durante i periodi intermedi, e uno s
 
 Un multiplexer 2x1 è rappresentato dal seguente schema:
 
-TODO: foto
-<img class="" src="./images/digital/logic-ports/pass-trans">
+<img class="30" src="./images/digital/logic-ports/pass-trans/multiplexer/scheme.png">
 
 
 <div class="grid2">
@@ -1904,26 +1903,23 @@ TODO: foto
 
 Questo circuito ha come uscita:
 $$
-Y = AB + B\overline{C}
+Y = AC + B\overline{C}
 $$
 
-In tecnologia `CMOS` complementare abbiamo 4 variabili logiche 3 delle quali necessitano un inverter, per un totale di **14 transistori**.
+In tecnologia `CMOS` complementare abbiamo 4 variabili logiche <small>(8 transistori)</small>, 3 delle quali necessitano un inverter <small>(6 transistori)</small>, per un totale di **14 transistori**.
 
-In tecnologia _Pass-Gate_ `CMOS` invece lo schema è quello sulla destra, infatti ci è sufficiente inserire un inverter per $\overline{C}$ e sostituire agli interruttori due pass-gate, per un totale di soli **6 transistori**
+In tecnologia _Pass-Gate_ `CMOS` è invece sufficiente inserire un inverter per $\overline{C}$ e sostituire agli interruttori due _pass-gate_, per un totale di soli **6 transistori**.
 
 
 </div>
 <div class="">
-TODO: foto
-<img class="80" src="./images/digital/logic-ports/pass-trans">
+<img class="60" src="./images/digital/logic-ports/pass-trans/multiplexer/2x1.png">
 </div>
 </div>
 
 #### 3.4.2.2. Porta `XOR` a 2 Ingressi
 
-Avevamo [già visto in precedenza](#3335-porta-xor-a-2-ingressi) come sintetizzare uno `XOR` a due ingressi in tecnologia `CMOS` complementare.
-
-Vediamo adesso la logica ad interruttori.
+Avevamo [già visto in precedenza](#3335-porta-xor-a-2-ingressi) come sintetizzare uno `XOR` a due ingressi in tecnologia `CMOS` complementare, vediamo adesso la logica ad interruttori.
 
 La relazione logica è sempre la solita:
 $$
@@ -1935,16 +1931,13 @@ $$
 
 Possiamo quindi immaginare di avere la variabile $A$ che è in serie con un interruttore pilotato da $\overline{B}$, in parallelo alla variabile $\overline{A}$ in serie all'interruttore pilotato da $B$, come nella figura sotto.
 
-TODO: foto
-<img class="" src="./images/digital/logic-ports/pass-trans">
-
+<img class="60" src="./images/digital/logic-ports/pass-trans/xor/scheme.png">
 
 Possiamo quindi sostituire agli interruttori i circuiti di _pass-gate_ `CMOS` e aggiungere i due _inverter_ per generare $\overline{A}$ e $\overline{B}$, per un totale di **8 transistori**, a fronte dei **12** utilizzati nella tecnologia `CMOS` complementare.
 
 </div>
 <div class="">
-TODO: foto
-<img class="80" src="./images/digital/logic-ports/pass-trans">
+<img class="70" src="./images/digital/logic-ports/pass-trans/xor/2-inputs.png">
 </div>
 </div>
 
