@@ -294,7 +294,7 @@ $$
 
 Chiamiamo _**Duty Cycle**_:
 $$
-	D =\frac{T_{ON}}{T_{OFF}}
+	D =\frac{T_{ON}}{T_{S}}
 $$
 
 Possiamo quindi manipolare il valor medio della tensione di uscita manipolando il _duty cycle_:
