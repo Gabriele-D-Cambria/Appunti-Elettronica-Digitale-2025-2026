@@ -227,7 +227,7 @@ $$
 \begin{cases}
 	V_{i_1} = \frac{1}{3}V_{CC} \\
 	V_{f_1} = V_{CC} \\
-	V_{{COM}_1} = \frac{2}{3}V_{CC} \\
+	V_{COM_1} = \frac{2}{3}V_{CC} \\
 	\tau_1 = C \cdot R_V = C \cdot (R_A + R_B)
 \end{cases}
 $$
@@ -247,7 +247,7 @@ $$
 \begin{cases}
 	V_{i_2} = \frac{2}{3}V_{CC} \\
 	V_{f_2} = 0 \\
-	V_{{COM}_2} = \frac{1}{3}V_{CC} \\
+	V_{COM_2} = \frac{1}{3}V_{CC} \\
 	\tau_2 = C \cdot R_V = C \cdot R_B
 \end{cases}
 $$
@@ -284,8 +284,8 @@ $$
 \LARGE
 \boxed{
 	\begin{cases}
-		V_{i_1} < V_{{COM}_1} < V_{f_1} \\
-		V_{i_2} > V_{{COM}_2} > V_{f_2}
+		V_{i_1} < V_{COM_1} < V_{f_1} \\
+		V_{i_2} > V_{COM_2} > V_{f_2}
 	\end{cases}
 }
 $$

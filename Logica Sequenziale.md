@@ -11,6 +11,12 @@ title: Logica Sequenziale
 	- [2.2. Latch SR](#22-latch-sr)
 		- [2.2.1. Porte NOR](#221-porte-nor)
 		- [2.2.2. Latch SR con Enable](#222-latch-sr-con-enable)
+	- [2.3. D-Latch](#23-d-latch)
+	- [2.4. Flip-Flop](#24-flip-flop)
+		- [2.4.1. Flip-Flop di tipo D](#241-flip-flop-di-tipo-d)
+- [3. Memorie Volatici CMOS](#3-memorie-volatici-cmos)
+	- [3.1. SRAM](#31-sram)
+	- [3.2. DRAM](#32-dram)
 
 # 2. Logica Sequenziale
 
@@ -254,3 +260,258 @@ La tabella di verità:
 |  $1$   |  $1$  |  $1$  | Non Permesso |
 
 </div>
+
+## 2.3. D-Latch
+
+Il **D-Latch**, o _Data Latch_, è un miglioramento diretto del _Latch SR con Enable_ pensato per:
+- Semplificare la memorizzazione dei bit
+- Eliminare stati indeterminati
+
+<div class="grid2">
+<div class="">
+
+Se $\phi = 0$ la condizione è analoga a quella precedente. ovvero la **Memorizzazione*: $Q$ mantiene l'ultimo valore di $D$ prima della transizione $1 \to 0$ di $\phi$.
+
+Se invece $\phi = 1$ siamo in _trasparenza_, che significa che $Q = D$ in tempo reale, propagando il segnale e, di conseguenza, eventuali glitch.
+
+</div>
+<div class="">
+<img class="80" src="./images/seq-logic/latch/d-latch.png">
+</div>
+</div>
+
+Una possibile implementazione compatta del _D-latch_ si basa sull'utilizzo di due inverter e due porte di trasmissione (o semplici `NMOS`), sfruttando due **fasi non sovrapposte**.
+
+<div class="grid2">
+<div class="">
+
+Questa implementazione utilizza due segnali di enable $\phi_1$ e $\phi_2$ che hanno come regola quella di **non doversi mai sovrapporsi** se non in piccoli transienti, che riescono ad essere mitigati dalle capacità di gate degli inverter.
+
+<img class="60" src="./images/seq-logic/latch/d-latch-compact-graph.png">
+
+Se infatti $\phi_1 = \phi_2 = 1$, quello che accade è che `D` e `Q` vengono _cortocircuitati_, potendo assumere valori flottanti non conoscibili a priori.
+
+I vari stati della porta sono:
+- $\phi_1 = 1$: _trasparenza_
+- $\phi_2 = 1$: _memorizzazione_
+
+</div>
+<div class="">
+<figure class="">
+<img class="100" src="./images/seq-logic/latch/d-latch-compact.png">
+<figcaption>
+
+Il condensatore non è inserito come componente esterno ma serve a rappresentare la capacità di gate degli inverter.
+</figcaption>
+</figure>
+
+</div>
+</div>
+
+## 2.4. Flip-Flop
+
+A differenza dei latch, i _**Filp-Flop**_, o **Multivibratori Bistabili**, sono circuiti che campionano gli ingressi solo su **un finaco di un segnale** periodico di temporizzazione.
+
+Le uscite cambiano quindi solo su un fianco determinato del _clock_, che _**elimina problemi di trasparenza**_.
+
+### 2.4.1. Flip-Flop di tipo D
+
+<div class="grid2">
+<div class="">
+
+Si chiama _**D-Edge Triggered Flip-Flop**_, un _flip-flop_ creato a partire da due _Compact D-latch_ polotati in fasi di clock non sovrapposte, così da evitare la trasparenza tra ingresso e uscita e _race-through_ del risultato.
+
+Questa configurazione è chiamata _master/slave_.
+
+</div>
+<div class="">
+<img class="80" src="./images/seq-logic/flip-flop/d-edge-scheme.png">
+</div>
+</div>
+
+
+La temporizzazione di questo tipo di configurazione è la seguente:
+
+<img class="" src="./images/seq-logic/flip-flop/d-edge-graph.png">
+
+
+Il circuito completo è quindi il seguente:
+
+<img class="" src="./images/seq-logic/flip-flop/d-edge-circuit.png">
+
+# 3. Memorie Volatici CMOS
+
+Le _memorie a stato solido_ impiegate dai microcontrollori embedded ai data center sono basate su **Tecnologia CMOS**.
+
+Le loro caratteristiche principali sono:
+- Scalabilità e Affidabilità
+- Basso consumo energetico
+- Tempi di Accesso nell'ordine dei nanosecondi
+
+Le `RAM` (_Random Access MEmori_) permettono di accedere a qualsiasi cella in tempo costantem indipendentemente dalla sua posizione fisica.
+
+Le ram si dividono in _Static-RAM_, o `SRAM`, e _Digital-RAM_ o `DRAM`.
+
+Le differenze sono suelle caratteristiche di dimensioni, densità e temppi di accesso:
+<div class="flexbox" markdown="1">
+
+|  Tipo  |     Densità     |  Area per `1GB`  | Appilcazione Tipica | Velocità  |   Costo    |
+| :----: | :-------------: | :--------------: | :-----------------: | :-------: | :--------: |
+| `SRAM` | $200$ $Mb/mm^2$ | $\sim 40$ $mm^2$ |      Cache CPU      | $10-100X$ | $\sim 50X$ |
+| `DRAM` | $10$ $Gb/mm^2$  | $\sim0.8$ $mm^2$ |   RAM principale    |   $1X$    |    $1X$    |
+
+</div>
+
+<div class="grid2">
+<div class="">
+
+La loro architettura interna comprende una struttura matriciale e dei circuiti periferici che gestiscono la lettura e la scrittura.
+
+La matrice è spesso quadrata, ed ogni cella al suo interno è identificata da:
+- **Word Line** $WL$: identifica l'_indirizzo di riga_
+- **Bit Line** $BL$: identifica l'_indirizzo di colonna_
+
+Per avere la rappresentazione binaria di $2^M$ $WL$ si utilizza un decodificatore di indirizzi di `M` bit
+
+Similmente, le $2^N$ $BL$ vengono indirizzate da `N` bit. La differenza è che il dato della cella indirizzata deve poter essere **sia letto che scritto**. È quindi necessario utilizzare un _MuxDemux_ per riuscire a effettuare le due operazioni.
+
+Si utilizzano dei _Sense Amplifier_ per riuscire a garantire la lettura dei segnali _"deboli"_ provenienti dalla cella, e dei _driver_ per scrivere il dato sulla cella identificata.
+
+</div>
+<div class="">
+<img class="80" src="./images/seq-logic/cmos-volatile-mem/scheme.png">
+</div>
+</div>
+
+## 3.1. SRAM
+
+La singola cella è costurita a partire da un _latch SR_ a 6 transistori:
+
+<div class="grid2">
+<div class="top">
+<p class="p">Scrittura</p>
+
+I passaggi sono i seguenti
+1. Attraverso i circuiti di pilotaggio si forzano $BL$ e $\overline{BL}$
+2. Si attiva la $WL$ in modo che i transistori di passo $M1$ e $M2$ permettano l'imposizione dello stato imposto
+3. Si rilascia $WL$, isolando il latch dal resto delle $BL$, che rimane quindi in stato di memorizzazione
+
+<img class="80" src="./images/seq-logic/cmos-volatile-mem/sram/write-cell-circuit.png">
+</div>
+<div class="top">
+<p class="p">Lettura</p>
+
+Inizialmente si:
+- Precarica $BL$ e $\overline{BL}$ a $\frac{V_{DD}}{2}$
+- Si attiva la $WL$ per mandare in saturazione i due transistori $M1$ e $M2$
+
+A questo punto le azioni si differenziano a seconda del valore che era contenuto nella cella.
+
+Se $Q = 1$:
+- $M3$, che era in saturazione, comincia a **scaricare** $\overline{BL}$ verso _ground_
+- $M6$, che era in saturazione, comincia a **caricare** $BL$ verso $V_{DD}$
+
+Se invece $Q = 0$ la situazione è simmetrica:
+- $M4$, che era in saturazione, comincia a **scaricare** $BL$ verso _ground_
+- $M5$, che era in saturazione, comincia a **caricare** $\overline{BL}$ verso $V_{DD}$
+
+<img class="" src="./images/seq-logic/cmos-volatile-mem/sram/read-cell-circuit.png">
+</div>
+</div>
+
+La scarica/carica della $BL$ è molto lenta, dato che i transistori sono molto piccoli e hanno poca capacità di portare grandi correnti. D'altro canto invece $C_B$ è relativamente grande, dato che la $BL$ è tipicamente lunga.
+
+Occorre quindi avere un circuito che interviene per **amplificare velocemente il piccolo sbilanciamento di tesione** che la cella provoca tra $BL$ e $\overline{BL}$.
+
+Ecco che entra in gioco il _**Sense Amplifier**_:
+
+<div class="grid2">
+<div class="">
+<img class="" src="./images/seq-logic/cmos-volatile-mem/sense-amplifier/circuit.png">
+
+Il circuito di precarica è attivo nella prima fase, e si occupa proprio di portare alla tensione sulle _bitline_ a  $\frac{V_{DD}}{2}$.
+
+Questo valore è legato al fatto che tutti i transistori utilizzati nella memoria e nei vari circuiti abbiano le stesse caratteristiche ($W$, $L$, $\mu$, ...)
+
+</div>
+<div class="">
+<img class="80" src="./images/seq-logic/cmos-volatile-mem/sense-amplifier/read-graph.png">
+</div>
+</div>
+
+## 3.2. DRAM
+
+Le celle della memoria dinamica sono costruite sfruttando i processi di carica dei transistori.
+
+<div class="grid2">
+<div class="">
+
+
+La cella è quindi basata su un condensatore e e un trasnsitore di passo `NMOS`.
+
+In scrittura per impostare il valore `1` è necessario che
+$$
+\begin{cases}
+	V_{BL} = V_{DD} \\
+	V_{C_S} = V_{DD} - V_T
+\end{cases}
+$$
+
+Se invece volessimo resettare è entrambe le tensioni sarebbero $0$.
+
+
+</div>
+<div class="">
+<img class="80" src="./images/seq-logic/cmos-volatile-mem/dram/circuit.png">
+</div>
+</div>
+
+Per quanto riguarda la lettura saranno necessari più passaggi:
+1. Precarica di $BL$ a $\frac{V_{DD}}{2}$
+2. Attivazione di $WL$
+
+In questo caso i due condensatori $C_B$ e $C_S$ condivideranno la carica dopo un trasitorio (dovuto a $R_{ON} \ne 0$ del trasnsitore). Alla fine del transitorio le tensioni $V_{BL}$ e $V_{CS}$ avranno lo stesso valore.
+
+La carica invece si conserva:
+$$
+\begin{align*}
+	C_S &\cdot V_S + C_B \cdot \frac{V_{DD}}{2} = (C_S + C_B) \cdot V_{BL} \\
+	V_{BL} &= \frac{C_S}{C_S + C_B}V_{CS} + \frac{C_B}{C_S + C_B} \cdot \frac{V_{DD}}{2} \\
+	V_{BL} &= \frac{C_S}{C_S + C_B}V_{CS} + (1 - \frac{C_S}{C_S + C_B}) \cdot \frac{V_{DD}}{2} \\
+	V_{BL} &= \frac{V_{DD}}{2} + \frac{C_S}{C_S + C_B}(V_{CS} - \frac{V_{DD}}{2}) \\
+	V_{BL} &= \frac{V_{DD}}{2} + \Delta V
+\end{align*}
+$$
+
+Se $V_{CS} = V_{DD} - V_T$:
+$$
+\begin{CD}
+	{\Delta V > 0} @>>> {V_{BL} > \frac{V_{DD}}{2}}
+\end{CD}
+$$
+
+Se invece avessimo $V_{CS} = 0$:
+$$
+\begin{CD}
+	{\Delta V < 0} @>>> {V_{BL} < \frac{V_{DD}}{2}}
+\end{CD}
+$$
+
+Alcuni valori tipici di queste quantità sono:
+$$
+\begin{cases}
+	C_B = 30 C_S \\
+	V_{DD} = 5\;V \\
+	V_T = 1.5\;V \\
+	\Delta V(0) = −83\; mV
+	\Delta V(1) = +33\; mV
+\end{cases}
+$$
+
+Nelle letture della `DRAM`, il _Sense Amplifier_ avrà una _**Struttura Differenziale**_. È infatti necessario fornire un secondo ingresso collegato ad una cella di memoria fittizia, chiamata _Dummy_.
+
+Il _Sense Amplifier_ viene quindi posizionato a **metà della colonna**, separando la $BL$ in due parti, chiamate $BL_u$ e $BL_d$, ciascuna collegata a uno degli ingressi e ogniuna collegata con la cella _dummy_, precaricate entrambe a $\frac{V_{DD}}{2}$.
+
+Quando l'indirizzo di $WL$ seleziona una cella appartenente a a una delle due zone,verrà attivata la cella _dummy_ dell'altra zona.
+
+<img class="" src="./images/seq-logic/cmos-volatile-mem/sense-amplifier/differential-circuit.png">
