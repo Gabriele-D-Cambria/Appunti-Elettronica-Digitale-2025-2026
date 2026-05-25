@@ -14,9 +14,16 @@ title: Logica Sequenziale
 	- [2.3. D-Latch](#23-d-latch)
 	- [2.4. Flip-Flop](#24-flip-flop)
 		- [2.4.1. Flip-Flop di tipo D](#241-flip-flop-di-tipo-d)
-- [3. Memorie Volatici CMOS](#3-memorie-volatici-cmos)
+- [3. Memorie Volatili CMOS](#3-memorie-volatili-cmos)
 	- [3.1. SRAM](#31-sram)
 	- [3.2. DRAM](#32-dram)
+	- [3.3. WordLine Decoder](#33-wordline-decoder)
+	- [3.4. Multipexed/Demultiplexer di Bitline](#34-multipexeddemultiplexer-di-bitline)
+- [4. Memorie ROM](#4-memorie-rom)
+	- [4.1. Mask ROM](#41-mask-rom)
+	- [4.2. PROM](#42-prom)
+	- [4.3. EPROM](#43-eprom)
+	- [4.4. EEPROM](#44-eeprom)
 
 # 2. Logica Sequenziale
 
@@ -81,13 +88,13 @@ $$
 
 </div>
 <div class="">
-<img class="80" src="./images/seq-logic/latch/open-circuit.png">
+<img class="" src="./images/seq-logic/latch/open-circuit.png">
 </div>
 </div>
 
 Le due tensioni quindi seguono questo andamento:
 
-<img class="" src="./images/seq-logic/latch/open-circuit-graph.png">
+<img class="20" src="./images/seq-logic/latch/open-circuit-graph.png">
 
 <div class="grid2">
 <div class="">
@@ -98,7 +105,7 @@ Questi punti sono chiamati _**Stati del Latch**_ e rappresentano le possibili so
 
 </div>
 <div class="">
-<img class="80" src="./images/seq-logic/latch/closed-circuit-graph.png">
+<img class="50" src="./images/seq-logic/latch/closed-circuit-graph.png">
 </div>
 </div>
 
@@ -219,7 +226,7 @@ In questa fase:
 
 </div>
 <div class="">
-<img class="80" src="./images/seq-logic/latch/latch-sr-enable.png">
+<img class="60" src="./images/seq-logic/latch/latch-sr-enable.png">
 </div>
 </div>
 
@@ -241,7 +248,7 @@ Il _latch SR_ segue quindi la seguente tabella di verità
 
 L'implementazione appena vista comporta l'utilizzo di $8$ transistori. Nell'ottica di ridurre il numero di transistori possiamo considerare anche un'implementazione a **6 transistori**, che rimuove gli `NMOS` pilotati dagli ingressi, collegando direttamente gli ingressi ai transitori pilotati da $\phi$, invertendo però i collegamenti rispetto a prima.
 
-<img class="" src="./images/seq-logic/latch/latch-sr-enable-compact.png">
+<img class="30" src="./images/seq-logic/latch/latch-sr-enable-compact.png">
 
 In questo caso abbiamo però due casi non permessi:
 - $\phi = 1$, $S = 0$ e $R = 0$: pone $\overline{Q} = Q = 0$, che comporta che nel latch si formi un percorso chiuso con $V_{DD}$
@@ -276,7 +283,7 @@ Se invece $\phi = 1$ siamo in _trasparenza_, che significa che $Q = D$ in tempo 
 
 </div>
 <div class="">
-<img class="80" src="./images/seq-logic/latch/d-latch.png">
+<img class="50" src="./images/seq-logic/latch/d-latch.png">
 </div>
 </div>
 
@@ -287,7 +294,7 @@ Una possibile implementazione compatta del _D-latch_ si basa sull'utilizzo di du
 
 Questa implementazione utilizza due segnali di enable $\phi_1$ e $\phi_2$ che hanno come regola quella di **non doversi mai sovrapporsi** se non in piccoli transienti, che riescono ad essere mitigati dalle capacità di gate degli inverter.
 
-<img class="60" src="./images/seq-logic/latch/d-latch-compact-graph.png">
+<img class="40" src="./images/seq-logic/latch/d-latch-compact-graph.png">
 
 Se infatti $\phi_1 = \phi_2 = 1$, quello che accade è che `D` e `Q` vengono _cortocircuitati_, potendo assumere valori flottanti non conoscibili a priori.
 
@@ -297,7 +304,7 @@ I vari stati della porta sono:
 
 </div>
 <div class="">
-<figure class="">
+<figure class="70">
 <img class="100" src="./images/seq-logic/latch/d-latch-compact.png">
 <figcaption>
 
@@ -325,21 +332,21 @@ Questa configurazione è chiamata _master/slave_.
 
 </div>
 <div class="">
-<img class="80" src="./images/seq-logic/flip-flop/d-edge-scheme.png">
+<img class="50" src="./images/seq-logic/flip-flop/d-edge-scheme.png">
 </div>
 </div>
 
 
 La temporizzazione di questo tipo di configurazione è la seguente:
 
-<img class="" src="./images/seq-logic/flip-flop/d-edge-graph.png">
+<img class="30" src="./images/seq-logic/flip-flop/d-edge-graph.png">
 
 
 Il circuito completo è quindi il seguente:
 
-<img class="" src="./images/seq-logic/flip-flop/d-edge-circuit.png">
+<img class="40" src="./images/seq-logic/flip-flop/d-edge-circuit.png">
 
-# 3. Memorie Volatici CMOS
+# 3. Memorie Volatili CMOS
 
 Le _memorie a stato solido_ impiegate dai microcontrollori embedded ai data center sono basate su **Tecnologia CMOS**.
 
@@ -379,7 +386,7 @@ Si utilizzano dei _Sense Amplifier_ per riuscire a garantire la lettura dei segn
 
 </div>
 <div class="">
-<img class="80" src="./images/seq-logic/cmos-volatile-mem/scheme.png">
+<img class="60" src="./images/seq-logic/cmos-volatile-mem/scheme.png">
 </div>
 </div>
 
@@ -391,15 +398,18 @@ La singola cella è costurita a partire da un _latch SR_ a 6 transistori:
 <div class="top">
 <p class="p">Scrittura</p>
 
+<img class="50" src="./images/seq-logic/cmos-volatile-mem/sram/write-cell-circuit.png">
+
 I passaggi sono i seguenti
 1. Attraverso i circuiti di pilotaggio si forzano $BL$ e $\overline{BL}$
 2. Si attiva la $WL$ in modo che i transistori di passo $M1$ e $M2$ permettano l'imposizione dello stato imposto
 3. Si rilascia $WL$, isolando il latch dal resto delle $BL$, che rimane quindi in stato di memorizzazione
 
-<img class="80" src="./images/seq-logic/cmos-volatile-mem/sram/write-cell-circuit.png">
 </div>
 <div class="top">
 <p class="p">Lettura</p>
+
+<img class="" src="./images/seq-logic/cmos-volatile-mem/sram/read-cell-circuit.png">
 
 Inizialmente si:
 - Precarica $BL$ e $\overline{BL}$ a $\frac{V_{DD}}{2}$
@@ -415,7 +425,6 @@ Se invece $Q = 0$ la situazione è simmetrica:
 - $M4$, che era in saturazione, comincia a **scaricare** $BL$ verso _ground_
 - $M5$, che era in saturazione, comincia a **caricare** $\overline{BL}$ verso $V_{DD}$
 
-<img class="" src="./images/seq-logic/cmos-volatile-mem/sram/read-cell-circuit.png">
 </div>
 </div>
 
@@ -427,7 +436,7 @@ Ecco che entra in gioco il _**Sense Amplifier**_:
 
 <div class="grid2">
 <div class="">
-<img class="" src="./images/seq-logic/cmos-volatile-mem/sense-amplifier/circuit.png">
+<img class="40" src="./images/seq-logic/cmos-volatile-mem/sense-amplifier/circuit.png">
 
 Il circuito di precarica è attivo nella prima fase, e si occupa proprio di portare alla tensione sulle _bitline_ a  $\frac{V_{DD}}{2}$.
 
@@ -435,7 +444,7 @@ Questo valore è legato al fatto che tutti i transistori utilizzati nella memori
 
 </div>
 <div class="">
-<img class="80" src="./images/seq-logic/cmos-volatile-mem/sense-amplifier/read-graph.png">
+<img class="60" src="./images/seq-logic/cmos-volatile-mem/sense-amplifier/read-graph.png">
 </div>
 </div>
 
@@ -462,7 +471,7 @@ Se invece volessimo resettare è entrambe le tensioni sarebbero $0$.
 
 </div>
 <div class="">
-<img class="80" src="./images/seq-logic/cmos-volatile-mem/dram/circuit.png">
+<img class="40" src="./images/seq-logic/cmos-volatile-mem/dram/circuit.png">
 </div>
 </div>
 
@@ -514,4 +523,181 @@ Il _Sense Amplifier_ viene quindi posizionato a **metà della colonna**, separan
 
 Quando l'indirizzo di $WL$ seleziona una cella appartenente a a una delle due zone,verrà attivata la cella _dummy_ dell'altra zona.
 
-<img class="" src="./images/seq-logic/cmos-volatile-mem/sense-amplifier/differential-circuit.png">
+<img class="70" src="./images/seq-logic/cmos-volatile-mem/sense-amplifier/differential-circuit.png">
+
+## 3.3. WordLine Decoder
+
+Il decodificatore di indirizzi di riga si occupa di **attivare una unica** $WL$ corrispondente all'indirizzo prescelto $A$, espresso su $M$ bit: $A = A_{M-1}A_{M-2}...A_1A_0$:
+$$
+\begin{matrix}
+	00...00 & \to & \overline{A}_{M-1}\overline{A}_{M-2}...\overline{A}_1\overline{A}_0 = \overline{A_{M-1}+ A_{M-2}+ ... + A_1 + A_0} \\
+	00...01 & \to & \overline{A}_{M-1}\overline{A}_{M-2}...\overline{A}_1A_0 = \overline{A_{M-1}+ A_{M-2}+ ... + A_1 + \overline{A}_0} \\
+	& \vdots \\
+	11...11 & \to & A_{M-1}A_{M-2}..A_1A_0 = \overline{\overline{A}_{M-1} + \overline{A}_{M-2} + ... + \overline{A}_1 + \overline{A_0} }
+\end{matrix}
+$$
+
+<div class="grid2">
+<div class="">
+
+Generalmente il decodificatore viene implementato usando una struttura detta _**wired nor**_, che richiede solo $M$ transistori `NMOS` che condividono _lo stesso `PMOS` di pull-up_.
+
+La decodifica avviene quindi in **tre fasi successive**:
+1. **Precarica**: viene abilitato il `PMOS` per ogni $WL'$, attraverso il segnale di abilitazione $\phi_P$
+2. **Selezione**: attraverso la logica _wired-NOR_ vengono scaricate tutte le $WL$ tranne quella indirizzata
+3. **Abilitazione**: per evitare propagazione di _glitch_ durante le fasi precedenti, le $WL$ vengono connesse alle rispettive $WL'$ attraveros un `NMOS` di **passo**, abilitato da un segnale $\phi_W$ alla fine della selezione
+
+Sulla destra possiamo vedere un esempio su **4 WL**:
+$$
+\begin{align*}
+	WL'_0 &= \overline{A_1 + A_0} \\
+	WL'_1 &= \overline{A_1 + \overline{A}_0} \\
+	WL'_2 &= \overline{\overline{A}_1 + A_0} \\
+	WL'_3 &= \overline{\overline{A}_1 + \overline{A}_0} \\
+\end{align*}
+$$
+
+</div>
+<div class="">
+<img class="70" src="./images/seq-logic/cmos-volatile-mem/wordline-decoder-wired-nor.png">
+</div>
+</div>
+
+## 3.4. Multipexed/Demultiplexer di Bitline
+
+Il _multiplexer/demultiplexer_ di colonna sfrutta la stessa architettura del $WL$ decoder, aggiungendo $N$ transistori di passo.
+
+<img class="" src="./images/seq-logic/cmos-volatile-mem/bitline-demulti-multiplexer.png">
+
+# 4. Memorie ROM
+
+Le memoria di sola lettura, o _Read Only Memory_, sono memorie sulle quali originariamente i dati erano **scritti una sola volta** durante la fabbricazione, e poi solamente leggibili.
+
+Oggi esistonno **ROM Programmabili** (`PROM`, `EPROM`, `EEPROM`) dove il dato viene scritto **dopo la fabbricazione**.
+
+Oggi il nome `ROM` indica più in geenrale **memorie non volatili**, che mantengono i dati anche senza alimentazione.
+
+Le `ROM` vengono utilizzate principalmente per:
+- _Firmware_
+- _Tabelle di Lookup_
+- _Bootloader_
+
+## 4.1. Mask ROM
+
+Le _Mask ROM_, o _ROM pure_, sono la prima versione di `ROM` nelle quali i dati venivano scritti direttamente durante la fabbricazione.
+
+Infatti in questi circuiti venivano aggiunti/rimossi diodi/mosfet dove si voleva il bit `1`:
+
+<img class="" src="./images/seq-logic/rom/mask-rom.png">
+
+
+QUeste ROM sono sono quindi programmabili, in quanto per cambiarne il contenuto adrebero aggiunti/rimossi fisicamente i diodi/transistori.
+
+## 4.2. PROM
+
+<div class="grid2">
+<div class="">
+
+Le _Programmable Read-Only Memory_, o `PROM`, sfruttano un meccanismo basato su **micro-fusibili in serie al selettore**.
+
+Inizialmente ogni transistore è consegnato con il fusibile integro (bit `1`).
+
+Per impostare il valore `0` si applica una _sovrattensione_ $V_{PP}$ che **fonde il filamento per effetto Joule**.
+
+Una volta bruciato, il collegamento è **interrotto per sempre**. Infatti, queste ROM si dicono _One Time Programmable_.
+
+</div>
+<div class="">
+<img class="30" src="./images/seq-logic/rom/prom.png">
+</div>
+</div>
+
+## 4.3. EPROM
+
+<div class="grid2">
+<div class="">
+
+Le _Erasable Programmable Read-Only Memory_, o `EPROM`, si basano sul **Floating Gate MOSFET**, che è _programmabile elettricamente_.
+
+La tensione di soglia $V_T$ del mosfet dipende ifnatti dalla **presenza di cariche sul gate flottante**, che chiamiamo $FG$.
+
+La presenza di elettroni nei `NMOS` (o l'assenza nei `PMOS`) intrappolati nel polisilicio del $FG$, "obbliga" ad appilcare $\vert V_{GS}\vert $ **più elevate** per formare il canale.
+
+<img class="40" src="./images/seq-logic/rom/fg-mosfet-graph.png">
+
+</div>
+<div class="">
+<img class="" src="./images/seq-logic/rom/fg-mosfet.png">
+</div>
+</div>
+
+Per posizionare elettroni nel $FG$ si applica:
+1. $V_{DS}$ **elevata** $(12-21$ $V)$: gli elettroni nel canale possono assumere velocità elevate grazie al _forte campo elettrico_. Gli elettorni vengono chiamati _hot electrons_
+2. $V_{GS}$ **elevata** $(\sim 10$ $V)$: nel loro moto da _source_ a _drain_, gli elettroni vengono attirati verso il _gate-flottante_ grazie al campo elettrico verticale. Alcuni di essi, grazie all'_effetto tunneling_, supereranno la barriera di ossido accumnulandosi sul $FG$.
+
+Questo tipo di ROM ha però un **limite di cicli di scrittura**, che si aggira tra le 1000 e le 10.000 scritture. Questo avviene perché l'iniezione ripetuta danneggia l'ossido sottostante al _floating gate_, che riduce l'affidabilità.
+
+Per rimuovere gli eletroni dal gate flottante viene somministrata **energia tramite radiazione UV**.
+
+I fotoni, che hanno energia $E = hf$ e lunghezza d'onda $\lambda = \frac{c}{f}$, portano gli elettroni nella **banda di conduzione dell'ossido**, permettendo loro di _evadere dal gate_.
+
+Il chip è indatti protetto da una finestra in **quarzo trasparente** che, a differenza del vetro comune, permette il passaggio dei raggi UV.
+
+Per generare i raggi UV si utilizzano lampade a _vapori di mercurio_ che generano raggi a $\lambda \approx 254$ $nm$ e energia $E = hf \approx 4.9 eV$, sufficienti a superare la barriera energetica del $SiO_2$.
+
+La cancellazione è un **processo _lento_** e _**globale**_. Dopo circa 20-30 minuti di esposizione viene resettato l'intero chip.
+
+Per riprogrammare un singolo bit è quindi necessaria **un ciclo completo di cancellazione e riscrittura**.
+
+## 4.4. EEPROM
+
+Le _Electrical Erasable Programmable Read-Only Memory_, o `EEPROM`, vanno a risolvere il problema delle `EPROM`, permettendo una cancellazione per byte che avviene nell'ordine dei $ms$.
+
+Per farlo non sottopongono la memoria a irradiazione UV, ma sfruttano un diverso tipo di MOSFET, chiamato `FLOTOX`:
+
+<div class="grid2">
+<div class="">
+
+Ha una struttura simile al `FG-MOS`, ma presenta una **regione di ossido tra $FG$ e _Drain_ estremamente sottile**, tipicamente meno spessa di $10$ $nm$, chiamata **_Tunnel Oxide_**.
+
+Applicando un campo elettrico elevato, nell'ordine di $\sim 10^7$ $V/cm$, si innesca l'effetto **Fowler-Nordheim Tunneling**, che permette agli elettroni di "attraversare" la barriera di potenziale dell'ossido _senza bisogno di energia esterna_.
+
+Le tensioni tra _Gate_ e _Draing_ utilizzate sono:
+- **Scrittura** &emsp; $V_{GD} = + 18$ $V$
+- **Lettura** &emsp; $V_{GD} = - 18$ $V$
+
+</div>
+<div class="">
+<img class="60" src="./images/seq-logic/rom/flotox-mosfet.png">
+</div>
+</div>
+
+Il processo di tunneling degrada il sottile strato di ossido, limitando i cicli di scrittura tra le $10^5$ e $10^6$ scritture.
+
+Le `EEPROM` però presentano un problema nel momento in cui vengono messe nella disposizione a matrice:
+
+<div class="grid2">
+<div class="">
+
+Immaginando di voler scrivere `1` sulla cella $(0,0)$, occorre spostare la sua $V_T$ in alto. Per farlo applichiamo $V_{GD} = +18$ $V$, ovvero impostiamo:
+- $WL_0 = +18$ $V$
+- $BL_0 = 0$ $V$
+
+Per evitare però la scrittura della cella accanto sulla stessa $WL$ occorre che anche la $BL_1 = +18$ $V$.
+
+Dato però che $WL_1 = 0$ $V$ quello che accade è che la cella $(1,1)$ _**si trova in fase di cancellazione**_.
+
+</div>
+<div class="">
+<img class="40" src="./images/seq-logic/rom/eeprom-matrix-problem.png">
+</div>
+</div>
+
+
+Per risolvere questo problema occorre proteggere le celle adiacenti dalla cancellazione.
+
+Per farlo è necessario:**complicare** l'architettura della cella di memoria:
+- Aggiungiendo un `NMOS` di protezione, pilotato da un opportuno segnale di selezione `SEL`.
+- Avendo una la linea di massa `GND` collegata al _gate flottante_ (_floating_) per ogni colonna. In questo modo si evita la dissipazione di corrente indesiderata sulla cella nella colonna successiva a quella che stiamo scrivendo.
+
+<img class="50" src="./images/seq-logic/rom/eeprom-matrix-solution.png">
