@@ -633,13 +633,13 @@ La presenza di elettroni nei `NMOS` (o l'assenza nei `PMOS`) intrappolati nel po
 
 Per posizionare elettroni nel $FG$ si applica:
 1. $V_{DS}$ **elevata** $(12-21$ $V)$: gli elettroni nel canale possono assumere velocità elevate grazie al _forte campo elettrico_. Gli elettorni vengono chiamati _hot electrons_
-2. $V_{GS}$ **elevata** $(\sim 10$ $V)$: nel loro moto da _source_ a _drain_, gli elettroni vengono attirati verso il _gate-flottante_ grazie al campo elettrico verticale. Alcuni di essi, grazie all'_effetto tunneling_, supereranno la barriera di ossido accumnulandosi sul $FG$.
+2. $V_{GS}$ **elevata** $(\sim 10$ $V)$: nel loro moto da _source_ a _drain_, gli elettroni vengono attirati verso il _gate-flottante_ grazie al campo elettrico verticale. Alcuni di essi, grazie all'_effetto tunnel_, supereranno la barriera di ossido accumnulandosi sul $FG$.
 
 Questo tipo di ROM ha però un **limite di cicli di scrittura**, che si aggira tra le 1000 e le 10.000 scritture. Questo avviene perché l'iniezione ripetuta danneggia l'ossido sottostante al _floating gate_, che riduce l'affidabilità.
 
 Per rimuovere gli eletroni dal gate flottante viene somministrata **energia tramite radiazione UV**.
 
-I fotoni, che hanno energia $E = hf$ e lunghezza d'onda $\lambda = \frac{c}{f}$, portano gli elettroni nella **banda di conduzione dell'ossido**, permettendo loro di _evadere dal gate_.
+I fotoni, che hanno energia $E = h\nu$, dove $h$ è la _Costante di Plank_, $\nu$ la frequenza dei fotoni (legata alla lunghezza d'onda nell'uguaglianza $c = \lambda \nu$), portano gli elettroni nella **banda di conduzione dell'ossido**, permettendo loro di _evadere dal gate_.
 
 Il chip è indatti protetto da una finestra in **quarzo trasparente** che, a differenza del vetro comune, permette il passaggio dei raggi UV.
 
@@ -687,12 +687,13 @@ Per evitare però la scrittura della cella accanto sulla stessa $WL$ occorre che
 
 Dato però che $WL_1 = 0$ $V$ quello che accade è che la cella $(1,1)$ _**si trova in fase di cancellazione**_.
 
+Inoltre, il transistore $(0, 1)$, avendo $V_{DS} = 18$ $V$ e $V_{GS} = 18$ $V$, **dissipa una notevole potenza**.
+
 </div>
 <div class="">
 <img class="40" src="./images/seq-logic/rom/eeprom-matrix-problem.png">
 </div>
 </div>
-
 
 Per risolvere questo problema occorre proteggere le celle adiacenti dalla cancellazione.
 
@@ -701,3 +702,17 @@ Per farlo è necessario:**complicare** l'architettura della cella di memoria:
 - Avendo una la linea di massa `GND` collegata al _gate flottante_ (_floating_) per ogni colonna. In questo modo si evita la dissipazione di corrente indesiderata sulla cella nella colonna successiva a quella che stiamo scrivendo.
 
 <img class="50" src="./images/seq-logic/rom/eeprom-matrix-solution.png">
+
+Possiamo riassumere in una tabella le tensioni necessarie per compiere un operazione di **Scrittura** $(W)$ (corrispondente al caricamento del _gate flottante_), **Lettura** $(R)$ e **Cancellazione** $(E)$ di un generico transistore $(i, j)$:
+
+<div class="flexbox" markdown="1">
+
+|       | $SEL_i$ |  $i$  |    $j$    | $GND_j$ | $SEL_{i+1}$ | $i + 1$ |   $j + 1$   | $GND_{j+1}$ |
+| :---: | :-----: | :---: | :-------: | :-----: | :---------: | :-----: | :---------: | :---------: |
+|  $W$  |  $18$   | $18$  |    $0$    |   $F$   |     $0$     |   $0$   |    $18$     |     $F$     |
+|  $R$  |   $5$   | $2.5$ | $D_{i,j}$ |   $0$   |     $0$     |   $0$   | $D_{i,j+1}$ |     $0$     |
+|  $E$  |  $18$   |  $0$  |   $18$    |   $F$   |     $0$     |   $0$   |     $0$     |     $F$     |
+
+</div>
+
+Nella tabella è indicato con $F$ la condizione di **terminale flottante**, e con $D_{k,m}$ il **dato contenuto nella locazione** $(k, m)$.
