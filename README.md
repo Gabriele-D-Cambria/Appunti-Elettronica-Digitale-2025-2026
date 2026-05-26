@@ -80,7 +80,7 @@ Gli appunti non sono terminati e potrebbero avere errori e/o potrebbero mancare 
 10. [Circuiti Digitali](./Circuiti%20Digitali)
 11. [Multivibratori](./Multivibratori)
 12. [Logica Sequenziale](./Logica%20Sequenziale)
-13. [Convertitori DAC e ADC](./Convertitori%20DAC%20e%20ADC)
+13. [Convertitori](./Convertitori)
 
 ## 📜 Disclaimer
 
