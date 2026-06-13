@@ -103,13 +103,17 @@ La regione $W$ viene chiamata **_Zona di Svuotamento_**, e agisce **analogamente
 Ricordando che dobbiamo dimostrare che:
 $$
 \begin{CD}
-{\vec{J}_{TOT} = \vec{J}_{n} + \vec{J}_{p} = 0 } @>\text{Equilibrio Termodinamico}>> \vec{J}_{n} = - \vec{J}_{p}
-
+	{
+		\vec{J}_{TOT} = \vec{J}_{n} + \vec{J}_{p} = 0 
+	} 
+	@>\text{Equilibrio Termodinamico}> > 
+	{
+		\vec{J}_{n} = - \vec{J}_{p}
+	}
 \end{CD}
 $$
 
-Dall'analisi qualitativa abbiamo però dedotto che entrambe le cariche **_hanno lo stesso verso_**, quindi dovranno avere lo stesso segno.
-Perciò ne deduciamo che:
+Dall'analisi qualitativa abbiamo già dedotto che entrambe le cariche **_hanno lo stesso verso_**, quindi dovranno avere lo stesso segno:
 $$
 \begin{matrix}
 	\vec{J}_{n} = 0 & \vec{J}_{p} = 0
@@ -132,7 +136,7 @@ Ignoriamo la risoluzione analitica di questo sistema ed effettuiamo uno studio q
 
 Sappiamo che la distribuzione di carica si espanderà nello spazio per dimensioni $x_n$ e $x_p$ diverse, così come le densità di carica $\rho(x)$. Questo accade perché i due materiali sono stati drogati con concentrazioni diverse.
 
-A partire dalle concentrazioni di carica, possiamo ricavare l'andamento del grafico del capo elettrico ricordando che: &emsp;
+A partire dalle concentrazioni di carica, possiamo ricavare l'andamento del grafico del campo elettrico ricordando che: &emsp;
 $$
 	\frac{dE}{dx} = \frac{\rho(x)}{\varepsilon}
 $$
@@ -228,6 +232,7 @@ Chiamiamo quindi **_diodo_** quel componente elettronico composto come il blocco
 
 Chiamando $I_D$ la corrente che passa nel diodo e $V_D$ la differenza di potenziale ai capi del diodo otteniamo la **_Legge di Shockley_**:
 $$
+\Large
 \boxed{
 	I_D = I_S \cdot \Biggl(e^{\frac{V_D}{\eta\cdot V_T}} - 1\Biggr)\;[A]
 }
@@ -239,8 +244,13 @@ La corrente $I_S$ viene chiamata **_Corrente Inversa di Saturazione_** ed equiva
 La tensione $V_T$ è la **tensione termica** (**thermal voltage**):
 $$
 \begin{CD}
-	{V_T = \frac{K_BT}{q}} @>{T = 300°K}>> {V_T \approx 26\;mV}
-
+	{
+		V_T = \frac{K_BT}{q}
+	} 
+	@>{T = 300°K}> > 
+	{
+		V_T \approx 26\;mV
+	} 
 \end{CD}
 $$
 
@@ -341,7 +351,7 @@ Effettuiamo quindi uno studio utilizzando le **Leggi di Kirchoff**:
 
 Risolvere questo sistema è complesso, tuttavia possiamo utilizzare **metodi di risoluzione numerici** sfruttando potenza computazionale.
 
-Un altro metodo per avere almeno un idea di quello che accade si dice **metodo grafico**. È un metodo molto utile se riusciamo a portare in forma grafica la legge di Shockley, che appiemo essere un esponenziale.
+Un altro metodo per avere almeno un idea di quello che accade si dice **metodo grafico**. È un metodo molto utile se riusciamo a portare in forma grafica la legge di Shockley, che sappiamo essere un esponenziale.
 
 Dalla prima equazione ricaviamo invece che $I_D = \frac{V_A - V_D}{R} = -\frac{V_D}{R} + \frac{V_A}{R}$, ovvero una retta con pendenza $-\frac{1}{R}$.
 
@@ -487,7 +497,7 @@ Vediamo quindi come qual è l'errore che commettiamo utilizzando le varie appros
 
 ---
 
-Nel casodi diodo ideale ipotiziamo di avere un **_Diodo ON_**, ovvero un corto $V_D = 0$.
+Nel caso di diodo ideale ipotiziamo di avere un **_Diodo ON_**, ovvero un corto $V_D = 0$.
 
 Di conseguenza otteniamo che:
 $$
@@ -563,7 +573,7 @@ Effettuata la sostituzione possiamo quindi **_risolvere il circuito_**, ovvero t
 
 Risolto il circuito dobbiamo **effettuare la verifica**:
 - **Conduzione**: è necessario verificare che $I_D > 0$
-- **Interdetto**: è necessario verificare che $V_{Ak} = V_D < V_\gamma$
+- **Interdetto**: è necessario verificare che $V_{AK} = V_D < V_\gamma$
 
 ## 4.3. Modelli del Diodo per Piccoli Segnali
 
@@ -572,8 +582,10 @@ Risolto il circuito dobbiamo **effettuare la verifica**:
 
 Nel caso di piccoli segnali, ovvero piccole oscillazioni del segnale dato un valore che consideriamo di quiete, abbiamo che i valori di tensione e corrente ai capi del diodo seguono le seguenti leggi:
 $$
+\begin{matrix}
 	v_D(t) = V_{DQ} + v_d(t) \\
 	i_D(t) = I_{DQ} + i_d(t)
+\end{matrix}
 $$
 
 Dove $v_d(t)$ e $i_d(t)$ sono funzioni sinusoidali.
@@ -583,12 +595,12 @@ Chiamiamo quindi $Q$ il **punto di riposo** (_quiescente_), ovvero il punto dove
 L'idea chiave dei piccoli segnali è che se le variazioni del segnale $v_d$ sono _sufficientemente piccole rispetto alla tensione termica_ $U_T$, allora la **curva esponenziale del diodo** può essere **_approssimata con un segmento rettilineo coincidente con la tangente nel punto $Q$_**.
 </div>
 <div class="">
-<img class="80" src="./images/diode/small-signals/model-graph.png">
+<img class="70" src="./images/diode/small-signals/model-graph.png">
 </div>
 </div>
 
 Questa accortezza ci fornisce diversi vantaggi:
-1. Ci permette di evitare la risoluzione delle equazioni trascendentali, **trattando il diodo come una resistenza** $r_d = \frac{v_d}{i_d} = \frac{1}{g_d}$
+1. Ci permette di evitare la risoluzione delle equazioni trascendentali, **trattando il diodo come una resistenza** &emsp; $r_d = \frac{v_d}{i_d} = \frac{1}{g_d}$
 2. Possiamo **separare nettamente** l'analisi continua (che fissa il punto $Q$) dall'analisi in alternata che elabora il segnale
 
 La "resistenza per piccoli segnali" è quindi un valore che _dipende dal punto di riposo_ $Q$.
@@ -639,13 +651,12 @@ $$
 
 Sommando e sottraendo $I_S$ dal numeratore otteniamo:
 $$
-\begin{align*}
-g_d &= \frac{I_S\Bigl(e^{V_D/(\eta U_T)} - 1\Bigr) + I_S}{\eta U_T} \\
-	&= \frac{f(V_D) + I_S}{\eta U_T} \\
-	&= \frac{I_{DQ} + I_S}{\eta U_T} \\
-	&\approx \frac{I_{DQ}}{\eta U_T} & I_{DQ} \gg I_S
-
-\end{align*}
+\begin{aligned}
+	g_d &= \frac{I_S\Bigl(e^{V_D/(\eta U_T)} - 1\Bigr) + I_S}{\eta U_T} \\
+		&= \frac{f(V_D) + I_S}{\eta U_T} \\
+		&= \frac{I_{DQ} + I_S}{\eta U_T} \\
+		&\approx \frac{I_{DQ}}{\eta U_T} & I_{DQ} \gg I_S
+\end{aligned}
 $$
 
 Questa linearizzazione è valida a patto che sia valida la relazione:
@@ -678,8 +689,8 @@ $$
 <div class="">
 
 Per analizzare un circuito sottoposto a piccole perturbazioni attorno un punto di riposo, lo risolviamo sfruttando la **sovrapposizione degli effetti**:
-1. Prima cerchiamo il **punto di riposo**: _spegnamo tutti i generatore AC_ e utilizziamo il _modello del diodo per grandi segnali a caduta costante_. L'obiettivo è quindi trovare $I_{DQ}$, e quindi anche $r_d = \frac{V_T}{I_{DQ}}$
-2. Dopo effettuamo l'**analisi alternata**: _spegnamo tutti i generatori DC_ e _sostituiamo al diodo la resistenza $r_d$_. L'obiettivo è **calcolare il guadagno/perturbazione** di $i_d$ e $v_d$.
+1. Prima cerchiamo il **punto di riposo**: _spegnamo tutti i generatori AC_ e utilizziamo il _modello del diodo per grandi segnali a caduta costante_. L'obiettivo è quindi trovare $I_{DQ}$, e quindi anche $r_d = \frac{V_T}{I_{DQ}}$
+2. Dopo effettuamo l'**analisi alternata**: _spegnamo tutti i generatori DC_ e _sostituiamo al diodo la resistenza_ $r_d$. L'obiettivo è **calcolare il guadagno/perturbazione** di $i_d$ e $v_d$.
 
 
 </div>

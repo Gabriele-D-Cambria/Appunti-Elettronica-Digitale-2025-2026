@@ -16,7 +16,7 @@ title: Introduzione
 
 I primi dispositivi propri dell'elettronica dono i **diodi a vuoto**, o _valvole_, inventate da _Fleming_ nel 1904, sostituito due anni dopo dai **triodi a vuoto** creati da _De Forest_.
 
-Nel 1947 _Bardeen_, _Brattain_ e _Shockley_, nei laboratori Bell, inventano il primo **transistore bipolare**, che sfrutta lo spostamento di carica all'intenro di un semiconduttore. QUesta invenzione fece vincere loro il Nobel per la fisica.
+Nel 1947 _Bardeen_, _Brattain_ e _Shockley_, nei laboratori Bell, inventano il primo **transistore bipolare**, che sfrutta lo spostamento di carica all'intenro di un semiconduttore. Questa invenzione fece vincere loro il Nobel per la fisica.
 
 Nel 1958 _Kilby_, concepisce l'idea di circuito integrato, per la quale riceverà il premio Nobel per la fisica nel 2000.
 
@@ -67,14 +67,14 @@ Bohr non aveva bene in mente cosa questi numeri rappresentassero ma trovarono su
 
 Successivamente arrivò il modello quantistico che definì la doppia natura dell'elettrone, **ondulatoria** e **corpuscolare**.
 
-Questo rese quindi impossibile parlare di _posizione di elettrone_, ma piuttosto della probabilità di trovare l'elettrone in una detemrinata posizione.
+Questo rese quindi impossibile parlare di _posizione di elettrone_, ma focalizzò l'attenzione sulla probabilità di trovare l'elettrone in una detemrinata posizione.
 Non si parla più di orbita dell'elettrone ma piuttosto di **orbitale**, concepito come _lo spazio nella quale esiste probabilità di trovare l'elettrone_.
 
 Per descrivere completamente gli orbitali sono necessari i quattro numeri quantici già citati sopra, che adesso assumono il seguente significato:
-- _**Numero quantico legato all'energia**_ $n$
-- _**Numero quantico legato alla forma**_ $l$
-- _**Numero quantico legato all'orientazioni relative**_ $m$
-- _**Numero quantico legato allo spin dell'elettrone**_ $s$
+- _**Numero quantico legato all'energia**_ - $n$
+- _**Numero quantico legato alla forma**_ - $l$
+- _**Numero quantico legato all'orientazioni relative**_ - $m$
+- _**Numero quantico legato allo spin dell'elettrone**_ - $s$
 
 Le proprietà dei materiali dipendono esclusivamente dalla **configurazione elettronica esterna**, in quanto, quasi sempre, sono proprio gli elettroni più esterni che partecipano alla formazione dei legami tra atomi.
 
@@ -84,18 +84,16 @@ Nella Tavola Periodica infatti gli elementi sono rappresentati divisi per:
 
 
 L'atomo principale per noi è il **_Silicio_** $(Si)$ appartenente al **gruppo IV**, con numero atomico $14$.
-In particoare vedremo come si comporta il Silicio quando viene legato ad altri atomi dei gruppi limitrofi come il Boro (gruppo 3) o il Fosforo (gruppo 5), nelle operazioni di **drogaggio_**.
+In particolare vedremo come si comporta il Silicio quando viene legato ad altri atomi dei gruppi limitrofi, come il Boro (gruppo 3) o il Fosforo (gruppo 5), nelle operazioni di **drogaggio_**.
 
-Infatti, in natura, in condizioni normali, soltanto i gas nobili si trovano allo stato atomico, mentre gli altri esistono solo combinati tra loro in un numero molto grande di modi, seguendo tutti la _regola dell'ottetto_, ovvero la configurazione che porta al minimo energetico.
-
-La configurazione dell'ottetto è infatti raggiunta attraverso la _condivisione fra due o più atomi_. Questo comporta che la funzione d'onda associata all'elettrone in condivisione non è più localizzata su un atomo, ma abbraccia più atomi.
+In natura, in condizioni standard, gli unici elementi che si trovano allo stato atomico sono i _gas nobili_. Gli altri atomi esistono solo combinati tra loro, seguendo la _regola dell'ottetto_, ovvero la configurazione con otto elettroni di valenza che corrisponde a quella a minimo energetico. Questa configurazione viene raggiunta attraverso la _condivisione di elettroni fra due o più atomi_. Questo comporta che le funzioni d'onda associate agli elettroni in condivisione non siano più localizzate su un atomo, ma abbraccino tutti gli atomi coinvolti.
 
 ## 3.2. Legami
 
 Esistono tre tipi di legami chimici:
-- **Legame Ionico**: avviene quando un atomo ha il guscio esterno quasi pieno e l'altro quasi vuoto. Questo comporta un'alta differenza di elettronegatività che permettono ad un atomo di "strappare" l'elettrone.
-- **Legame Covalente**: avviene principalmente tra due atomi con guscio parzialmente riempito. Nella configurazione a minima energia ogni atomo compartecipa i propri elettroni con quelli degli atomi vicini. Gli elettroni sono localizzati intorno ai nuclei che fanno parte del legame
-- **Legame Metallico**: tipico degli elementi che ahnno un solo elettrone di valenza. È caratteristico dei metalli, dove gli elettroni di valenza sono "distanti" dal nucleo e più liberi di muoversi tra due atomi.
+- **Legame Ionico**: avviene quando un atomo ha il guscio esterno quasi pieno e l'altro quasi vuoto. Questo comporta un'alta differenza di elettronegatività che permette ad un atomo di "strappare" l'elettrone all'altro.
+- **Legame Covalente**: avviene principalmente tra due atomi con guscio parzialmente pieno. Nella configurazione a minima energia ogni atomo compartecipa i propri elettroni con quelli degli atomi vicini. Gli elettroni sono localizzati intorno ai nuclei che fanno parte del legame.
+- **Legame Metallico**: tipico degli elementi che ahnno un solo elettrone di valenza. È caratteristico dei metalli, dove gli elettroni di valenza sono più "distanti" dal nucleo e quindi liberi di muoversi tra due atomi.
 
 Il _Silicio_ si lega agli altri atomi di Silicio attraverso legami covalenti formando conformazioni **tetraedriche**. Per semplificarci la vita, non utilizzeremo la rappresentazione in tre dimensioni, ma piuttosto quella in due dimensioni.
 

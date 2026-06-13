@@ -819,7 +819,7 @@ $$
 	g_m =  \frac{\partial i_D}{\partial V_{GS}}\Bigg|_Q &= \mu_n C_{ox} \frac{W}{L} \frac{1}{2} \cdot 2 \cdot (V_{GS} - V_T)(1 + \lambda V_{DS}) \\
 	&= \frac{i_D}{(V_{GS} - V_T)^2} \cdot 2(V_{GS} - V_T) \\
 	&= \frac{2i_D}{(V_{GS} - V_T)}\Bigg|_Q \\[1em]
-	&= \frac{2I_{D_Q}}{(V_{GS_Q} - V_T)}
+	&= \frac{2I_{D_Q}}{(V_{GS_Q} - V_T)} = 2K \cdot \vert V_{GS_Q} - V_T \vert 
 \end{align*}
 $$
 

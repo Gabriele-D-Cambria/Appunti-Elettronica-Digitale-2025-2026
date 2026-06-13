@@ -10,8 +10,8 @@ title: Corrente nei materiali
 	- [3.1. Conduttori](#31-conduttori)
 	- [3.2. Semiconduttori](#32-semiconduttori)
 	- [3.3. Drogaggio dei Semiconduttori](#33-drogaggio-dei-semiconduttori)
-		- [3.3.1. Drogaggio del Gruppo V](#331-drogaggio-del-gruppo-v)
-		- [3.3.2. Drogaggio del gruppo III](#332-drogaggio-del-gruppo-iii)
+		- [3.3.1. Drogaggio del Gruppo V - Drogaggio N](#331-drogaggio-del-gruppo-v---drogaggio-n)
+		- [3.3.2. Drogaggio del gruppo III  - Drogaggio P](#332-drogaggio-del-gruppo-iii----drogaggio-p)
 		- [3.3.3. Drogaggi misti](#333-drogaggi-misti)
 	- [3.4. Resistività e Temperatura](#34-resistività-e-temperatura)
 - [4. Diffusione](#4-diffusione)
@@ -19,7 +19,7 @@ title: Corrente nei materiali
 
 # 2. Tipi di Materiale
 
-Immaginiamo di avere un conduttore parallelepipedo lungo $L$ e di sezione $S$.
+Immaginiamo di avere un conduttore a forma di parallelepipedo di lunghezza $L$ e sezione $S$.
 
 La seconda legge di _Ohm_ ci dice che la **Resistenza** del materiale è:
 $$
@@ -28,14 +28,14 @@ $$
 
 Dove $\rho$ è la **_Resistività_** e $\sigma$ e la **_Conducibilità_**.
 
-La seconda legge di Ohm ignora il ruolo nel singolo elettrone, ma si concentra sul trasporto di corrente. Queste riflessioni sono comprese nel parametro $\rho$.
+Questa legge ignora però il ruolo nel singolo elettrone, concentrandosi sul trasporto di corrente. Queste riflessioni sono comprese nel parametro $\rho$.
 
-In particolare è proprio a seconda de lvariore di $\rho$ di un materiale che si classifica come:
-- **_Conduttore_**: $\rho < 10^-2 \;[\Omega \cdot cm]$
-- **_Isolante_**: $\rho > 10^5 \;[\Omega \cdot cm]$
-- **_Semiconduttori_**: $10^-2 < \rho < 10^5 \;[\Omega \cdot cm]$
+In particolare è proprio a al variare del $\rho$ di un materiale che questo viene classificato come:
+- **_Conduttore_**: &emsp; $\rho < 10^-2 \;[\Omega \cdot cm]$
+- **_Isolante_**: &emsp; $\rho > 10^5 \;[\Omega \cdot cm]$
+- **_Semiconduttori_**: &emsp; $10^-2 < \rho < 10^5 \;[\Omega \cdot cm]$
 
-In particolare noi andremo a trattare i _semiconduttori_, in quanto vedremo che abbiamo la possibilità di controllare la resistività a nostro piacimento.
+Nel corso tratteremo principalmente i _semiconduttori_, materiali la cui resistività è controllabile a nostro piacimento.
 
 # 3. Corrente di Drift e Modello di Drude
 
@@ -45,7 +45,7 @@ Analizziamo cosa accade all'interno del nostro parallelepipedo.
 
 In assenza di campo elettrico, non abbiamo corrente. Tuttavia questo non significa che gli elettroni al suo interno siano fermi, anzi, questi sono in movimento.
 
-Innanzitutto definiamo la corrente come:
+Definiamo la corrente come:
 $$
 	I = \frac{\Delta Q}{\Delta T} \;[A]
 $$
@@ -88,24 +88,26 @@ $$
 	I = \frac{\Delta Q}{\Delta T} = \frac{N \cdot q}{\Delta T} = \frac{N \cdot q}{L} \cdot v_{DRIFT}\;[A]
 $$
 
-Dove $n$ rappresenta la **_concentrazione di elettroni per unità di volume_** $[cm^{-3}]$.
-
 Per condurre uno studio indipendente dalla sezione, andiamo a calcolare non tanto la corrente, ma la **_Densità di Corrente_** $J \; [A\cdot {cm}^{-2}]$
 $$
 	J = \frac{N \cdot q}{L\cdot S} \cdot v_{DRIFT} = \frac{N}{V}\cdot q \cdot v_{DRIFT} = n \cdot q \cdot v_{DRIFT}\;[A \cdot {cm}^{-2}]
 $$
 
+Dove $n$ rappresenta la **_concentrazione di elettroni per unità di volume_** $[cm^{-3}]$.
+
 Tornando in forma vettoriale otteniamo la **_Legge Microscopica di Ohm_**
 $$
+\large
 	\boxed{\vec{J} = n \cdot q \cdot \mu_n \cdot \vec{E}\;[A\cdot cm^{-2}] = \sigma \cdot \vec{E}}
 $$
 
-Abbiamo quindi ottenuto una formula chiusa per calcolare la **_conduttività_** di un materiale:
+Abbiamo quindi ottenuto una forma chiusa per calcolare la **_conduttività_** di un materiale:
 $$
+\Large
 \boxed{\sigma = m \cdot (-q) \cdot (-\mu_n) = n \cdot q \cdot \mu_n}
 $$
 
-Possiamo quindi dimostrare qual'è la resistività media dei metalli.
+Possiamo quindi calcolare la resistività media dei metalli.
 Infatti la concentrazione di elettroni per unità di volume media è $n = 10^{21}\;[cm^{-3}]$ e il valore di mobilità media è di $\mu_n = 500 \;[cm^2\cdot V^{-1} \cdot s^{-1}]$:
 $$
 \begin{align*}
@@ -124,7 +126,8 @@ Quando andiamo a studiare i semiconduttori dobbiamo tenere a mente che non abbia
 Quando il campo elettrico è nullo gli effetti sul materiale sono gli stessi di prima.
 
 Se invece appliccassimo un campo, a differenza dei metalli, **non ci sono elettroni liberi**, perciò non avremo elettroni che generano corrente.
-In realtà questo comportamento è vero solamente quando siamo a una temperatura $T = 0 K$.
+
+<small>(In realtà questo comportamento è vero solamente quando siamo a una temperatura $T = 0 K$)</small>
 
 </div>
 <div class="">
@@ -142,6 +145,7 @@ In un _reticolo cristallino di Silicio perfetto_, detto anche **_Silicio Intrins
 
 In particolare, il valore di concentrazione di elettroni liberi per unità di volume è data dalla seguente formula:
 $$
+\large
 	n_i = B \cdot T^{\frac{3}{2}} \cdot e^{-\frac{E_G}{2K_BT}}
 $$
 
@@ -166,7 +170,7 @@ La rottura di un legame covalente quindi ha due effetti:
 - **Elettrone libero**
 - **Lacuna**
 
-Per studiare il "salto tra le lcaune" degli elettroni in modo furbo, analizziamo in realtà lo **_spostamento della lacuna_**.
+Per studiare il "salto tra le lacune" degli elettroni in modo furbo, analizziamo in realtà lo **_spostamento della lacuna_**.
 Per farlo associamo alla lacuna una **_particella fittizzia_** dotata di una massa propria e di carica $+q$.
 
 Questo comporta che quando studiamo gli effetti del campo elettrico sui semiconduttori dobbiamo analizzare:
@@ -198,8 +202,10 @@ In media otteniamo che:
 
 Da questi valori ricaviamo che:
 $$
+\begin{matrix}
 	\sigma = 3 \cdot 10^{-6} \; [\Omega \cdot cm]^{-1} \\[1em]
 	\boxed{\rho = \frac{1}{3} \cdot 10^6 = 3 \cdot 10^5\; [\Omega \cdot cm]}
+\end{matrix}
 $$
 
 Il silicio intrinseco è quindi un **_materiale che conduce molto poco_**. Per poterlo utilizzare come conduttore è necessario effettuare un'operazione di _**drogaggio**_.
@@ -216,9 +222,9 @@ Il _**drogaggio**_ consiste nel sostituire alcuni atomi di Silicio con atomi div
 - Atomi del gruppo V
 - Atomi del gruppo III
 
-### 3.3.1. Drogaggio del Gruppo V
+### 3.3.1. Drogaggio del Gruppo V - Drogaggio N
 
-Nel drogaggio con atomi del gruppo V, che haanno quindi 5 elettroni di valenza, gli elementi più utilizzati sono _Fosforo_ $P$ e _Arsenico_ $Ar$.
+Nel drogaggio con atomi del gruppo V, che hanno quindi 5 elettroni di valenza, gli elementi più utilizzati sono _Fosforo_ $P$ e _Arsenico_ $Ar$.
 
 <div class="grid2">
 <div class="">
@@ -248,8 +254,10 @@ Considerando i seguenti valori:
 
 Otteniamo che:
 $$
+\begin{matrix}
 	\sigma = n \cdot q \cdot \mu_n + p \cdot q \cdot \mu_p =  \;[\Omega \cdot cm]^{-1} = 0.2\\[1em]
 	\rho = \frac{1}{\sigma} = 4.73 \;[\Omega \cdot cm]
+\end{matrix}
 $$
 
 Notiamo che il drogaggio con il gruppo V, immette nel sistema più elettroni liberi, che, oltre ad aumentare $n$, fa anche diminuire $p$, in quanto gli elettroni introdotti artificialmente mitigano il numero di lacune.
@@ -258,9 +266,9 @@ Questo tipo di droggaggio è detto di **_tipo N_**, nel quale:
 - La concentrazione di elettroni $n$ è detta **_Maggioritaria_**
 - La concentrazione di lacune $p$ è detta **_Minoritaria_**
 
-### 3.3.2. Drogaggio del gruppo III
+### 3.3.2. Drogaggio del gruppo III  - Drogaggio P
 
-Nel drogaggio con atomi di tipo III, che haanno 3 elettroni di valenza, l'elemento più utilizzato di è il **_Boro_** $B$.
+Nel drogaggio con atomi di tipo III, che hanno 3 elettroni di valenza, l'elemento più utilizzato di è il **_Boro_** $B$.
 
 <div class="grid2">
 <div class="">
@@ -368,6 +376,8 @@ Dobbiamo però considerare nuovamente che $p$ è **un numero piccolo**, che aume
 </div>
 </div>
 
+---
+
 Nel caso quindi di **Silicio Drogato** l'effetto predominante è quello della diminuzione della **mobilità**, perciò la conducibilità **_diminuisce proporzionalmente_**.
 
 # 4. Diffusione
@@ -407,6 +417,7 @@ Anche in questo caso torna il fatto che la corrente è di senso concorde a quell
 
 Un certo _Einstein_ proposte una correlazione tra **densità di diffusione** e **mobilità**:
 $$
+\Large
 \boxed{
 	\frac{D_n}{n} = \frac{D_p}{p} = \frac{K_B \cdot T}{q} = V_T
 }
@@ -423,6 +434,6 @@ $$
 \begin{align*}
 	\vec{J}_n = \vec{J}_{n,DRIFT} + \vec{J}_{n,DIFF} &= n\cdot q \cdot \mu_n \cdot \vec{E} + q \cdot D_N \cdot \frac{\partial n}{\partial x} \hat{x} \\[1em]
 	\vec{J}_p = \vec{J}_{p,DRIFT} + \vec{J}_{p,DIFF} &= p\cdot q \cdot \mu_p \cdot \vec{E} + q \cdot D_N \cdot \frac{\partial }{\partial x} \hat{x} \\[1em]
-	\vec{J}_{TOTALE} &= \vec{J}_{n} + \vec{J}_{p}	
+	\vec{J}_{TOTALE} &= \vec{J}_{n} + \vec{J}_{p}
 \end{align*}
 $$
