@@ -52,7 +52,9 @@ $$
 L'accoppiamento con la rete esterna permette quindi di definire un **guadagno di tensione**:
 $$
 \begin{CD}
-	{v_2 = -R_Li_2 = -R_LA_ii_1 = -R_LA_i\frac{v_s}{R_S}} \\
+	{
+		v_2 = -R_Li_2 = -R_LA_ii_1 = -R_LA_i\frac{v_s}{R_S}
+	} \\
 	@VVV \\
 	{
 		A_V = \frac{v_2}{v_S} = -A_i\frac{R_L}{R_S}
@@ -66,11 +68,11 @@ $$
 \begin{matrix}
 	A_i := \frac{i_{out}}{i_{in}} & \text{Guadagno di corrente:} \begin{cases}
 		A_i > 1 & \text{Amplificatore di corrente} \\
-		A_i < 1 & \text{Attenuazione di corrente}
+		A_i < 1 & \text{Attenuatore di corrente}
 	\end{cases} \\
 	A_V := \frac{v_{out}}{v_{in}} & \text{Guadagno di tensione:} \begin{cases}
 		A_v > 1 & \text{Amplificatore di tensione} \\
-		A_v < 1 & \text{Attenuazione di tensione}
+		A_v < 1 & \text{Attenuatore di tensione}
 	\end{cases}
 \end{matrix}
 $$
@@ -118,8 +120,8 @@ La figura mostra anche il _verso naturale_ in cui scorre la corrente durante il 
 
 Chiamiamo:
 - **Emettitore** $(E)$: emette portatori di carica maggioritari. Nel caso di `pnp` sono _lacune_, nel caso di `npn` sono _elettroni_
-- **Collettore**: raccoglie i portatori di carica maggioritari.
-- **Base**: modula e controlla il passaggio dei portatori di carica maggioritari.
+- **Collettore** $(C)$: raccoglie i portatori di carica maggioritari.
+- **Base** $(B)$: modula e controlla il passaggio dei portatori di carica maggioritari.
 
 Se vedessimo in **sezione** il dispositivo vedremmo questo:
 
@@ -131,9 +133,8 @@ Le considerazioni sono equivalenti per transistori `pnp`.
 </figcaption>
 </figure>
 
-Notiamo che la _base_ è **_estremamente sottile_**, così da permettere ai porttatori emessi di "scavalcarla".
-Se questa fosse invece molto larga, acvremmo invece una **_configurazione di diodi back-to-back_**, che **non permette l'effetto transistore**.
-
+Notiamo che la _base_ è **_estremamente sottile_**, così da permettere ai portatori emessi di "scavalcarla".
+Se questa fosse invece molto larga, avremmo invece una **_configurazione di diodi back-to-back_**, che **non permette l'effetto transistore**.
 
 Trattiamo quindi le due giunzioni di un transistore `pnp` separatamente.
 
@@ -142,7 +143,7 @@ Trattiamo quindi le due giunzioni di un transistore `pnp` separatamente.
 
 La prima giunzione (`BE`) presa singolarmente equivale letteralmente ad un _diodo_.
 
-Il contributo maggioritario della corrente, quando in polarizzazione diretta $V_{BE} > 0$, è quello delle _lacune_, che producono la **corrente di diffusione**.
+Se lo consideriamo in _polarizzazione diretta_ $V_{BE} > 0$, il contributo maggioritario della corrente è quello delle _lacune_, che producono la **corrente di diffusione**.
 
 </div>
 <div class="">
@@ -201,7 +202,7 @@ Il `BJT` **_non è un dispositivo simmetrico_**.
 
 L'emettitore è infatti **molto più drogato** rispetto al collettore. Proprio questa differenza permette di _trascurare la corrente di elettroni iniettati dalla base_.
 
-Se cambio il ruolo di $E$ con $C$ invertendo le polarizzazioni e agendo nella **_Zona Attiva Inversa_** `ZAI`, nella quale  $V_{EB} < 0$ e $V_{CB} > 0$, continueremmo ad osservare l'_effetto transistore_, ma stavolta la corrente di base $I_B$ **sarebbe più consistente a parità di flusso di portatori**, poiché rimane più coerente
+Se cambio il ruolo di $E$ con $C$ invertendo le polarizzazioni e agendo nella **_Zona Attiva Inversa_** `ZAI`, nella quale  $V_{EB} < 0$ e $V_{CB} > 0$, continueremmo ad osservare l'_effetto transistore_, ma stavolta la corrente di base $I_B$ **sarebbe più consistente a parità di flusso di portatori**, poiché avrebbe il compito di rifornire continuamente le lacune che si ricombinano nella base e quelle che vengono perse nel collettore.
 
 Questo influisce notevolmente nella capacità di controllare una corrente grande con una corrente piccola.
 
@@ -326,7 +327,7 @@ Quello che accade nelle varie zone:
 | Attiva Diretta `ZAD`  | $V_{BE} > 0 \quad V_{BC} < 0$ |    $49 < \beta_F<  499$     |       Amplificatore        |
 | Attiva Inversa `ZAI`  | $V_{BE} < 0 \quad V_{BC} > 0$ | $\frac{2}{3} < \beta_R < 4$ | Amplificatore inefficiente |
 |  Interdizione `OFF`   | $V_{BE} < 0 \quad V_{BC} < 0$ |        Non definito         |    Interruttore aperto     |
-|   Saturazione `ON`    | $V_{BE} > 0 \quad V_{BC} > 0$ |  $\beta_{sat} < \beta _F$   |    Interruttore chiuso     |
+|   Saturazione `ON`    | $V_{BE} > 0 \quad V_{BC} > 0$ |   $\beta_F > \beta_{sat}$   |    Interruttore chiuso     |
 
 </div>
 
@@ -390,9 +391,9 @@ $$
 
 Se $V_{CE}$ scende sotto $\approx 0.7$ $V$ la giunzione `BC` non è più in inversa, ma **inizia a diventare diretta**.
 
-La $V_{CE,sat}$ non è a $0.7$ $V$ come ci si aspetta, ma è un valore leggermente inferiore:
+La $V_{CE,sat}$ non è a $0.7$ $V$ come ci si aspetta, ma è un valore leggermente inferiore dovuto ad effetti quantistici:
 $$
-	0.1\;V \le V_{CE, sat} \le 0.3\;V
+	0.2\;V \le V_{CE, sat} \le 0.5\;V
 $$
 </div>
 </div>
@@ -559,11 +560,11 @@ Possiamo quindi riassumere la **polarizzazione del transistore BJT** nel seguent
 <div class="grid2">
 <div class="">
 
-La caratteristica statica di trasferimento in tensione, o `VCT` è che il voltaggio di uscita dipende da quello in entrata &emsp; $V_{out(V_{in})}$
+La caratteristica statica di trasferimento in tensione, o `VCT`, è che il voltaggio di uscita dipende da quello in entrata &emsp; $V_{out}(V_{in})$
 
 In particolare sappiamo che la tensione di ingresso $V_{in}$ varia a passi discreti da $0$ fino al valore $V_{CC}$, tipicamente $5$ $V$.
 
-Il valore della tensione di uscita viene registrata solo una volta esauriti i transitori, dopo che il `BJT` abbia attraversato le varie zone di funzionamento.
+Il valore della tensione di uscita viene registrata solo una volta esauriti i transitori, dopo che il `BJT` ha attraversato le varie zone di funzionamento.
 
 </div>
 <div class="">
@@ -591,7 +592,7 @@ La verifica è immediata:
 $$
 \begin{align*}
 	V_{BE} &= V_{in} < V_\gamma & \text{Verificata da ipotesi} \\[1em]
-	V_{BC} &= V_{BE} - V_{CE} = V_{in} - V_{CC} \\
+	V_{BC} = V_{BE} - V_{CE} &= V_{in} - V_{CC} \\
 		   &< V_\gamma - V_{CC} & \text{Verificata da ipotesi} \\
 		   &< V_\gamma - V_{CE,sat}
 \end{align*}
@@ -721,7 +722,7 @@ Quello che abbiamo ottenuto dai calcoli
 </div>
 <div class="">
 <figure class="80">
-<img class="80" src="./images/transistor/bjt/inverter/logic-output.png">
+<img class="80" src="./images/transistor/bjt/inverter/real-logic-output.png">
 <figcaption>
 
 La simulazione di ciò che accade nella realtà.
@@ -814,7 +815,7 @@ Abbiamo già visto come trovare il punto di riposo risolvendo il circuito con il
 
 Ci occupiamo adesso di determinare gli effetti dovuti al piccolo segnale di stimolo $v_{in}(t): \Set{i_b(t), v_{be}(t), i_c(t), v_{ce}(t), v_{out}(t)}$.
 
-Analogamente a quanto avevamo visto con il diodo operiamo una **_linearizzazioen attorno al punto di riposo_**:
+Analogamente a quanto avevamo visto con il diodo operiamo una **_linearizzazione attorno al punto di riposo_**:
 $$
 \begin{CD}
 	\begin{cases}
@@ -830,8 +831,8 @@ $$
 	\end{cases} \\
 	@V\text{Linearizziamo attorno al punto di riposo}VV \\
 	\begin{cases}
-		v_{BE} \approx f(I_{B_Q}) + \frac{\partial f(I_{B_Q}, V_{CE_Q})}{\partial i_B} \cdot i_b(T) + \frac{\partial f(I_{B_Q}, V_{CE_Q})}{\partial v_{CE}} \cdot v_{ce}(t) \\
-		i_{C} \approx g(I_{B_Q}) + \frac{\partial g(I_{B_Q}, V_{CE_Q})}{\partial i_B} \cdot i_b(T) + \frac{\partial g(I_{B_Q}, V_{CE_Q})}{\partial v_{CE}} \cdot v_{ce}(t)
+		v_{BE} \approx f(I_{B_Q}) + \frac{\partial f(I_{B_Q}, V_{CE_Q})}{\partial i_B} \cdot i_b(t) + \frac{\partial f(I_{B_Q}, V_{CE_Q})}{\partial v_{CE}} \cdot v_{ce}(t) \\
+		i_{C} \approx g(I_{B_Q}) + \frac{\partial g(I_{B_Q}, V_{CE_Q})}{\partial i_B} \cdot i_b(t) + \frac{\partial g(I_{B_Q}, V_{CE_Q})}{\partial v_{CE}} \cdot v_{ce}(t)
 	\end{cases} \\
 	@VVV \\
 	\begin{cases}
@@ -844,8 +845,8 @@ $$
 Otteniamo quindi le seguenti linearizzazioni per i piccoli segnali attorno al punto di riposo $Q$:
 $$
 \begin{cases}
-	v_{be}(t) \approx \frac{\partial f(I_{B_Q}, V_{CE_Q})}{\partial i_B} \cdot i_b(T) + \frac{\partial f(I_{B_Q}, V_{CE_Q})}{\partial v_{CE}} \cdot v_{ce}(t) \\
-	i_c(t) \approx \frac{\partial g(I_{B_Q}, V_{CE_Q})}{\partial i_B} \cdot i_b(T) + \frac{\partial g(I_{B_Q}, V_{CE_Q})}{\partial v_{CE}} \cdot v_{ce}(t)
+	v_{be}(t) \approx \frac{\partial f(I_{B_Q}, V_{CE_Q})}{\partial i_B} \cdot i_b(t) + \frac{\partial f(I_{B_Q}, V_{CE_Q})}{\partial v_{CE}} \cdot v_{ce}(t) \\
+	i_c(t) \approx \frac{\partial g(I_{B_Q}, V_{CE_Q})}{\partial i_B} \cdot i_b(t) + \frac{\partial g(I_{B_Q}, V_{CE_Q})}{\partial v_{CE}} \cdot v_{ce}(t)
 \end{cases}
 $$
 
@@ -948,6 +949,7 @@ Per quanto riguarda il parametro di uscita $h_{oe}$ spesso faremo la seguente se
 > $$
 
 Abbiamo quindi le seguenti linearizzazioni:
+
 <img class="" src="./images/transistor/bjt/linearized-bjt.png">
 
 ## 2.10. Accoppiamento AC con sorgente e carico
@@ -961,7 +963,7 @@ Vediamo cosa succede quando accoppiamo un transistore `BJT` con un generatore al
 <figcaption>
 
 Esempio di accoppiamento diretto.
-Il generatore $V_S$ è da considerarsi un generatore dincontinua per i nostri scopi.
+Il generatore $V_S$ è da considerarsi un generatore in continua per i nostri scopi.
 </figcaption>
 </figure>
 </div>

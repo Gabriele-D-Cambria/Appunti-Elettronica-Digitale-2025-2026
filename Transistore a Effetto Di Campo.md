@@ -92,7 +92,7 @@ Questo processo di _accumulo delle lacune_ sulla superficie è detto **_Accumula
 
 Il secondo caso che analizziamo è quello dove $V_G > 0$.
 
-In questo caso quello che otteniamo è che il conduttore si carica _positivamente_. 
+In questo caso quello che otteniamo è che il conduttore si carica _positivamente_.
 Di conseguenza sul semiconduttore, per gli stessi effetti di attrazione elettrica, quello che accade è che **si concentrano nel confine con l'ossido _tante cariche negative quante sono necessarie per ottenere la stessa concentrazione elettrica_ del conduttore**.
 
 Queste cariche negative non sono rappresentate dai pochi _elettroni liberi_ ma piuttosto dall'**_assenza di lacune_**. Questa zona diventa una vera e propria **_zona di svuotamento_**, composta da _cariche fisse_.
@@ -118,7 +118,7 @@ Questo processo di _allontanamento delle lacune_ dalla superficie è detto di _*
 </div>
 
 Esiste un ulteriore caso nel quale in nostro condensatore si comporta in modo "particolare".
-Se infatti non solo poniamo $V_G > 0$, ma la impostiamo $V_G > V_T$, ovvero più elevata di una **Tensione di Soglia** (_Threshold Voltage_) <u>**_diversa dal Thermal Voltage_** dei `BJT` e dei diodi</u> otteniamo che in questo caso la _zona di svuotamento_ non sarà composta solo dall'_assenza di lacune_, ma in modo equo anche da **_elettroni liberi_**.
+Se infatti non solo poniamo $V_G > 0$, ma la impostiamo $V_G > V_T$, ovvero più elevata di una **Tensione di Soglia** (_Threshold Voltage_) <u><strong><em>diversa dal Thermal Voltage</em></strong> dei `BJT` e dei diodi</u> otteniamo che in questo caso la _zona di svuotamento_ non sarà composta solo dall'_assenza di lacune_, ma in modo equo anche da **_elettroni liberi_**.
 
 <img class="30" src="./images/transistor/mosfet/capacitator-mos/inversione.png">
 
@@ -127,7 +127,7 @@ In particolare lo strato superiore è composto dagli elettroni liberi, mentre qu
 
 La **Tensione di Soglia** è definita:
 > Quella tensione per la quale la concentrazione di elettroni in superficie è uguale alla concentrazione di delle lacune nel substrato
-> 
+>
 > Indicando quindi con $n_s$ la concentrazione degli elettroni liberi in superficie, abbiamo che:
 > $$
 > \quad n_s = p_\text{substrato} \quad
@@ -259,13 +259,19 @@ $$
 </div>
 </div>
 
-Anche adesso abbiamo più casi da studiare.
+Anche adesso abbiamo più casi da studiare:
+- [Zona di Funzionamento Triodo](#411-zona-di-funzionamento-triodo)
+- [Zona di Attenuazione](#412-zona-di-attenuazione)
+- [Zona di Saturazione](#413-zona-di-saturazione)
 
 ### 4.1.1. Zona di funzionamento Triodo
 
-Il primo è quando:
+Avviene quando:
 $$
-V_{GS} \ge V_T \\ V_{DS} > 0 
+\begin{matrix}
+	V_{GS} \ge V_T \\
+	V_{DS} > 0
+\end{matrix}
 $$
 
 In questa configurazione il source fornisce gli elettroni nel canale che sono attratti dalla tensione positiva del _drain_, producendo una corrente:
@@ -275,7 +281,7 @@ $$
 
 In particolare, il canale opera come se fosse una resistenza, perciò la corrente $I_{DS}$ sarà _direttamente proporzionale_ alla tensione $V_{DS}$.
 
-Se invece aumentassimo $V_{GS}$, mantenendo costante $V_S$ ma aumentando $V_G$ otteniamo che il **canale aumenta di dimensioni**. Mantenedo l'equivalenza con la resistenza quello che accade è che all'aumentare di $V_{GS}$ si a un aumento di $I_{DS}$ a parità di $V_{DS}$.
+Se invece aumentassimo $V_{GS}$, mantenendo costante $V_S$ ma aumentando $V_G$ otteniamo che il **canale aumenta di dimensioni**. Mantenendo l'equivalenza con la resistenza. quello che accade è che all'aumentare di $V_{GS}$ si ha un aumento di $I_{DS}$ a parità di $V_{DS}$.
 
 In generale le correnti e le tensioni che generiamo in questo caso è:
 - $V_{DS} \in [0, 150]$ $mV$
@@ -288,19 +294,19 @@ In questa zona, detta **_Regione Triodo_** abbiamo che il transistore _MOSFET_ s
 La seconda zona di funzionamento si presenta quando aumentiamo il valore di $V_{DS}$.
 
 Prima di poter analizzare questa zona, dobbiamo ricordare che:
-> Se la concentrazione di elettroni è uniforme in un segmento di lunghezza $L$ dove i due poli sono sottoposti a tensioni $V_1$ e $V_2$, la tensione in un punto $x$ del segmento crescerà/diminuirà proporzionalmente con la posizioen del punto.
+> Se la concentrazione di elettroni è uniforme in un segmento di lunghezza $L$ dove i due poli sono sottoposti a tensioni $V_1$ e $V_2$, la tensione in un punto $x$ del segmento crescerà/diminuirà proporzionalmente con la posizione del punto.
 
 <div class="grid2">
 <div class="">
 
-Nel canale, come si vede dall'immagine a destra, il tensione tra $S$ e $D$ cresce linearmente da $0$ fino a $V_{DS}$.
+Nel canale, come si vede dall'immagine a destra, la tensione tra $S$ e $D$ cresce linearmente da $0$ fino a $V_{DS}$.
 
 Prendendo un punto generico $x_i$ all'interno del canale, sapppiamo che abbiamo inversione solo se:
 $$
 	V_{Gx_i} \ge V_T
 $$
 
-Se avessimo $V_{DS} = 0$, allora ogni punto sul canale è allo stesso potenziale, altrimenti ogni per ogni coppia di punti $V_{x_i} \ne V_{x_j}$.
+Se avessimo $V_{DS} = 0$, allora ogni punto sul canale si troverebbe allo stesso potenziale, altrimenti ogni per ogni coppia di punti $V_{x_i} \ne V_{x_j}$.
 
 </div>
 <div class="">
@@ -311,9 +317,9 @@ Se avessimo $V_{DS} = 0$, allora ogni punto sul canale è allo stesso potenziale
 In particolare possiamo quindi scrivere:
 $$
 \begin{align*}
-V_{Gx_i} &= V_{GS} - V_{x_iS}	\\
+V_{Gx_i} &= V_G - V_{x_i} \\
 		 &= V_G - V_S - V_{x_i} + V_S \\
-		 &= V_G - V_{x_i} \\
+		 &= V_{GS} - V_{x_iS} \\
 		 &= V_{GS} - \phi(x_i) \\
 		 &= \begin{cases}
 			V_{GS} & x_i = 0 \\
@@ -326,12 +332,12 @@ Abbiamo quindi dimostrato che la tensione in ogni punto $x_i$ è diversa, in par
 
 Questo comporta che anche _**lo spessore del canale diminuirà avvicinandosi al drain**_.
 
-Gli effetti sulla corrente $I_{DS}$ è quindi quello di attenuazione della crescita. Infatti la diminuzione della sezione aumenta la resistenza che il canale fa, producendo una crescita _**non più lineare**_ .
+Gli effetti sulla corrente $I_{DS}$ è quindi quello di attenuazione della crescita. Infatti alla diminuzione della sezione corrisponde l'aumento della resistenza, producendo una crescita di _**non più lineare**_ della corrente.
 
 
 ### 4.1.3. Zona di Saturazione
 
-Accade quando **_contnuiamo ad aumentare $V_{DS}$_** fino al punto in cui:
+Accade quando **_contnuiamo ad aumentare_** $V_{DS}$ fino al punto in cui:
 $$
 \large
 	V_{GS} - V_{DS} = V_T
@@ -369,14 +375,14 @@ Il motivo per il quale la corrente è costante ha a che fare con la dimensione $
 
 Se $\Delta L \ll L$ abbiamo una resistenza:
 $$
-	R = \rho \frac{L}{S} \to \rho\frac{L - \Delta L}{S} \approx R
+	R' = \rho \frac{L - \Delta L}{S} \approx \rho\frac{L}{S} = R
 $$
 
 Infatti in questo caso la sezione del tratto ridotto è praticamente la stessa di quella del tratto intero, quindi possiamo sottrarle e notare che la differenza tra le due è praticamente trascurabile.
 
 Quindi abbiamo che la resistenza in un primo frangente è _come se fosse costante_.
 
-In particolare poi dobbiam oricordarci che l{a differenza di potenziale tra il punto di _pinch-off_ e il _source_ è **_sempre_**:
+In particolare poi dobbiamo ricordarci che la differenza di potenziale tra il punto di _pinch-off_ e il _source_ è **_sempre_**:
 $$
 	\phi (x_P) = V_{GS} - V_T
 $$
@@ -424,9 +430,11 @@ $$
 Quindi possiamo scrivere che la corrente nella **zona di saturazione** varrà:
 $$
 \large
-i_{DS} = K (V_{GS} - T)^2 = K (V_{DS})^2
+i_{DS} = K (V_{GS} - T)^2 \le K (V_{DS})^2
 $$
+
 <br>
+
 <div class="grid2">
 <div class="top">
 
@@ -548,7 +556,7 @@ $$
 
 Dobbiamo però ricordare che:
 - $\mu_n > \mu_p$ &emsp; con le tecniche moderne arriviamo ad avere $\mu_n \approx 4 \cdot \mu_p$
-- $\vert V_{Tn}| \ne |V_{Tp}\vert$
+- Tipicamente &emsp; $\vert V_{Tn} \vert  \ne \vert V_{Tp}\vert$
 
 Tendenzialmente avremo quindi che i transistori `NMOS` conducono più corrente.
 
@@ -656,7 +664,7 @@ $$
 	V_G = \frac{R_2}{R_1 + R_2}V_{CC}
 $$
 
-Questo modello è detto _**Modello a Polarizzazione Costante**:
+Questo modello è detto _**Modello a Polarizzazione Costante**_:
 $$
 \large
 \begin{cases}
@@ -691,7 +699,7 @@ Possiamo quindi graficare il tutto ottenendo qualitativamente il nostro _**Punto
 <img class="30" src="./images/transistor/mosfet/models/simple-pol-rest-point.png">
 
 
-Quantitativamente dobbiamo semplicemente risolvere il circuito sfruttando il _**Modello per Grandi Segnali**_ 
+Quantitativamente dobbiamo semplicemente risolvere il circuito sfruttando il _**Modello per Grandi Segnali**_
 $$
 \large
 \begin{cases}
@@ -803,14 +811,14 @@ $$
 	g_m := \frac{\partial i_D}{\partial V_{GS}}\Bigg|_Q
 $$
 
-Analogamente ai [parametri di piccolo segnale per il `BJT`](./Transistore%20Bipolare#29-modello-linearizzato-per-piccoli-segnali), indica qui la derivata della relazione _trans-caratteristica_ con la quale approssimiamo la relazione quadratica.
+Analogamente ai [parametri di piccolo segnale per il `BJT`](./Transistore%20Bipolare#29-modello-linearizzato-per-piccoli-segnali), $g_m$ indica qui la derivata della relazione _trans-caratteristica_ con la quale approssimiamo la relazione quadratica.
 
 Il termine $r_d$ invece è detta _**Resistenza Differenziale**_, ed è definita:
 $$
 	r_d := \frac{\partial V_{DS}}{\partial i_D}\Bigg|_Q = \Biggl(\frac{\partial i_D}{\partial V_{DS}}\Bigg|_Q\Biggr)^{-1}
 $$
 
-Questo parametri rappresenta l'inversa della derivata della relazione tra $i_D$ e $V_{DS}$. Affinché questo valore abbia senso _**si deve tenere conte dell'effetto di Modulazione di Canale**_.
+Questo parametro rappresenta l'inversa della derivata della relazione tra $i_D$ e $V_{DS}$. Affinché questo valore abbia senso _**si deve tenere conte dell'effetto di Modulazione di Canale**_.
 
 
 A differenza dei paramteri del `BJT`, questi parametri sono _**molto semplici da calcolare analiticamente**_:
@@ -819,16 +827,18 @@ $$
 	g_m =  \frac{\partial i_D}{\partial V_{GS}}\Bigg|_Q &= \mu_n C_{ox} \frac{W}{L} \frac{1}{2} \cdot 2 \cdot (V_{GS} - V_T)(1 + \lambda V_{DS}) \\
 	&= \frac{i_D}{(V_{GS} - V_T)^2} \cdot 2(V_{GS} - V_T) \\
 	&= \frac{2i_D}{(V_{GS} - V_T)}\Bigg|_Q \\[1em]
-	&= \frac{2I_{D_Q}}{(V_{GS_Q} - V_T)} = 2K \cdot \vert V_{GS_Q} - V_T \vert 
+	&= \frac{2I_{D_Q}}{(V_{GS_Q} - V_T)} \\
+	&= 2K \cdot \vert V_{GS_Q} - V_T \vert & \text{Ignorando la Modulazione di Canale}
 \end{align*}
 $$
 
 
-> Negli studi che faremo, opereremo due semplificazioni:
-> 1. I `MOSFET` non avranno capacità
-> 2. La resistenza $r_d \to \infty$, quindi potremo considerarla un aperto
+Negli studi che faremo, opereremo due semplificazioni:
+1. I `MOSFET` non avranno capacità intrinseca
+2. La resistenza $r_d \to \infty$, quindi potremo considerarla un aperto
 
 
+Una nota importante che è doveroso sottolineare è che:
 
 > Il modello _**è uguale sia per `NMOS` che per `PMOS`**_, in quanto stiamo trattando di relazioni _differenziali_.
 >

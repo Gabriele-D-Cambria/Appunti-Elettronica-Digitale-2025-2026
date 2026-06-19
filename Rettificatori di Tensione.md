@@ -10,30 +10,27 @@ title: Rettificatori di Tensione
 	- [2.2. Circuito rettificatore con filtro RC](#22-circuito-rettificatore-con-filtro-rc)
 		- [2.2.1. Trasformatori](#221-trasformatori)
 		- [2.2.2. Rettificatori a doppia semionda](#222-rettificatori-a-doppia-semionda)
-		- [2.2.3. Rettificatore basato su ponte di Graetz](#223-rettificatore-basato-su-ponte-di-graetz)
-		- [2.2.4. Confronto - Presa Centrale vs Ponte di Graetz](#224-confronto---presa-centrale-vs-ponte-di-graetz)
-	- [2.3. Rettificatore a Ponte di Graetz con Diodi Zener](#23-rettificatore-a-ponte-di-graetz-con-diodi-zener)
-		- [2.3.1. Operare nel Breakdown con i Diodi Zener](#231-operare-nel-breakdown-con-i-diodi-zener)
-	- [2.4. Rettificatore di tensione con Diodo Zener](#24-rettificatore-di-tensione-con-diodo-zener)
+	- [2.3. Rettificatore basato su ponte di Graetz](#23-rettificatore-basato-su-ponte-di-graetz)
+		- [2.3.1. Confronto - Presa Centrale vs Ponte di Graetz](#231-confronto---presa-centrale-vs-ponte-di-graetz)
+	- [2.4. Rettificatore a Ponte di Graetz con Diodi Zener](#24-rettificatore-a-ponte-di-graetz-con-diodi-zener)
+		- [2.4.1. Operare nel Breakdown con i Diodi Zener](#241-operare-nel-breakdown-con-i-diodi-zener)
+	- [2.5. Rettificatore di tensione con Diodo Zener](#25-rettificatore-di-tensione-con-diodo-zener)
 
 # 2. Rettificatori di Tensione
 
 Nell'utilizzo comune abbiamo bisogno di _corrente elettrica continua_, mentre quella che arriva alle pareti delle nostre case è _corrente elettrica alternata_.
 
-Facendoci caso, quando noi colleghiamo un dispositivo alla presa, utiliziamo un cavo che, prima di arrivare al nostro dispositivo, passa per un **_trasformatore_**. Spesso è incluso all'interno dei dispositivi, come i phon, altre volte è un dispositivo visibile come negli alimentatori dei cellulari e dei computer.
+Facendoci caso, quando noi colleghiamo un dispositivo alla presa utiliziamo un cavo che, prima di arrivare al nostro dispositivo, passa per un **_trasformatore_**. Spesso questo componente è incluso all'interno dei dispositivi, come i phon, altre volte è un dispositivo visibile come negli alimentatori dei cellulari e dei computer.
 
-Lo scopo di questo componente è **convertire la tensione alternata in continua**.
-
-Esistono diversi modi per costruire questi _convertitori_ sono costruiti in diversi modi.
-TRa le varie modalità è possibile costruirli a partire dai **_diodi_**.
+Possono essere costruiti in diversi modi, ad esempio utilizzando dei _diodi_, e il loro scopo è quello di **convertire la tensione alternata in continua**.
 
 Formalmente questi circuiti si definiscono così:
 > Data una tensione alternata **a valor medio nullo**, la trasformano in una tensione continua _**a valor medio diverso da zero**_.
 
 Esistono diversi circuiti in grado di fare ciò:
-- [**Circuito Rettificatore**](#61-circuito-rettificatore)
-- [**Circuito Rettificatore con Filtro RC**](#62-circuito-rettificatore-con-filtro-rc)
-- [**Circuito Rettificatore a ponte di Graetz**](#63-rettificatore-a-ponte-di-graetz-con-diodi-zener)
+- [**Circuito Rettificatore**](#21-circuito-rettificatore)
+- [**Circuito Rettificatore con Filtro RC**](#22-circuito-rettificatore-con-filtro-rc)
+- [**Circuito Rettificatore a ponte di Graetz**](#23-rettificatore-basato-su-ponte-di-graetz)
 
 Per le analisi, a meno che non sia esplicitamente detto diversamente, utilizzeremo il **modello a diodo ideale**.
 
@@ -74,7 +71,9 @@ In particolare, avendo $V_s < 0$, otteniamo che la tensione $V_D$ è negativa, p
 </div>
 </div>
 
-Con il modello ideale quindi, avremo che la tensione nei semiperiodi $V_S > 0$ sarà la stessa in entrata.
+Utilizzando il modello ideale, la tensione sarà:
+- **La stessa in entrata** nei periodi dove $V_S > 0$
+- **Nulla** nei periodi dove $V_S < 0$
 
 <figure class="">
 <img class="60" src="./images/diode/converter/rectifying-circuit-graph.png">
@@ -109,9 +108,9 @@ $$
 <div class="grid2">
 <div class="">
 
-Nono solo quindi la tensione di uscita è inferiore di un fattore $V_\gamma$ rispetto a quella in entrata, ma introduciamo anche un ritardo in entrata e uscita di $\Delta t$ rispetto al segnale originale.
+In questo caso, non solo la tensione di uscita è **inferiore** di un fattore $V_\gamma$ rispetto a quella in entrata, ma introduciamo anche un ritardo temporale $\Delta t$ rispetto al segnale originale _sia in entrata che in uscita_.
 
-Quantifichiamo quindi il ritardo:
+Se volessimo quantificare questo ritardo:
 $$
 \begin{align*}
 V_S &= V_\gamma \\
@@ -145,12 +144,12 @@ $$
 <div class="grid2">
 <div class="">
 
-Ignorando temporaneamente il carico resistivo, la corrente che passa sul condensatore è:
+Se al circuito visto prima sostituissimo il carico resistivo con un condensatore, la corrente vi passa sarà:
 $$
-	I_C = C {dV_u \over dt} = I_D
+	I_C = {dV_u \over dt}\cdot C = I_D
 $$
 
-Ipotizzando il condensatore inizialmente scarico, durante la semionda positiva del generatore, abbiamo che il diodo sarà in condunzione, in quanto:
+Ipotizzando che il condensatore sia inizialmente scarico, durante la semionda positiva del generatore avremo il diodo condunzione, in quanto:
 $$
 	{dV_u \over dt} \ge 0 \Rightarrow I_D \ge 0
 $$
@@ -165,8 +164,8 @@ $$
 $$
 
 Infatti, avendo il condensatore carico:
-- Cresta crescente di tensione: il condensatore agisce da aperto
-- Cresta decrescente di tensione: il condensatore agirebbe da generatore ma il diodo da aperto quindi non si chiude la maglia
+- Durante la **cresta crescente** di tensione: il condensatore agisce da aperto
+- Durante la **cresta decrescente** di tensione: il condensatore agirebbe da generatore ma, poiché il diodo agisce da aperto, non si ha alcuna maglia dove la corrente può richiudersi
 
 </div>
 <div class="">
@@ -174,22 +173,22 @@ Infatti, avendo il condensatore carico:
 </div>
 </div>
 
-La tensione nel circuito è quindi:
-<img class="30" src="./images/diode/converter/rc-rectifying-circuit-graph.png">
+Il `PIV` di questo circuito sarà perciò 
+$$
+	\max{(V_A - V_K)} = V_M - (-V_M) = 2V_M
+$$
 
-Il `PIV` di questo circuito sarà quindi $\max{(V_A - V_K)} = V_M - (-V_M) = 2V_M$.
-
-Se invece introduciamo anche un **carico resistivo**, otteniamo un filtro _RC_ con il condensatore.
 
 <div class="grid2">
 <div class="">
 
-Il tratto in conduzione è analogo a quello precedente.
+Se invece introduciamo anche un **carico resistivo**, otteniamo un filtro _RC_ con il condensatore.
 
-Quando invece il diodo entra in interdizione, la tensione tende a scaricarsi sulla resistenza $\propto e^{-t/(R_LC)}$.
+Questo circuito si comporta analogamente nel tratto in conduzione, mentre, quano il diodo entra in interdizione, la tensione tende a scaricarsi sulla resistenza $\propto e^{-t/(R_LC)}$.
 
-A differenza del caso di prima, nel quale $I_D$ è nullo dopo il primo picco, adesso, nella seconda cresta in salita, avremo che $V_u \ne V_M$, ma sarà leggermente inferiore.
-Quello che accade quindi è che $I_D > 0$ nell'intervallo di tempo successivo all'istante $t$ nel quale la tensione ai capi del generatore avrà superato la $V_u(t)$, fino al picco successivo.
+A differenza del caso di prima, nel quale $I_D$ è nullo dopo il primo picco, adesso abbiamo una corrente che scorre nella resistenza, che provoca una caduta di tensione che rende $V_u < V_M$.
+
+Quello che accade quindi è che avremo una corrente $I_D > 0$ per tutto l'intervallo di tempo successivo all'istante $t$ nel quale la tensione ai capi del generatore avrà superato la $V_u(t)$, fino al picco successivo.
 
 </div>
 <div class="">
@@ -212,14 +211,14 @@ Per riuscire ad ottenere l'inversione di segno sulla sorgente $V_S$ è possibile
 
 Sono dei componenti magnetici che variano il valore efficace della tensione alternata tramite il rapporto spire $n = \frac{N_1}{N_2}$, preservando la potenza ideale tra primario e secondario.
 
-Noi prenderemo in considerazione soltato i trasformatori ideali, per i quali il flusso magnetico totale piò essere considerato trascurabile.
+Noi prenderemo in considerazione soltato i trasformatori ideali, per i quali il flusso magnetico totale può essere considerato trascurabile.
 
 Questi trasformatori hanno due caratteristiche principali:
 - La **forza magnetomotrice** totale è nulla:
 $$
 \large
 \begin{matrix}
-N_1I_1 + N_2 I_2 = 0 & \frac{I_2}{I_1} = - \frac{N_1}{N_2}
+N_1I_1 + N_2 I_2 = 0 & \Rightarrow & \frac{I_2}{I_1} = - \frac{N_1}{N_2}
 \end{matrix}
 $$
 
@@ -230,7 +229,7 @@ $$
 	\begin{matrix}
 		V_1 = N_1 {d\phi \over dt} \\[0.75em]
 		V_2 = N_2 {d\phi \over dt}
-	\end{matrix} @>>>
+	\end{matrix} @ > > >
 	\frac{V_1}{V_2} = \frac{N_1}{N_2}
 \end{CD}
 
@@ -264,22 +263,22 @@ $$
 </div>
 </div>
 
-Partiamo quindi dall'ipotesi che il **primo diodo sia ON**, mentre il **secondo diodo sia OFF**, utilizzando il modello a _diodo ideale_.
+Partiamo quindi dall'ipotesi che, durante il primo semiperiodo, il **primo diodo sia ON**, mentre il **secondo diodo sia OFF**, utilizzando il modello a _diodo ideale_.
 
 La verifica di questa ipotesi è banale:
 $$
 \begin{align*}
 	I_{D_1} &= \frac{V_A}{R_L} > 0\\
-	V_{D_2} &= V_{A_2} - V_{K_2} = -V_B - V_A < 0
+	V_{D_2} &= V_{A_2} - V_{K_2} = -V_B - V_A < 0 < V_\gamma
 \end{align*}
 $$
 
-Partiamo quindi dall'ipotesi che il **primo diodo sia OFF**, mentre il **secondo diodo sia ON**.
+Nel secondo semiperiodo facciamo invece l'ipotesi complementare, ovvero che il **primo diodo sia OFF**, mentre il **secondo diodo sia ON**.
 
 La verifica di questa ipotesi, ricordando che $V_A, V_B \le 0$, è altrettanto banale:
 $$
 \begin{align*}
-	V_{D_1} &= V_{A_1} - V_{K_1} = V_A - (-V_B) = V_A + V_B < 0 \\
+	V_{D_1} &= V_{A_1} - V_{K_1} = V_A - (-V_B) = V_A + V_B < 0 < V_\gamma \\
 	I_{D_2} &= -\frac{V_B}{R_L} > 0
 \end{align*}
 $$
@@ -294,16 +293,16 @@ Se reintroduciamo il condensatore vediamo adesso come abbiamo **dimezzato il per
 
 In questo caso abbiamo però reintrodotto un `PIV` di $2V_M$.
 
-### 2.2.3. Rettificatore basato su ponte di Graetz
+## 2.3. Rettificatore basato su ponte di Graetz
 
 <div class="grid2">
 <div class="">
 
-Questo tipo di rettificatore sfrutta il **ponte di Graetz**, composta da 4 diodi collegati come in figura.
+Questo tipo di rettificatore sfrutta il **ponte di Graetz**, un circuito composto da 4 diodi collegati come in figura.
 
 </div>
 <div class="">
-<img class="20" src="./images/diode/converter/graetz-bridge.png">
+<img class="30" src="./images/diode/converter/graetz-bridge.png">
 </div>
 <div class="">
 
@@ -339,7 +338,7 @@ $$
 
 Inoltre in questo caso il `PIV` è di $V_M$, in quanto non abbiamo mai tensioni minori di 0.
 
-### 2.2.4. Confronto - Presa Centrale vs Ponte di Graetz
+### 2.3.1. Confronto - Presa Centrale vs Ponte di Graetz
 
 Facciamo quindi un confronto tra i due raddrizzatori che abbiamo visto:
 
@@ -358,7 +357,7 @@ Il **Ponte di Graetz** rimuove il limite del trasformatore ingombrante e costoso
 
 Il ponte di Graetz è oggi lo **_standard moderno_**.
 
-## 2.3. Rettificatore a Ponte di Graetz con Diodi Zener
+## 2.4. Rettificatore a Ponte di Graetz con Diodi Zener
 
 Il rettificatore ha comunque dei limiti/problemi:
 - **Limite del Rettificatore**: ha uscia unidirezionale ma _fortemente pulsante_
@@ -405,12 +404,12 @@ $$
 
 Per quanto riguarda il loro utilizzo all'interno dei rettificatori, avremo come zona di funzionamento quella della **conduzione in polarizzazione inversa**.
 
-### 2.3.1. Operare nel Breakdown con i Diodi Zener
+### 2.4.1. Operare nel Breakdown con i Diodi Zener
 
 <div class="grid2">
 <div class="">
 
-Immaginiamo di avere il circuito sulla destra che opera nella zona di brakdown.
+Immaginiamo di avere il circuito sulla destra che opera nella zona di breakdown.
 Dobbiamo quindi considerare il diodo zener **non come un'aperto**, come avremmo fatto con un diodo classico, ma come un **generatore di tensione a polarizzazione inversa**.
 
 Immaginiamo che:
@@ -465,7 +464,7 @@ $$
 
 La potenza è importante in quanto indica _quanto si scalda il componente_. Se questa fosse troppo elevata il diodo potrebbe _bruciarsi_.
 
-## 2.4. Rettificatore di tensione con Diodo Zener
+## 2.5. Rettificatore di tensione con Diodo Zener
 
 Il circuito è il seguente:
 
@@ -473,7 +472,7 @@ Il circuito è il seguente:
 <img class="100" src="./images/diode/converter/zener-rectifying-circuit.png">
 <figcaption>
 
-$R_L$ rappresneta il circuito che vogliamo alimentare.
+$R_L$ rappresenta il circuito che vogliamo alimentare.
 </figcaption>
 </figure>
 
@@ -486,7 +485,7 @@ $$
 	I_R = \frac{V_2'-V_Z}{R} \\[0.5em]
 	I_L = \frac{V_Z}{R_L}
 \end{matrix}
-@>>>
+@> > >
 {I_Z = I_R - I_L = \frac{V_2'-V_Z}{R} - \frac{V_Z}{R_L}}
 \end{CD}
 $$
@@ -498,7 +497,7 @@ $$
 
 Di queste variabili, l'unica che è possibile modulare nella progettazione è **_il valore della resistenza_** $R$.
 
-Conosciamo che la tensione dopo il ponte di Graetz è soggetta a _ripple_:
+Per capire come possiamo scelgiere il valore della resistenza, dobbiamo tenere in considerazione che la tensione dopo il ponte di Graetz è soggetta a _ripple_:
 $$
 	V'_{2,min} \le V_2' \le V'_{2,max}
 $$
@@ -506,15 +505,15 @@ $$
 Quando il carico non richiede corrente (modellabile ponendo $R_L \to \infty$), abbiamo che $I_L = 0$, che produce:
 $$
 \begin{CD}
-	{I_Z = I_R} @>>> {I_{Z,max} = \frac{V'_{2,max}-V_Z}{R}}
+	{I_Z = I_R} @> > > {I_{Z,max} = \frac{V'_{2,max}-V_Z}{R}}
 \end{CD}
 $$
 
 Affinché il circuito funzioni dobbiamo in ogni momento rispettare che la potenza del diodo sia minore del limite massimo, ovvero $V_ZI_{Z,max} < P_{Z,max}$, che ci permette di calcolare:
 $$
 \begin{CD}
-	{I_{Z,max} < \frac{P_{Z,max}}{V_Z}} 
-	@>{I_{Z,max} = \frac{V'_{2,max}-V_Z}{R}}>>
+	{I_{Z,max} < \frac{P_{Z,max}}{V_Z}}
+	@>{I_{Z,max} = \frac{V'_{2,max}-V_Z}{R}}> >
 	\boxed{
 		R > \frac{(V'_{Z,max} - V_Z)V_Z}{P_{Z,max}}\;\Omega
 	}
@@ -526,7 +525,7 @@ Questa dimostrazione ci permette di dire che $R$ **_deve avere un valore superio
 Se invece analizziamo il caso in cui **tutta la corrente viene dirottata sul carico**, ovvero $I_{L,max}$, allora possiamo assumere, poiché $I_Z = I_R - I_L$, che $I_Z = 0$:
 $$
 \begin{CD}
-	{I_{L,max} = I_R} @>>> {I_{L,max} = \frac{V'_{2}-V_Z}{R}\;A}
+	{I_{L,max} = I_R} @> > > {I_{L,max} = \frac{V'_{2}-V_Z}{R}\;A}
 \end{CD}
 $$
 
