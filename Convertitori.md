@@ -67,7 +67,7 @@ Esistono diversi modi per costruire un convertitore _D/A_, noi ne vediamo due:
 <div class="">
 
 Il `DAC` con **Resistori a Pesi Binari** è composto da due parti principali:
-- **Deviatori**: sono una coppia di switch comandati da segnali complementati. Sono rappresentati in dettaglio in basso a sinistra. L'$i$-esimo deviatore è collegato alla tensione $V_{REF}$ da una resistenza di valore $2^(N-i-1)R$.
+- **Deviatori**: sono una coppia di switch comandati da segnali complementati. Sono rappresentati in dettaglio in basso a sinistra. L'$i$-esimo deviatore è collegato alla tensione $V_{REF}$ da una resistenza di valore $2^{N-i-1}R$.
 - **Amplificatore di transimpedenza**: è un _amplificatore operazionale invertente_, che amplifica la tensione in ingresso mantenendo però costante la corrente.
 
 </div>
@@ -103,7 +103,7 @@ $$
 Se utilizzassimo dei resistori _precisi all'_$1\%$, otterremo che con $N$ bit, supponendo di avere $R_{min} = 1$ $k\Omega$, e quindi $\Delta R = 10$ $k\Omega$:
 $$
 \begin{cases}
-	N = 10 & R_{max} = 1024\;k\Omega & \Delta R = 10.24\;k\Omega
+	N = 10 & R_{max} = 1024\;k\Omega & \Delta R = 10.24\;k\Omega \\
 	N = 12 & R_{max} = 4096\;k\Omega & \Delta R = 40.96\;k\Omega
 \end{cases}
 $$
@@ -127,12 +127,12 @@ In particolare tutti i deviatori sono collegati ad una resistenza $2R$, e queste
 
 Il circuito a scala così impostato fa sì che all'ingresso di ogni sezione si ha una resistenza vista di esattamente:
 $$
-	R_{V_i} = \Biggl(\frac{1}{2R} + \frac{1}{R + R_{V_{i-1}}}\Biggr)^-1 \\
+	R_{V_i} = \Biggl(\frac{1}{2R} + \frac{1}{R + R_{V_{i-1}}}\Biggr)^{-1} \\
 $$
 
 Questo vale fino alla prima resistenza vista che vale:
 $$
-	R_{V_1} = \Biggl(\frac{1}{2R} + \frac{1}{2R}\Biggr)^-1 = R
+	R_{V_1} = \Biggl(\frac{1}{2R} + \frac{1}{2R}\Biggr)^{-1} = R
 $$
 
 Di conseguenza possiamo proseguire ricorsivamente per capire che all'ingresso di ogni sezione la **resistenza vista** vale $R_V = R$, che ha una corrente di ingresso pari a:
@@ -233,7 +233,7 @@ La resistenza $\frac{R}{2}$ è necessaria per effettuare la **traslazione** dell
 </figure>
 
 Per riuscire a risparmiare _hardware_ possiamo invece pensare di **convertire il segnale in due passi**:
-1. Determiniamo prima la la porzione `MSB` di `D`
+1. Determiniamo prima la porzione `MSB` di `D`
 2. Sottraendola al segnale originario, dopo una dovuta amplificazione di segnale, procediamo poi a determinare la porzione `LSB` di `D`.
 
 Se determiniamo che la lunghezza di ciascuna porzione dia $\frac{N}{2}$ bit, per ciascuno possiamo utilizzare un `ADC` a $\frac{N}{2}$ bit, che ci permette di avere un costo di $\approx 2^{\frac{N}{2} + 1}$ componenti.
@@ -249,7 +249,7 @@ Un esempio di _Folded Flash_ a 8 bit è il seguente:
 
 Il **Convertitore A Singola Rampa** effettua conversione utilizzando **_un solo comparatore_**.
 
-Per riuscire a fare ciò però necessità di un **tempo di buffering**. A differenza del _convertitore flash_, qeusto convertitore necessita di:
+Per riuscire a fare ciò però necessità di un **tempo di buffering**. A differenza del _convertitore flash_, questo convertitore necessita di:
 - Un **clock** (segnale di temporizzazione) stabile
 - Un **contatore digitale**
 
@@ -303,7 +303,7 @@ Nel convertitore a dpoppia rampa vengono fatte **due integrazioni**:
 
 <img class="30" src="./images/converter/adc/counter/double-ramp-graph.png">
 
-Il risultato della conversione sarà il conteggio _**eseguito **nella seconda fase**_.
+Il risultato della conversione sarà il conteggio _**eseguito nella seconda fase**_.
 
 <div class="grid2">
 <div class="">
@@ -332,7 +332,7 @@ $$
 
 Questo circuito quindi _**non dipende**_ dalla resistenza e dal condensatore che utilizziamo.
 
-IL circuito però **è molto lento**, infatti se $\vert V_{IN} \vert = V_{REF}$ sovremo attendere ben $2^N$ cicli di _clock_ prima di poter ottenere la conversione.
+Il circuito però **è molto lento**, infatti se $\vert V_{IN} \vert = V_{REF}$ sovremo attendere ben $2^N$ cicli di _clock_ prima di poter ottenere la conversione.
 
 ### 2.2.4. Convertitore ad Approssimazioni Successive - `SAR`
 

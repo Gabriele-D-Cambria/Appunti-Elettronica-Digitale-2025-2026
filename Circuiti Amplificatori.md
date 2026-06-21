@@ -28,9 +28,9 @@ title: Circuiti Amplificatori
 
 # 2. Transistore BJT come Amplificatore
 
-Un amplificatore può essere visto come un quadripolo che prende in ingressoun segnale di entrata e restituisce in uscita lo stesso segnale **con potenza amplificata**.
+Un amplificatore può essere visto come un quadripolo che prende in ingresso un segnale e lo restituisce in uscita **con potenza amplificata**.
 
-La potenza in aggiunta viene recuperata dall'amplificatore da un alimentazione esterna alla quale deve essere collegato.
+La potenza in aggiunta viene recuperata dall'amplificatore da un'alimentazione esterna alla quale questo dovrà essere collegato.
 
 <img class="" src="./images/transistor/amplification/bjt/amplificator-scheme.png">
 
@@ -44,9 +44,9 @@ R_O &= \frac{V_o}{i_o} & \text{Resistenza/Impedenza di Uscita} & & (\text{Calcol
 \end{align*}
 $$
 
-Un transistore può essere utilizzato in tre modi per comportarsi da Amplificatore:
-- Amplificatore a _Emettitore Comune_
-- Amlificatore a
+Un transistore `BJT` può essere utilizzato in due modi per comportarsi da Amplificatore:
+- [Amplificatore a _Emettitore Comune_](#21-amplificatore-a-emettitore-comune)
+- [Amlificatore a _Collettore Comune_](#22-amplificatore-a-collettore-comune)
 
 ## 2.1. Amplificatore a Emettitore Comune
 
@@ -57,7 +57,7 @@ Questo accoppiamento trasofrma il quadripolo in un tripolo accoppiando l'**emeti
 
 La connessione al transistore sfruttando i condensatori $C_B$ e $C_L$ permette di isolare dal carico esterno il punto di riposo del transistore.
 
-Il condensatore $C_E$ è introdotto per cortocircuitare $R_E$ nelle fasi di carica.
+Il condensatore $C_E$ è invece introdotto per cortocircuitare $R_E$ nelle fasi di carica.
 </div>
 <div class="">
 <img class="60" src="./images/transistor/amplification/bjt/common-emittor.png">
@@ -98,7 +98,7 @@ Supponiamo adesso di rimuovere $C_E$ dalla nostra configurazione, quindi di non 
 <img class="80" src="./images/transistor/amplification/bjt/common-emittor-no-CE.png">
 </div>
 <div class="">
-<img class="90" src="./images/transistor/amplification/bjt/common-emittor-simple-no-CE.png">
+<img class="90" src="./images/transistor/amplification/bjt/common-emittor-simple.png">
 </div>
 </div>
 
@@ -187,9 +187,9 @@ $$
 \end{align*}
 $$
 
-Questo valore ci dice che l'uscita è molto più elevata della corrente di entrata, di circa 200/300 volte, oltre ad essere di verso inverso.
+Questo valore ci dice che la corrente di uscita rispetto a quella di entrata, oltre ad essere di verso inverso è molto più elevata (circa 200/300 volte).
 
-Terminiamo quindi a calcolare il guadagno di tensione $A_V$:
+Terminiamo quindi calcolando il guadagno di tensione $A_V$:
 $$
 \begin{align*}
 	V_o &= (R_E \parallel R_L)i_e = (R_E \parallel R_L)(h_{fe} + 1)i_b  \\
@@ -198,8 +198,7 @@ $$
 \end{align*}
 $$
 
-Questa configurazione implica che il transistore sia **_non invertente_**.
-Oltre a ciò se guardiamo la forma di $A_V$ notiamo che $A_V < 1$. Se effettuiamo i calcoli però possiamo notare come nella maggior parte dei casi in realtà $A_V \approx 1$.
+Questa configurazione non solo implica che il transistore sia **_non invertente_**, ma se guardiamo la forma di $A_V$ possiamo notare che $A_V < 1$. Se effettuiamo i calcoli però possiamo notare come nella maggior parte dei casi in realtà $A_V \approx 1$.
 
 Possiamo quindi dire che $V_E \approx V_B$, ergo il nome _Emitter Follower_, dato che la tensione ingresso (base) e uscita (emettitore) è più o meno la stessa.
 
@@ -428,7 +427,7 @@ Questo risultato è semplice da dimostrare a partire dal circuito equivalente:
 <img class="60" src="./images/transistor/amplification/multistadio/equivalent-circuit.png">
 
 
-Dobbiamo quindi calcolare il rapporto $A_V = \frac{V_O}{V_{I_1}}$. LO faremo ipotizzando $R_L \to \infty$ per semplicità.
+Dobbiamo quindi calcolare il rapporto $A_V = \frac{V_O}{V_{I_1}}$. Lo faremo ipotizzando $R_L \to \infty$ per semplicità.
 
 Possiamo dedurre che:
 $$
@@ -511,11 +510,11 @@ Tipicamente il diagramma di ampiezza della risposta in frequenza è qualcosa del
 <img class="30" src="./images/transistor/amplification/frequency/AC-pairing.png">
 
 Chiamiamo:
-- $f_L$ &emsp; **Liimte Inferiore Di Banda**
-- $f_H$ &emsp; **Liimte Superiore Di Banda**
+- $f_L$ &emsp; **Limte Inferiore Di Banda**
+- $f_H$ &emsp; **Limte Superiore Di Banda**
 
 
-I circuiti che hanno queto diagramma di Bode, si dicono **accoppiati in AC** (_AC paired_). Infatti, per segnali a basse freqeunze la risposta in frequenza è _**pari a zero**_.
+I circuiti che hanno questo diagramma di Bode, si dicono **accoppiati in AC** (_AC paired_). Infatti, per segnali a basse freqeunze la risposta in frequenza è _**pari a zero**_.
 
 Esistono anche altri tipi di sistemi che hanno questa risposta in frequenza:
 
@@ -600,7 +599,7 @@ $$
 \end{matrix}
 $$
 
-Storicamente si utilizzala la reazione positiva, che però comporta garndissimi rischi di stabilità del sistema. Questo era dovuto alle tipologia di `MOSFET` che erano disponibili. Oggi le componenti che abbiamo producono guadagni molto elevati, che ci permettono di reazionarli negativamente senza problemi.
+Storicamente si utilizzala la reazione positiva, che però comporta grandissimi rischi di stabilità del sistema. Questo era dovuto alle tipologia di `MOSFET` che erano disponibili. Oggi le componenti che abbiamo producono guadagni molto elevati, che ci permettono di reazionarli negativamente senza problemi.
 
 Per capire perché dovremmo reazionare negativamente il sistema, vediamo cosa accade quando aumentiamo il _guadagno ad anello aperto_ dell'amplificatore:
 $$
@@ -611,14 +610,15 @@ Questa scelta ci quindi permette di avere un guadagno ad anello chiuso _**indipe
 
 ## 6.1. Resistenze di Feedback
 
-Immaginiamo di avere un prelievo di tensione:
 
 <div class="grid2">
 <div class="">
 
+Immaginiamo di avere un prelievo di tensione come sulla destra.
+
 Per riuscire a capire il valore della _resistenza di feedback_ $R_{of}$, è conveniente sfruttare la relazione:
 $$
-	R_{of} = \frac{V_{OC}}{I_{CC}} := \frac{\text{Tensione Circuito Aperto}}{\text{Corrente cortocircuito}}
+	R_{of} = \frac{V_{OC}}{I_{CC}} := \frac{\text{Tensione Circuito Aperto}}{\text{Corrente di cortocircuito}}
 $$
 
 La tensione in circuito aperto è semplice da ricavare, in quanto è quella di uscita dell'amplificatore:
@@ -626,8 +626,7 @@ $$
 	V_{OC} = \frac{A}{1 - \beta A}x_s
 $$
 
-Per quanto riguarda la corrente di corto circuito, equivale a mettere in corto circuito l'uscita.
-Fare qeusto comporta che gli **effetti della reazione vengono annullati**.
+Per quanto riguarda la corrente di cortocircuito, equivale ad **annullare gli effetti della reazione**.
 
 In questo caso otteniamo non solo che $x_s = x_i$, quindi $x_f = 0$, ma torniamo proprio allo studio che avevamo fatto precedentemente sugli amplificatori:
 $$
@@ -646,7 +645,7 @@ $$
 
 La reazione _**non solo modifica la funzione di trasferimento**_, ma, nel caso di _prelievi di tensione_, andiamo a _**modificare anche la resistenza di uscita**_.
 
-Nel caso di reazione negativa, ovvero $\beta A \gg 1$, quello che accade è che $R_{of} \approx 0$, ovvero è come se fosse in corto circuito, assimilando il nostro sistema ad un _**generatore di tensione costante**_.
+Nel caso di reazione negativa, ovvero $\beta A \gg 1$, quello che accade è che $R_{of} \approx 0$, ovvero è come se fosse in cortocircuito, assimilando il nostro sistema ad un _**generatore di tensione costante**_.
 
 
 Analogamente anche la resistenza di ingresso viene modificata a seconda che si faccia una rete sommatrice in serie o in parallelo.
@@ -680,7 +679,7 @@ $$
 	V_d := V_1 - V_2 & \textbf{Segnale A Modo Differenziale} \\[1em]
 	V_c := \frac{V_1 + V_2}{2} & \textbf{Segnale a Modo Comune} \\[1em]
 	A_d := \frac{V_u}{V_d} & \textbf{Guadagno del Modo Differenziale} \\[1em]
-	A_c := \frac{V_u}{V_c} & \textbf{Guadahno del Modo Comune}
+	A_c := \frac{V_u}{V_c} & \textbf{Guadagno del Modo Comune}
 \end{cases}
 $$
 
@@ -778,9 +777,10 @@ Tipicamente i due terminali di alimentazione non sono riportati nei circuiti, ma
 </div>
 </div>
 
-Per variazioni differenziali il circuito equivalente è il seguente:
 <div class="grid2">
 <div class="">
+
+Per variazioni differenziali il circuito equivalente è il seguente sulla destra.
 
 Le relazioni che valgono in questo circuito sono:
 $$
@@ -995,7 +995,7 @@ L'unica differenza è che la tensione di ingresso non è applicata sul polo non 
 Analogamente a quanto fatto prima, analizziamo questo circuito nell'ipotesi del `MCCV`:
 $$
 	\begin{cases}
-		V^+ \approx V^-
+		V^+ \approx V^- \\
 		i^+ \approx i^- \approx 0
 	\end{cases}
 $$
@@ -1079,6 +1079,8 @@ L'analisi del circuito è sempre la stessa. Ipotizziamo per comodità l'ipotesi 
 <div class="top">
 <p class="p">Ipotesi 1</p>
 
+--- 
+
 Nell'ipotesi che:
 $$
 	V_1 \ne 0 \qquad\wedge\qquad V_2 = 0
@@ -1105,6 +1107,8 @@ $$
 <div class="top">
 <p class="p">Ipotesi 2</p>
 
+--- 
+
 Nella seconda ipotesi:
 $$
 	V_1 = 0 \qquad\wedge\qquad V_2 \ne 0
@@ -1122,10 +1126,12 @@ $$
 </div>
 </div>
 
+--- 
+
 Mettiamo adesso insieme i due risultati:
 $$
 \begin{align*}
-    V_o &= V_{o1} \\
+    V_o &= V_{o1}  + V_{o2} \\
         &= \Bigl(1 + \frac{R_2}{R_1}\Bigr)\frac{R_4}{R_3 + R_4}V_1 - \frac{R_2}{R_1}V_2
 \end{align*}
 $$
@@ -1261,6 +1267,8 @@ Lo studio può essere fatto sia nel **Dominio di Laplace** che nel **Dominio del
 <div class="top">
 <p class="p">Studio Nel Dominio di Laplace</p>
 
+---
+
 In questa conformazione è immediato capire che:
 $$
 \begin{align*}
@@ -1281,6 +1289,8 @@ $$
 </div>
 <div class="top">
 <p class="p">Studio Nel Dominio Del Tempo</p>
+
+---
 
 Nell'ipotesi del `MCCV`:
 $$

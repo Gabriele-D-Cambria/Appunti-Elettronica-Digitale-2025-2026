@@ -99,7 +99,7 @@ L'uscita dei comparatori viene portato in ingresso ad un **flip-flop SR** che, o
 
 </div>
 <div class="">
-<img class="80" src="./images/multivibrators/astable/ne-555-circuit.png">
+<img class="90" src="./images/multivibrators/astable/ne-555-circuit.png">
 </div>
 </div>
 
@@ -109,7 +109,7 @@ Nello schema che utilizzeremo noi negli esercizi noi considereremo solamente **4
 
 Se la soglia $TH > \frac{2}{3}V_{CC}$, allora nel comparatore avremo un uscita dal comparatore alta, ovvero $R = 1$. Analogamente, se $TR < \frac{1}{3}V_{CC}$, il comparatore ci fornirà un uscita alta, ovvero $S = 1$.
 
-Il _flip-flop_ p pensato per avere priorità sul **Set**, ovvero:
+Il _flip-flop_ è pensato per avere priorità sul **Set**, ovvero:
 <div class="flexbox" markdown="1">
 
 | `R`\\`S` |   `0`    |  `1`  |
@@ -121,7 +121,7 @@ Il _flip-flop_ p pensato per avere priorità sul **Set**, ovvero:
 
 L'inveritore è inserito per riuscire ad avere correnti maggiori di quelle che il _flip-flop_ riesce ad erogare.
 
-Il transistore $Q_1$ invece è scelto in modo che quando $\overline{Q} = 1$, allora va in **forte saturazione**, che implica che $D$ è cortocircuitata a _ground_, ovvero $D = 0$.
+Il transistore `BJT` è scelto in modo che quando $\overline{Q} = 1$, allora va in **forte saturazione**, che implica che $D$ è cortocircuitata a _ground_, ovvero $D = 0$.
 
 
 <div class="grid2">
@@ -130,12 +130,12 @@ Il transistore $Q_1$ invece è scelto in modo che quando $\overline{Q} = 1$, all
 Se studiamo la correlazione tra $TH$ e $TR$ possiamo individuare quattro quadranti che identificano le nostre zone operative.
 
 Se $TH < \frac{2}{3}V_{CC}$:
-- $TH < \frac{1}{3}V_{CC} \to$ `S = 1` e `R = 0` &emsp; L'uscita vale `1`
-- $\frac{1}{3}V_{CC} < TH < V_{CC} \to$ `S = 0` e `R = 0` &emsp; L'uscita è in **memorizzazione**
+- $TR < \frac{1}{3}V_{CC} \to$ `S = 1` e `R = 0` &emsp; L'uscita vale `1`
+- $\frac{1}{3}V_{CC} < TR < V_{CC} \to$ `S = 0` e `R = 0` &emsp; L'uscita è in **memorizzazione**
 
 Se $\frac{2}{3}V_{CC} < TH < V_{CC}$:
-- $TH < \frac{1}{3}V_{CC} \to$ `S = 1` e `R = 1` &emsp; L'uscita vale `1`
-- $\frac{1}{3}V_{CC} < TH < V_{CC} \to$ `S = 0` e `R = 1` &emsp; L'uscita vale `0`
+- $TR < \frac{1}{3}V_{CC} \to$ `S = 1` e `R = 1` &emsp; L'uscita vale `1`
+- $\frac{1}{3}V_{CC} < TR < V_{CC} \to$ `S = 0` e `R = 1` &emsp; L'uscita vale `0`
 
 </div>
 <div class="">
@@ -150,7 +150,7 @@ Per capire come utilizziamo il `NE 555` dovviamo analizzare il seguente circuito
 Colleghiamo in entrata una serie di 2 resistenze $R_A$ e $R_B$ e un condensatore $C$.
 Colleghiamo in entrata su $TH$ e $TR$ il nodo tra $R_B$ e il condensatore, mentre colleghiamo il nodo tra le resistenze a $D$.
 
-Ricordiamo che in condizioni ideali, i due amplificatori operazionali non assorbono corrente, perciò possiamo considerare $i_{TH} = i_{TR} = i = 0$.
+Ricordiamo che in condizioni ideali, i due amplificatori operazionali non assorbono corrente, perciò possiamo considerare $i_{TH} = i_{TR} = i = 0$
 
 Prenderemo la tensione di uscita $V_Q$ da $Q$ con riferimento a _ground_.
 
@@ -184,7 +184,7 @@ Quando la tensione sale oltre $V_C > \frac{2}{3}V_{CC}$, succede che `S = 0` e `
 
 In questa fase $Q = 0$, ovvero $V_{CC} = 0$. Ciò comporta che $\overline{Q} = 1$, e quindi $D$ viene collegato a _ground_, ovvero $D = 0$.
 
-Proprio perch il terminale $D$ è messo a ground, il circuito equivalente diventa il seguente:
+Proprio perché il terminale $D$ è messo a ground, il circuito equivalente diventa il seguente:
 
 <div class="grid2">
 <div class="">

@@ -11,7 +11,8 @@ title: Regolatori di Tensione
 	- [2.3. Regolatore di Corrente](#23-regolatore-di-corrente)
 	- [2.4. Considerazioni Energetiche](#24-considerazioni-energetiche)
 - [3. Regolatori Switching/a Commutazione](#3-regolatori-switchinga-commutazione)
-	- [3.1. Regolatore Flyback](#31-regolatore-flyback)
+	- [3.1. Regolatore di Forward](#31-regolatore-di-forward)
+	- [3.2. Regolatore Flyback](#32-regolatore-flyback)
 - [4. Passaggio Tensione Alternata-Costante](#4-passaggio-tensione-alternata-costante)
 	- [4.1. Forward con Trasformatore](#41-forward-con-trasformatore)
 
@@ -68,7 +69,7 @@ Per verificare la _reazione negativa_ iporizziamo che, per qualche motivo, $V_o 
 
 Di conseguenza aumenterà anche $V^-$, mentre $V^+$ **resta costante**, facendo _diminuire_ la tensione di ingresso $V_{in} = V^+ - V^-$.
 
-Questa diminuzione si propagan anche nell'_uscita dal circuito operazionale_, che produce di conseguenza una corrente sulla base inferiore e che fa diminuire anche la corrente $i_E$.
+Questa diminuzione si propaga anche nell'_uscita dal circuito operazionale_, che produce di conseguenza una corrente sulla base inferiore e che fa diminuire anche la corrente $i_E$.
 
 Tuttavia, se $i_E$ diminuisce, diminuisce anche la tensione che viene partizionata e di conseguenza **diminuisce $V_o$** facendolo tornare al valore originale.
 
@@ -142,7 +143,7 @@ Per ottenere questo risultato scegliamo quindi condensatori con capacità $C$ _*
 
 Questo tipo di condensatori nell'ordine dei _microfarad_ sono chiamati _**Condesatori Elettrolitici**_.
 
-In pratica, l'introduzione di questo tipo di condensatori **rimuove i disturbi nelle basse frequenze** (decine di $kHz$), ma _**non rimuove i disturbu alle alte frequenze**_, ma tende quasi a aumentarli.
+In pratica, l'introduzione di questo tipo di condensatori **rimuove i disturbi nelle basse frequenze** (decine di $kHz$), ma _**non rimuove i disturbi alle alte frequenze**_, ma tende quasi a aumentarli.
 
 Questo accade per come i _condensatori elettrolitici_ sono costruiti:
 1. Nelle basse frequenze si comportano come dei **Condensatori**
@@ -180,7 +181,7 @@ Questi sono tipicamente identificati sul mercato sono identificati dalle sigle:
 - `78XX`, `78` è la famiglia che indica le tensioni positive
 - `79XX`, `79` è la famiglia che indica le tensioni negative
 
-In entrambi i casi `XX` indica la tensione che sono in grado di erogare, ad esempio `7805` è un regolatore di tensione che eroga $+5V$, mentre `7905` è un regolatore che eroa $-5V$.
+In entrambi i casi `XX` indica la tensione che sono in grado di erogare, ad esempio `7805` è un regolatore di tensione che eroga $+5V$, mentre `7905` è un regolatore che eroga $-5V$.
 
 <img class="20" src="./images/transistor/regolators/tension-linear-series/integrated-chip.png">
 
@@ -239,6 +240,7 @@ $$
 \begin{align*}
 	E_{DC} - V_X - R_LI_L &\ge V_{\operatorname{DROP-OUT}} \\[1em]
 	R_L &\le \frac{E_{DC} - V_X -  V_{\operatorname{DROP-OUT}}}{V_X / R} \\
+	R_L &\le \frac{E_{DC} - V_X -  V_{\operatorname{DROP-OUT}}}{V_X} \cdot R
 \end{align*}
 $$
 
@@ -275,7 +277,7 @@ Dove $T_{ON}$ è il periodo dove l'interruttore è in conduzione, e $T_{OFF}$ è
 
 Chiamiamo il periodo $T_S = T_{ON} + T_{OFF}$.
 
-<img class="30" src="./images/transistor/regolators/commutation/simple-graph.png">
+<img class="40" src="./images/transistor/regolators/commutation/simple-graph.png">
 
 </div>
 <div class="">
@@ -324,7 +326,9 @@ L'analisi in frequenza del circuito sulla destra ci produce un grafico simile a 
 </div>
 </div>
 
-Questo circuito presenta ancora un problema, relativo al fatto di avere in serie **un interruttore** e un **induttanza**.
+## 3.1. Regolatore di Forward
+
+Il circuito appena proposto presenta però ancora un problema, relativo al fatto di avere in serie **un interruttore** e un **induttanza**.
 Infatti, durante i transitori l'interruttore è sottoposto a _**altissime tensioni**_ dovute all'induttanza $L$, che può arrivare a produrre degli archi.
 
 Per ovviare a questo problema si collega tra il nodo tra l'induttanza e l'interruttore e il _ground_ un diodo, detto **_Regolatore di Forward_**:
@@ -342,6 +346,8 @@ Il diodo introduce della dissipazione dovuta alla tensione $V_\gamma$, ma è pic
 <div class="top">
 <p class="p">Interruttore Chiuso</p>
 
+---
+
 Il circuito equivalente in $T_{ON}$ è il seguente
 
 <figure class="">
@@ -354,6 +360,8 @@ Il Diodo è $OFF$
 </div>
 <div class="top">
 <p class="p">Interruttore Aperto</p>
+
+---
 
 Il circuito equivalente in $T_{OFF}$ è il seguente
 
@@ -422,7 +430,7 @@ $$
 
 A dimostrazione che possiamo ancora regolare la tensione di uscita a partire dal **Duty Cycle**.
 
-## 3.1. Regolatore Flyback
+## 3.2. Regolatore Flyback
 
 È un altra tipo di regolatore a commutazione, in particolare il circuito è il seguente:
 
@@ -432,6 +440,8 @@ Se studiamo il comportamento del circuito:
 <div class="grid2">
 <div class="top">
 <p class="p">Periodo ON</p>
+
+---
 
 Durante il periodo $T_{ON}$ il circuito è il seguente:
 
@@ -452,7 +462,9 @@ La resistenza e il condensatore non sono quindi collegate direttamente al genera
 <div class="top">
 <p class="p">Periodo OFF</p>
 
-Durante il periodo $T_{ON}$ il circuito è il seguente:
+---
+
+Durante il periodo $T_{OFF}$ il circuito è il seguente:
 
 <figure class="75">
 <img class="80" src="./images/transistor/regolators/commutation/flyback-OFF.png">
@@ -471,6 +483,7 @@ Durante questo periodo il condensatore si **carica**.
 </div>
 </div>
 
+---
 
 Nel semiperiodo $ON$ quindi sul carico _**ci sarà comunque corrente**_, fornita dal condensatore che si è caricato nel periodo $OFF$.
 
@@ -536,7 +549,7 @@ Esistono diversi tipi di isolamenti possibili:
 Immaginiamo di avere un circuito connesso alla $220$.
 
 Il circuito lo possiamo immaginare come composto da due grandi _impedenze_ $Z_1$ e $Z_2$.
-Tra di loro ci sarà una tensione che è compreso tra $0$ e $220$.
+Tra di loro ci sarà una tensione che è compresa tra $0$ e $220$.
 
 Quando qualcuno va a toccare il punto intermedio, formerà un circuito chiuso, in quanto la _**tensione è riferita a terra**_.
 
@@ -561,9 +574,9 @@ Se invece dovesse toccare _due_ punti, allora andrebbe a chiudere il circuito co
 
 Dobbiamo quindi aggiungere il circuito isolante all'interno del nostro schema.
 
-Se lo mettiamo a monte del circuito, prima del _ponte di graetz_, possiamo:
-- Possiamo subito, attraverso il rapporto spire, abbassare la tensione
-- _**Deve funzionare bene a $50$ $Hz$**_. I trasformatori che funzionano bene a queste frequenze pesano nell'ordine di _**diversi kilogrammi**_
+Se lo mettessimo a monte del circuito, prima del _ponte di graetz_:
+- Potremmo abbassare immediatamente la tensione attraverso il rapporto spire
+- Avremmo necessita che il trasformatore _**funzioni bene a $50$ $Hz$**_. I trasformatori che necessiteremmo hanno l'inconveniente di pesare nell'ordine dei _**diversi kilogrammi**_
 
 Questo secondo punto ci spinge a spsotare il trasformatore in un altro punto della nostra catena, in quanto esistono trasformatori che operano nelle centinaia di $kHz$ della grandezza di pochi centimetri.
 

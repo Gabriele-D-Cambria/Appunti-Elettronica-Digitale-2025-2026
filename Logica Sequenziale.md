@@ -18,7 +18,7 @@ title: Logica Sequenziale
 	- [3.1. SRAM](#31-sram)
 	- [3.2. DRAM](#32-dram)
 	- [3.3. WordLine Decoder](#33-wordline-decoder)
-	- [3.4. Multipexed/Demultiplexer di Bitline](#34-multipexeddemultiplexer-di-bitline)
+	- [3.4. Multipexer/Demultiplexer di Bitline](#34-multipexerdemultiplexer-di-bitline)
 - [4. Memorie ROM](#4-memorie-rom)
 	- [4.1. Mask ROM](#41-mask-rom)
 	- [4.2. PROM](#42-prom)
@@ -76,7 +76,7 @@ Per studiare il fenomeno di feedback, interrompiamo il meccanismo e inseriamo un
 <div class="grid2">
 <div class="">
 
-La in entrata al secondo _inverter_, chiamata $V_i$, viene invertita:
+La tensione in entrata al secondo _inverter_, chiamata $V_i$, viene invertita:
 $$
 	V_{u_1} = f_{NOT}(V_i)
 $$
@@ -115,7 +115,7 @@ Il punto $B$ è uno _**Stato Instabile**_, di _equilibrio precario_. Infatti una
 
 I punti $C$ e $A$ sono invece detti _**Stati Stabili del sistema**_, o punti di aggangio. Infatti piccole variazioni attorno a questi punti non producono un ripristino del punto di equilibrio iniziale.
 
-Matematicamente qeusto avviene perché, definendo $f_{NOT}(V)$ la caratteristica di trasferimento dell'inverter, la pendenza della curva rappresenta il **guadagno totale**:
+Matematicamente questo avviene perché, definendo come $f_{NOT}(V)$ la caratteristica di trasferimento dell'inverter, la pendenza della curva rappresenta il **guadagno totale**:
 $$
 	G(V_{in}) = \frac{d}{dV_{in}}[f_{NOT}(f_{NOT}(V_{in}))]
 $$
@@ -125,7 +125,7 @@ Nel punto $B$ il guadagno è massimo, infatti $G \gg 1$. Ogni minima perturbazio
 Nei punti $A$ e $C$ invece il guadagno è pressocché nullo $G \approx 0$, che procede a attenuare le perturbazioni.
 
 
-Per funzionare, iL latch sfrutta:
+Per funzionare, il latch sfrutta:
 - **Instabilità**: per cambiare stato
 - **Stabilità**: per conservare lo stato
 
@@ -142,7 +142,7 @@ Nei punti $A$ e $C$:
 
 Ciò significa che in ogni ramo abbiamo un transistor in conduzione mentre l'altro è **interdetto**. Non esiste quindi un cammino diretto tra $V_{DD}$ e _ground_, che comporta l'avere una **potenza statica _idealmente_ nulla**
 
-Nel punto $B$ invece si vverifica un passaggio di **corrente di cortocircuito** $I_{SC}$ elevata.
+Nel punto $B$ invece si verifica un passaggio di **corrente di cortocircuito** $I_{SC}$ elevata.
 Questo punto rappresenta il punto di massima dissipazione energetica e massimo guadagno.
 
 </div>
@@ -232,8 +232,6 @@ In questa fase:
 
 Il _latch SR con Enable_ ha la seguente tabella di verità:
 
-Il _latch SR_ segue quindi la seguente tabella di verità
-
 <div class="flexbox" markdown="1">
 
 | $\phi$ |  $R$  |  $S$  |   $Q[n+1]$   |
@@ -277,7 +275,7 @@ Il **D-Latch**, o _Data Latch_, è un miglioramento diretto del _Latch SR con En
 <div class="grid2">
 <div class="">
 
-Se $\phi = 0$ la condizione è analoga a quella precedente. ovvero la **Memorizzazione*: $Q$ mantiene l'ultimo valore di $D$ prima della transizione $1 \to 0$ di $\phi$.
+Se $\phi = 0$ la condizione è analoga a quella precedente. ovvero la *Memorizzazione*: $Q$ mantiene l'ultimo valore di $D$ prima della transizione $1 \to 0$ di $\phi$.
 
 Se invece $\phi = 1$ siamo in _trasparenza_, che significa che $Q = D$ in tempo reale, propagando il segnale e, di conseguenza, eventuali glitch.
 
@@ -317,7 +315,7 @@ Il condensatore non è inserito come componente esterno ma serve a rappresentare
 
 ## 2.4. Flip-Flop
 
-A differenza dei latch, i _**Filp-Flop**_, o **Multivibratori Bistabili**, sono circuiti che campionano gli ingressi solo su **un finaco di un segnale** periodico di temporizzazione.
+A differenza dei latch, i _**Filp-Flop**_, o **Multivibratori Bistabili**, sono circuiti che campionano gli ingressi solo su **un fianco di un segnale** periodico di temporizzazione.
 
 Le uscite cambiano quindi solo su un fianco determinato del _clock_, che _**elimina problemi di trasparenza**_.
 
@@ -326,7 +324,7 @@ Le uscite cambiano quindi solo su un fianco determinato del _clock_, che _**elim
 <div class="grid2">
 <div class="">
 
-Si chiama _**D-Edge Triggered Flip-Flop**_, un _flip-flop_ creato a partire da due _Compact D-latch_ polotati in fasi di clock non sovrapposte, così da evitare la trasparenza tra ingresso e uscita e _race-through_ del risultato.
+Si chiama _**D-Edge Triggered Flip-Flop**_, un _flip-flop_ creato a partire da due _Compact D-latch_ pilotati in fasi di clock non sovrapposte, così da evitare la trasparenza tra ingresso e uscita e _race-through_ del risultato.
 
 Questa configurazione è chiamata _master/slave_.
 
@@ -359,7 +357,7 @@ Le `RAM` (_Random Access MEmori_) permettono di accedere a qualsiasi cella in te
 
 Le ram si dividono in _Static-RAM_, o `SRAM`, e _Digital-RAM_ o `DRAM`.
 
-Le differenze sono suelle caratteristiche di dimensioni, densità e temppi di accesso:
+Le differenze sono suelle caratteristiche di dimensioni, densità e tempi di accesso:
 <div class="flexbox" markdown="1">
 
 |  Tipo  |     Densità     |  Area per `1GB`  | Appilcazione Tipica | Velocità  |   Costo    |
@@ -456,7 +454,7 @@ Le celle della memoria dinamica sono costruite sfruttando i processi di carica d
 <div class="">
 
 
-La cella è quindi basata su un condensatore e e un trasnsitore di passo `NMOS`.
+La cella è quindi basata su un condensatore e su un transistore di passo `NMOS`.
 
 In scrittura per impostare il valore `1` è necessario che
 $$
@@ -509,7 +507,7 @@ $$
 Alcuni valori tipici di queste quantità sono:
 $$
 \begin{cases}
-	C_B = 30 C_S \\
+	C_B = 30 \cdot C_S \\
 	V_{DD} = 5\;V \\
 	V_T = 1.5\;V \\
 	\Delta V(0) = −83\; mV
@@ -540,12 +538,12 @@ $$
 <div class="grid2">
 <div class="">
 
-Generalmente il decodificatore viene implementato usando una struttura detta _**wired nor**_, che richiede solo $M$ transistori `NMOS` che condividono _lo stesso `PMOS` di pull-up_.
+Generalmente il decodificatore viene implementato usando una struttura detta _**wired-nor**_, che richiede solo $M$ transistori `NMOS` che condividono _lo stesso `PMOS` di pull-up_.
 
 La decodifica avviene quindi in **tre fasi successive**:
 1. **Precarica**: viene abilitato il `PMOS` per ogni $WL'$, attraverso il segnale di abilitazione $\phi_P$
 2. **Selezione**: attraverso la logica _wired-NOR_ vengono scaricate tutte le $WL$ tranne quella indirizzata
-3. **Abilitazione**: per evitare propagazione di _glitch_ durante le fasi precedenti, le $WL$ vengono connesse alle rispettive $WL'$ attraveros un `NMOS` di **passo**, abilitato da un segnale $\phi_W$ alla fine della selezione
+3. **Abilitazione**: per evitare propagazione di _glitch_ durante le fasi precedenti, le $WL$ vengono connesse alle rispettive $WL'$ attraverso un `NMOS` di **passo**, abilitato da un segnale $\phi_W$ alla fine della selezione
 
 Sulla destra possiamo vedere un esempio su **4 WL**:
 $$
@@ -563,7 +561,7 @@ $$
 </div>
 </div>
 
-## 3.4. Multipexed/Demultiplexer di Bitline
+## 3.4. Multipexer/Demultiplexer di Bitline
 
 Il _multiplexer/demultiplexer_ di colonna sfrutta la stessa architettura del $WL$ decoder, aggiungendo $N$ transistori di passo.
 
@@ -591,7 +589,7 @@ Infatti in questi circuiti venivano aggiunti/rimossi diodi/mosfet dove si voleva
 <img class="" src="./images/seq-logic/rom/mask-rom.png">
 
 
-QUeste ROM sono sono quindi programmabili, in quanto per cambiarne il contenuto adrebero aggiunti/rimossi fisicamente i diodi/transistori.
+Queste ROM sono sono quindi programmabili, in quanto per cambiarne il contenuto adrebero aggiunti/rimossi fisicamente i diodi/transistori.
 
 ## 4.2. PROM
 
@@ -633,7 +631,7 @@ La presenza di elettroni nei `NMOS` (o l'assenza nei `PMOS`) intrappolati nel po
 
 Per posizionare elettroni nel $FG$ si applica:
 1. $V_{DS}$ **elevata** $(12-21$ $V)$: gli elettroni nel canale possono assumere velocità elevate grazie al _forte campo elettrico_. Gli elettorni vengono chiamati _hot electrons_
-2. $V_{GS}$ **elevata** $(\sim 10$ $V)$: nel loro moto da _source_ a _drain_, gli elettroni vengono attirati verso il _gate-flottante_ grazie al campo elettrico verticale. Alcuni di essi, grazie all'_effetto tunnel_, supereranno la barriera di ossido accumnulandosi sul $FG$.
+2. $V_{GS}$ **elevata** $(\sim 10$ $V)$: nel loro moto da _source_ a _drain_, gli elettroni vengono attirati verso il _gate-flottante_ grazie al campo elettrico verticale. Alcuni di essi, grazie all'_effetto tunnel_, supereranno la barriera di ossido accumulandosi sul $FG$.
 
 Questo tipo di ROM ha però un **limite di cicli di scrittura**, che si aggira tra le 1000 e le 10.000 scritture. Questo avviene perché l'iniezione ripetuta danneggia l'ossido sottostante al _floating gate_, che riduce l'affidabilità.
 
@@ -662,7 +660,7 @@ Ha una struttura simile al `FG-MOS`, ma presenta una **regione di ossido tra $FG
 
 Applicando un campo elettrico elevato, nell'ordine di $\sim 10^7$ $V/cm$, si innesca l'effetto **Fowler-Nordheim Tunneling**, che permette agli elettroni di "attraversare" la barriera di potenziale dell'ossido _senza bisogno di energia esterna_.
 
-Le tensioni tra _Gate_ e _Draing_ utilizzate sono:
+Le tensioni tra _Gate_ e _Drain_ utilizzate sono:
 - **Scrittura** &emsp; $V_{GD} = + 18$ $V$
 - **Lettura** &emsp; $V_{GD} = - 18$ $V$
 
@@ -697,8 +695,8 @@ Inoltre, il transistore $(0, 1)$, avendo $V_{DS} = 18$ $V$ e $V_{GS} = 18$ $V$, 
 
 Per risolvere questo problema occorre proteggere le celle adiacenti dalla cancellazione.
 
-Per farlo è necessario:**complicare** l'architettura della cella di memoria:
-- Aggiungiendo un `NMOS` di protezione, pilotato da un opportuno segnale di selezione `SEL`.
+Per farlo è necessario **complicare** l'architettura della cella di memoria:
+- Aggiungendo un `NMOS` di protezione, pilotato da un opportuno segnale di selezione `SEL`.
 - Avendo una la linea di massa `GND` collegata al _gate flottante_ (_floating_) per ogni colonna. In questo modo si evita la dissipazione di corrente indesiderata sulla cella nella colonna successiva a quella che stiamo scrivendo.
 
 <img class="50" src="./images/seq-logic/rom/eeprom-matrix-solution.png">

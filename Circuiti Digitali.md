@@ -11,10 +11,9 @@ title: Circuiti Digitali
 		- [2.1.2. Margini di Rumore](#212-margini-di-rumore)
 		- [2.1.3. Porte Rigenerative](#213-porte-rigenerative)
 		- [2.1.4. Potenza Dissipata](#214-potenza-dissipata)
-		- [2.1.5. Potenza Dissipata](#215-potenza-dissipata)
-		- [2.1.6. Tempo di propagazione](#216-tempo-di-propagazione)
-		- [2.1.7. Power Delay Product - PDP](#217-power-delay-product---pdp)
-		- [2.1.8. Fan IN - OUT](#218-fan-in---out)
+		- [2.1.5. Tempo di propagazione](#215-tempo-di-propagazione)
+		- [2.1.6. Power Delay Product - PDP](#216-power-delay-product---pdp)
+		- [2.1.7. Fan IN - OUT](#217-fan-in---out)
 - [3. Porte Logiche](#3-porte-logiche)
 	- [3.1. Famiglie Logiche](#31-famiglie-logiche)
 	- [3.2. Logica a Diodi](#32-logica-a-diodi)
@@ -31,8 +30,7 @@ title: Circuiti Digitali
 			- [3.3.3.1. Porta `NOR` a 2 Ingressi](#3331-porta-nor-a-2-ingressi)
 			- [3.3.3.2. Porta `NAND` a 2 Ingressi](#3332-porta-nand-a-2-ingressi)
 			- [3.3.3.3. Porta Complessa a 4 Ingressi](#3333-porta-complessa-a-4-ingressi)
-			- [3.3.3.4. Porta Complessa a 4 Ingressi](#3334-porta-complessa-a-4-ingressi)
-			- [3.3.3.5. Porta `XOR` a 2 Ingressi](#3335-porta-xor-a-2-ingressi)
+			- [3.3.3.4. Porta `XOR` a 2 Ingressi](#3334-porta-xor-a-2-ingressi)
 		- [3.3.4. Dimensionare i `MOSFET` nelle Reti Combinatorie](#334-dimensionare-i-mosfet-nelle-reti-combinatorie)
 			- [3.3.4.1. Rete `NOR` a 4 Ingressi](#3341-rete-nor-a-4-ingressi)
 			- [3.3.4.2. Rete `NAND` a 4 Ingressi](#3342-rete-nand-a-4-ingressi)
@@ -212,8 +210,8 @@ Questo comportamento è dato proprio dal fatto che la derivata nella zona interm
 <img class="80" src="./images/digital/regenerative-ports.png">
 </div>
 </div>
+
 ### 2.1.4. Potenza Dissipata
-### 2.1.5. Potenza Dissipata
 
 La potenza dissipata $P_D$ si divide in due tipologie:
 - _**Statica**_: è la potenza dissipata quando la porta **non sta lavorando**
@@ -224,7 +222,7 @@ Dobbiamo cercare di:
 - **Eliminare la potenza statica**: cercheremo un modo per rimuovere questo costo durante i periodi di _idle_
 - **Minimizzare la potenza dinamica**: non possiamo eliminarla perché è necessaria energia per poter modificare un segnale. Tuttavia cerchiamo di ridurla al minimo
 
-### 2.1.6. Tempo di propagazione
+### 2.1.5. Tempo di propagazione
 
 <div class="grid2">
 <div class="">
@@ -252,7 +250,7 @@ $$
 t_P := \frac{t_{P_{HL}} + t_{P_{LH}}}{2}
 $$
 
-### 2.1.7. Power Delay Product - PDP
+### 2.1.6. Power Delay Product - PDP
 
 Mette in relazione la _Potenza Dissipata_ e il _Tempo di Propagazione_:
 $$
@@ -266,7 +264,7 @@ Questo parametro ci permette di capire quale tra due porte è più efficiente, i
 - Porte che dissipano poca potenza
 - Porte con tempi di risposta ridotti
 
-### 2.1.8. Fan IN - OUT
+### 2.1.7. Fan IN - OUT
 
 Definiamo **Fan OUT** di una porta:
 > Numero massimo di ingressi di una stessa porta collegabili all'uscita della porta
@@ -311,8 +309,10 @@ Esiste anche la famiglia che sfrutta transistori bipolari, ma oggi sono praticam
 
 In questo circuito conosciamo la tensione ai nodi $A$ e $B$:
 $$
-V_A = 5\;V \\
-V_B = 5\;V
+\begin{matrix}
+	V_A = 5\;V \\
+	V_B = 5\;V
+\end{matrix}
 $$
 
 Partiamo quindi dall'ipotesi che i due **_diodi siano interdetti_**.
@@ -348,7 +348,7 @@ Con questa nuova conformazione, otteniamo quindi che il catodo di $V_u$ è colle
 Di conseguenza avremo che $V_u = 0 - 0 = 0$.
 
 Compiendo la verifica otteniamo quindi che:
-- Per il diodo A: &emsp; $I_D = I_{CC} = \frac{V_CC}{R} > 0$
+- Per il diodo A: &emsp; $I_D = I_{CC} = \frac{V_{CC}}{R} > 0$
 - Per il diodo B: &emsp; $V_{AK} = -V_{CC} = -5\;V < V_\gamma$
 
 Analogamente sappiamo anche che se $V_A = 5$ $V$ e $V_B = 0$ $V$ otteniamo gli stessi risultati.
@@ -414,7 +414,7 @@ Di conseguenza otteniamo che $V_u = V_CC = 5$ $V$.
 La verifica è semplice in quanto:
 $$
 \begin{align*}
-	V_{D_A} &= 0 - V_{V_CC} = -V_{CC} = -5\;V \\
+	V_{D_A} &= 0 - V_{CC} = -V_{CC} = -5\;V \\
 	I_{D_B} &= \frac{V_{CC}}{R} > 0
 \end{align*}
 $$
@@ -483,7 +483,7 @@ Questo fenomeno si chiama **_Degrado dei Livelli Logici_**, e va a **limitare il
 
 Il terzo problema, forse il più grande, è che con i diodi **_non è possibile costruire una porta `NOT`_**.
 
-La logica a diodi quindi non permette di costruire reti combinatorio complesse.
+La logica a diodi quindi non permette di costruire reti combinatorie complesse.
 
 Tuttavia, queste porte non sono "inutili". Infatti vedremo più avanti che la porta `AND` a diodi, messa in cascata con un **inverter** costruito con un **transistor** è stata per tutti gli anni '50 e '60 la porta logica `NAND` utilizzata in quasi tutti i componenti.
 
@@ -492,7 +492,7 @@ Tuttavia, queste porte non sono "inutili". Infatti vedremo più avanti che la po
 
 ### 3.3.1. Notazione
 
-Nelle porte che vedremo utilizzeremo un diverso numero di `NMOS` e `CMOS`, quindi facciamo la seguente semplificazione:
+Nelle porte che vedremo utilizzeremo un diverso numero di `NMOS` e `PMOS`, quindi facciamo la seguente semplificazione:
 
 <div class="grid2">
 <div class="">
@@ -597,7 +597,7 @@ Possiamo quindi analizzare questo circuito:
 <div class="grid2">
 <div class="">
 
-I due transistori hanno _Ground_ e _Drain_ in comune.
+I due transistori hanno _Gate_ e _Drain_ in comune.
 
 La soluzione è sufficientemente semplice. Essendo i due transistori **in serie**, devono essere attraversati dalla _stessa corrente_:
 $$
@@ -677,7 +677,7 @@ Se invece studiamo quando $V_i > V^\ast$ avremo che:
 
 Al crescere di $V_i$ il punto di intersezione $V_o$ andrà a diminuire sempre più _lentamente_.
 
-L'ultimo caso è quindi quello per il quale $V_{GS_P} = V_{T_P}$, ovvero $V_i = V_{DD} + V_{TP}$, per il quale:
+L'ultimo caso è quindi quello per il quale $V_{GS_P} = V_{T_P}$, ovvero $V_i = V_{DD} + V_{T_P}$, per il quale:
 - `NMOS` **in conduzione**
 - `PMOS` **interdetto**
 
@@ -691,7 +691,7 @@ Ricordando che i transistori operano
 |        |                         Conduzione                          |                             Saturazione                             |
 | :----: | :---------------------------------------------------------: | :-----------------------------------------------------------------: |
 | `NMOS` |                $V_{GS_N} = V_i \ge V_{T_N}$                 | $V_{DS_N} \ge V_{GS_N} - V_{T_N} \Rightarrow V_o \ge V_i - V_{T_N}$ |
-| `CMOS` | $V_{GS_P} \le V_{T_P} \Rightarrow V_i \le V_{DD} + V_{T_P}$ | $V_{DS_P} \le V_{GS_P} - V_{T_P} \Rightarrow V_o \le V_i - V_{T_P}$ |
+| `PMOS` | $V_{GS_P} \le V_{T_P} \Rightarrow V_i \le V_{DD} + V_{T_P}$ | $V_{DS_P} \le V_{GS_P} - V_{T_P} \Rightarrow V_o \le V_i - V_{T_P}$ |
 
 </div>
 
@@ -745,7 +745,7 @@ Possiamo identificare le 5 zone, ogniuna diversa dall'altre per lo stato di funz
 
 </div>
 
-A questo punto è quindi smeelice risolvere il circuito, poiché è sufficiente capire in quale zona ci troviamo.
+A questo punto è quindi semplice risolvere il circuito, poiché è sufficiente capire in quale zona ci troviamo.
 
 </div>
 <div class="">
@@ -814,10 +814,10 @@ Se il nostro inverter rispetta queste condizioni, possiede una _soglia logica pe
 
 Affinché questo sia vero _**devono necessariamente essere vere entrambe le relazioni**_:
 - $V_{T_N} = - V_{T_P}$ &emsp; non abbiamo controllo, dobbiamo guardare le specifiche dei transistori
-- $K_P = K_N$ &emsp; possiamo agire sulle dimnesioni dei transistori affinché la relazione sia vera, in quanto:
+- $K_P = K_N$ &emsp; possiamo agire sulle dimensioni dei transistori affinché la relazione sia vera, in quanto:
 $$
 \Large
-\frac{\mu_N}{\mu_P} = \frac{\Biggl(\frac{W}{L}\Biggr)_P}{\Biggl(\frac{W}{L}\Biggr)_N}
+\frac{\mu_N}{\mu_P} = \frac{\Bigl(\frac{W}{L}\Bigr)_P}{\Bigl(\frac{W}{L}\Bigr)_N}
 $$
 
 In questo tipo di porte i punti a derivata in modulo unitario _**sono simmetrici**_.
@@ -986,9 +986,7 @@ Pensando ai `MOSFET` come a degli interruttori, dove:
 - `PMOS`: attivo basso
 - `NMOS`: attivo alto
 
-Possiamo vedere facilmente come:-
-- **Due `MOSFET` in _serie_** equivalgono ad una `AND`
-- **Due `MOSFET` in _parallelo_** equivalgono ad una `OR`
+Vediamo quindi le varie configurazioni:
 
 <div class="grid2">
 <div class="top">
@@ -1129,8 +1127,8 @@ Abbiamo quindi che:
 <img class="40" src="./images/digital/logic-ports/cmos/nand-2-inputs.png">
 </div>
 </div>
+
 #### 3.3.3.3. Porta Complessa a 4 Ingressi
-#### 3.3.3.4. Porta Complessa a 4 Ingressi
 
 <div class="grid2">
 <div class="">
@@ -1163,7 +1161,7 @@ La rete finale è quindi quella sulla destra.
 </div>
 </div>
 
-#### 3.3.3.5. Porta `XOR` a 2 Ingressi
+#### 3.3.3.4. Porta `XOR` a 2 Ingressi
 
 Nello `XOR` a due ingressi ha come relazione:
 $$
@@ -1488,7 +1486,7 @@ V = Q \cdot 10^{15}\;[V]
 $$
 
 Per ogni carica che si aggiunge, la tensione aumenta di un fattore di $10^{15}$.
-Nel caso in cui un numeor nemmeno così elevato di _cariche esterne_ (elettrostatiche, contatto, ...) dovesse entrare in contatto con il `MOSFET`, il componente **potrebbe bruciarsi**.
+Nel caso in cui numero nemmeno così elevato di _cariche esterne_ (elettrostatiche, contatto, ...) dovesse entrare in contatto con il `MOSFET`, il componente **potrebbe bruciarsi**.
 
 Esistono diversi metodi di protezione "esterni" al circuito, ad esempio:
 - _Buste Elettrostatiche_ per i trasporti
@@ -1643,7 +1641,7 @@ Per fare ciò ci sono diverse possibilità:
 
 #### 3.4.1.1. Interruttore `NMOS`
 
-Ipotizziamo di utilizzare un transistore `NMOS` integrato, ovvero un transistore nel quale il _drain_ e il _source_ sono **perfettamente intersambiabili**.
+Ipotizziamo di utilizzare un transistore `NMOS` integrato, ovvero un transistore nel quale il _drain_ e il _source_ sono **perfettamente interscambiabili**.
 
 Per capire il funzionamento o meno della nostra scelta andiamo a studiare la tensione ai capi del condensatore
 
@@ -1681,7 +1679,7 @@ $$
 $$
 
 Dato che la tensione di soglia $V_T$ è **sicuramente inferiore a $V_{DD}$**, abbiamo che l'`NMOS` conduce.
-Per capire in che modo è in donduzione analizziamo la $V_{DS}$:
+Per capire in che modo è in conduzione analizziamo la $V_{DS}$:
 $$
 \begin{align*}
 	V_{DS} &= V_D - V_S \\
@@ -1746,8 +1744,7 @@ $$
 \end{cases}
 $$
 
-Utilizzare un `NMOS` per trasmettere un livello logico alto comporta una **perdita**.
-
+Utilizzare un `NMOS` per trasmettere un livello logico alto comporta quindi una **perdita di tensione**.
 
 <div class="grid2">
 <div class="">
@@ -1755,7 +1752,7 @@ Utilizzare un `NMOS` per trasmettere un livello logico alto comporta una **perdi
 Studiamo adesso la **scarica del condensatore**, ovvero che a $t = 0$:
 $$
 \begin{cases}
-	V_C = 0 \\
+	V_C = V_{DD} \\
 	V_i = 0
 \end{cases}
 $$
@@ -1767,7 +1764,7 @@ In questo caso la corrente scorrerà nel verso opposto, quindi il _Drain_ e il _
 Studiamo se il `MOSFET` conduce:
 $$
 \begin{align*}
-	V_{GS} = V_G - V_S \\
+	V_{GS} &= V_G - V_S \\
 	&= V_{DD} - 0 \\
 	&= V_{DD} > V_T
 \end{align*}
@@ -1805,13 +1802,15 @@ L'`NMOS` è quindi un **_ottimo interruttore nella trasmissione di livelli bassi
 
 #### 3.4.1.2. Interruttore PMOS
 
-Imagginiamo stavolta di utilizzare un `PMOS` integrato come interruttore.
+Immaginiamo stavolta di utilizzare un `PMOS` integrato come interruttore.
 
 Ancora una volta vediamo i due processi di carica e scarica, stavolta recuperando i ragionamenti già fatti.
 
 <div class="grid2">
 <div class="top">
 <p class="p">Carica</p>
+
+---
 
 Per quanto riguarda la carica:
 
@@ -1836,6 +1835,8 @@ L'interruttore `PMOS` è quindi un **_ottimo interruttore nella trasmissione di 
 </div>
 <div class="top">
 <p class="p">Scarica</p>
+
+---
 
 Per quanto riguarda la scarica:
 
@@ -1866,13 +1867,15 @@ Utilizzare un `PMOS` per trasmettere un livello logico basso comporta quindi una
 </div>
 </div>
 
+---
+
 La tensione ai capi del condensatore quindi ha il seguente andamento nel tempo quando la commutiamo:
 
 <figure class="50">
 <img class="80" src="./images/digital/logic-ports/pass-trans/switches/pmos-tension.png">
 <figcaption>
 
-Immaginiamo che la porta sia appena stata attivata per la trima volta.
+Immaginiamo che la porta sia appena stata attivata per la prima volta.
 Dopo una doppia commutazione, la tensione di partenza sarà $-V_T$.
 </figcaption>
 </figure>

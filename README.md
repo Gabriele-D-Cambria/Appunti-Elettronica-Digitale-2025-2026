@@ -65,22 +65,18 @@ Questa parte di Spice NON È COMPRESA ALL'INTERNO DELL'ESAME, ma il loro scopo �
 
 ## 📖 Ordine di Studio Consigliato
 
-<div class="alert">
-Gli appunti non sono terminati e potrebbero avere errori e/o potrebbero mancare delle immagini.
-</div>
-
 1. [Introduzione](./Introduzione)
 2. [Corrente nei Materiali](./Corrente%20nei%20Materiali)
 3. [Diodo](./Diodo)
-5. [Rettificatori di Tensione](./Rettificatori%20di%20Tensione)
-6. [Transistore Bipolare](./Transistore%20Bipolare)
-7. [Transistore a Effetto di Campo](./Transistore%20a%20Effetto%20Di%20Campo)
-8. [Circuiti Amplificatori](./Circuiti%20Amplificatori)
-9. [Regolatori di Tensione](./Regolatori%20di%20Tensione)
-10. [Circuiti Digitali](./Circuiti%20Digitali)
-11. [Multivibratori](./Multivibratori)
-12. [Logica Sequenziale](./Logica%20Sequenziale)
-13. [Convertitori](./Convertitori)
+4. [Rettificatori di Tensione](./Rettificatori%20di%20Tensione)
+5. [Transistore Bipolare](./Transistore%20Bipolare)
+6. [Transistore a Effetto di Campo](./Transistore%20a%20Effetto%20Di%20Campo)
+7. [Circuiti Amplificatori](./Circuiti%20Amplificatori)
+8. [Regolatori di Tensione](./Regolatori%20di%20Tensione)
+9.  [Circuiti Digitali](./Circuiti%20Digitali)
+10. [Multivibratori](./Multivibratori)
+11. [Logica Sequenziale](./Logica%20Sequenziale)
+12. [Convertitori](./Convertitori)
 
 ## 📜 Disclaimer
 

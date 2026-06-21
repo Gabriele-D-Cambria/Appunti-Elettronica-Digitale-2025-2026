@@ -424,7 +424,7 @@ $$
 $$
 
 Dove $T$ è la temperatura, $q$ è la carica dell'elettrone e $K_B$ è la costante di Boltzman.
-IL rapporto tra uqeste quantità si chiama **_Tensione Termica_** (_Thermal Voltage_), e a $T = 300K$ vale circa $26$ $mV$.
+Il rapporto tra queste quantità si chiama **_Tensione Termica_** (_Thermal Voltage_), e a $T = 300K$ vale circa $26$ $mV$.
 
 # 5. Corrente Totale
 
