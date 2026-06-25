@@ -16,7 +16,7 @@ function setupPrismCodeBlocks() {
             }
         }
     });
-    
+
     // Crea un alias per x86asm che usa la grammatica NASM
     if (window.Prism && Prism.languages.nasm) {
         Prism.languages.x86asm = Prism.languages.nasm;
@@ -39,17 +39,17 @@ function setupDynamicHeader() {
     let lastScrollY = window.scrollY;
     let isScrollingDown = false;
     let ticking = false;
-    
+
     const header = document.querySelector('.site-header');
-    
+
     if (!header) {
         console.warn('Header non trovato');
         return;
     }
-    
+
     function updateHeader() {
         const currentScrollY = window.scrollY;
-        
+
         if (currentScrollY > lastScrollY && currentScrollY > 100) {
             // Scrolling down - hide header
             if (!isScrollingDown) {
@@ -65,26 +65,58 @@ function setupDynamicHeader() {
                 isScrollingDown = false;
             }
         }
-        
+
         // Se siamo in cima alla pagina, rimuovi tutte le classi
         if (currentScrollY <= 50) {
             header.classList.remove('hidden', 'visible');
             isScrollingDown = false;
         }
-        
+
         lastScrollY = currentScrollY;
         ticking = false;
     }
-    
+
     function requestTick() {
         if (!ticking) {
             requestAnimationFrame(updateHeader);
             ticking = true;
         }
     }
-    
+
     window.addEventListener('scroll', requestTick);
 }
+
+// ============================================================================
+// MATHJAX CONFIGURATION
+// ============================================================================
+
+/**
+ * Configurazione MathJax
+ */
+window.MathJax = {
+    tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true,
+        processEnvironments: true,
+        processRefs: true,
+        tags: 'none'
+    },
+    options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+        processHtmlClass: 'tex2jax_process',
+        ignoreHtmlClass: 'tex2jax_ignore'
+    },
+    chtml: {
+        displayAlign: 'center',
+        displayIndent: '0em'
+    },
+    startup: {
+        ready() {
+            MathJax.startup.defaultReady();
+        }
+    }
+};
 
 // ============================================================================
 // INITIALIZATION
@@ -96,7 +128,7 @@ function setupDynamicHeader() {
 function initializeSite() {
     // Configura i blocchi di codice Prism
     setupPrismCodeBlocks();
-    
+
     // Configura l'header dinamico
     setupDynamicHeader();
 }
