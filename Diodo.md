@@ -57,11 +57,11 @@ $$
 	\vec{J}_{p,DIFF} = -q\cdot D_p \cdot \frac{\partial p}{\partial x}\;\hat{x}
 $$
 
-Nel nostro caso, $\vec{J}_{p,DIFF}$ è **da destra verso sinistra**.
+Nel nostro caso, $\vec{J}_{p,DIFF}$ è **da sinistra verso destra**.
 
 Analogamente, abbiamo anche un gradiente di densità degli elettroni, che genera anch'esso una _densità di carica di diffusione_:
 $$
-	\vec{J}_{n,DIFF} = +q \cdot D_n \cdot \frac{\partial p}{\partial x}\;\hat{x}
+	\vec{J}_{n,DIFF} = +q \cdot D_n \cdot \frac{\partial n}{\partial x}\;\hat{x}
 $$
 
 Anche in questo caso, avremo che $\vec{J}_{n,DIFF}$ è diretta da sinistra verso destra.
@@ -592,7 +592,7 @@ Dove $v_d(t)$ e $i_d(t)$ sono funzioni sinusoidali.
 
 Chiamiamo quindi $Q$ il **punto di riposo** (_quiescente_), ovvero il punto dove $v_d(t) = i_d(t) = 0$. Questo punto avrà coordinate &emsp; $Q = (V_D, I_D)$.
 
-L'idea chiave dei piccoli segnali è che se le variazioni del segnale $v_d$ sono _sufficientemente piccole rispetto alla tensione termica_ $U_T$, allora la **curva esponenziale del diodo** può essere **_approssimata con un segmento rettilineo coincidente con la tangente nel punto $Q$_**.
+L'idea chiave dei piccoli segnali è che se le variazioni del segnale $v_d$ sono _sufficientemente piccole rispetto alla tensione termica_ $V_T$, allora la **curva esponenziale del diodo** può essere **_approssimata con un segmento rettilineo coincidente con la tangente nel punto $Q$_**.
 </div>
 <div class="">
 <img class="70" src="./images/diode/small-signals/model-graph.png">
@@ -641,10 +641,10 @@ $$
 Possiamo quindi linearizzare la _legge di Shockley_:
 $$
 \begin{CD}
-	{i_D = f(v_D) = I_S\Bigl(e^{v_D/(\eta U_T)} - 1\Bigr)} \\
+	{i_D = f(v_D) = I_S\Bigl(e^{v_D/(\eta V_T)} - 1\Bigr)} \\
 	@VVV \\
 	{
-		g_d = \frac{\partial f(V_{DQ})}{\partial v_D} = \frac{I_S}{\eta U_T}\cdot e^{V_D/(\eta U_T)}
+		g_d = \frac{\partial f(V_{DQ})}{\partial v_D} = \frac{I_S}{\eta V_T}\cdot e^{V_D/(\eta V_T)}
 	}
 \end{CD}
 $$
@@ -652,10 +652,10 @@ $$
 Sommando e sottraendo $I_S$ dal numeratore otteniamo:
 $$
 \begin{aligned}
-	g_d &= \frac{I_S\Bigl(e^{V_D/(\eta U_T)} - 1\Bigr) + I_S}{\eta U_T} \\
-		&= \frac{f(V_D) + I_S}{\eta U_T} \\
-		&= \frac{I_{DQ} + I_S}{\eta U_T} \\
-		&\approx \frac{I_{DQ}}{\eta U_T} & I_{DQ} \gg I_S
+	g_d &= \frac{I_S\Bigl(e^{V_D/(\eta V_T)} - 1\Bigr) + I_S}{\eta V_T} \\
+		&= \frac{f(V_D) + I_S}{\eta V_T} \\
+		&= \frac{I_{DQ} + I_S}{\eta V_T} \\
+		&\approx \frac{I_{DQ}}{\eta V_T} & I_{DQ} \gg I_S
 \end{aligned}
 $$
 
@@ -664,13 +664,13 @@ $$
 \begin{CD}
 {\Biggl| \frac{\partial f(V_{DQ})}{\partial v_D} \cdot v_D(t) \Biggr| \gg \Biggl| \frac{1}{2}\frac{\partial^2 f(V_{DQ})}{\partial v_D^2} \cdot v_D^2(t) \Biggr|} \\
 @VVV \\
-{\frac{I_{DQ} +  I_S}{\eta U_T} \gg \frac{I_{DQ} + I_S}{2(\eta U_T)^2} \cdot |v_d(t)|} \\
+{\frac{I_{DQ} +  I_S}{\eta V_T} \gg \frac{I_{DQ} + I_S}{2(\eta V_T)^2} \cdot |v_d(t)|} \\
 @VVV \\
-{|v_d(t)| \ll 2\eta U_T}
+{|v_d(t)| \ll 2\eta V_T}
 \end{CD}
 $$
 
-Per $U_T = \frac{K_BT}{q} \approx 26$ $mV$ a $300°K$ e $\eta = 1.1$ ottenuamo quindi che la relazione è valida solamente per oscillazioni di ampiezza molto inferiore a:
+Per $V_T = \frac{K_BT}{q} \approx 26$ $mV$ a $300°K$ e $\eta = 1.1$ ottenuamo quindi che la relazione è valida solamente per oscillazioni di ampiezza molto inferiore a:
 $$
 |v_d(t)| \ll 57.2\;mV
 $$
@@ -678,8 +678,8 @@ $$
 In generale, per **segnali con ampiezze di pochi milli-volt** la nostra linearizzazione è valida, ottenendo valori:
 $$
 \begin{cases}
-	\textbf{In conduzione } (I_{DQ} = 1\;mA) & r_d = \frac{\eta U_T}{I_{DQ}} = 28.6\;k\Omega \\[1em]
-	\textbf{In interdizione con } V_{DQ} = 0 \:(I_{DQ} = 1\;nA) & r_d = \frac{\eta U_T}{I_{DQ}} = 28.6\;G\Omega \\
+	\textbf{In conduzione } (I_{DQ} = 1\;mA) & r_d = \frac{\eta V_T}{I_{DQ}} = 28.6\;k\Omega \\[1em]
+	\textbf{In interdizione con } V_{DQ} = 0 \:(I_{DQ} = 1\;nA) & r_d = \frac{\eta V_T}{I_{DQ}} = 28.6\;G\Omega \\
 \end{cases}
 $$
 
@@ -689,7 +689,7 @@ $$
 <div class="">
 
 Per analizzare un circuito sottoposto a piccole perturbazioni attorno un punto di riposo, lo risolviamo sfruttando la **sovrapposizione degli effetti**:
-1. Prima cerchiamo il **punto di riposo**: _spegnamo tutti i generatori AC_ e utilizziamo il _modello del diodo per grandi segnali a caduta costante_. L'obiettivo è quindi trovare $I_{DQ}$, e quindi anche $r_d = \frac{V_T}{I_{DQ}}$
+1. Prima cerchiamo il **punto di riposo**: _spegnamo tutti i generatori AC_ e utilizziamo il _modello del diodo per grandi segnali a caduta costante_. L'obiettivo è quindi trovare $I_{DQ}$, e quindi anche $r_d = \frac{\eta V_T}{I_{DQ}}$
 2. Dopo effettuamo l'**analisi alternata**: _spegnamo tutti i generatori DC_ e _sostituiamo al diodo la resistenza_ $r_d$. L'obiettivo è **calcolare il guadagno/perturbazione** di $i_d$ e $v_d$.
 
 
@@ -702,7 +702,7 @@ Per analizzare un circuito sottoposto a piccole perturbazioni attorno un punto d
 Per quanto riguarda il primo punto possiamo quindi risolvere ipotizzando il diodo in conduzione:
 $$
 	I_{DQ} = \frac{E - V_\gamma}{R} \\[0.75em]
-	r_d = \frac{\eta U_T}{I_{DQ}} \\[0.75em]
+	r_d = \frac{\eta V_T}{I_{DQ}} \\[0.75em]
 $$
 
 Risolvendo invece il secondo circuito, utilizzando il diodo linearizzato:

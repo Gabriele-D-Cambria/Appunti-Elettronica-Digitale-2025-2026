@@ -31,9 +31,9 @@ Dove $\rho$ è la **_Resistività_** e $\sigma$ e la **_Conducibilità_**.
 Questa legge ignora però il ruolo nel singolo elettrone, concentrandosi sul trasporto di corrente. Queste riflessioni sono comprese nel parametro $\rho$.
 
 In particolare è proprio a al variare del $\rho$ di un materiale che questo viene classificato come:
-- **_Conduttore_**: &emsp; $\rho < 10^-2 \;[\Omega \cdot cm]$
+- **_Conduttore_**: &emsp; $\rho < 10^{-2} \;[\Omega \cdot cm]$
 - **_Isolante_**: &emsp; $\rho > 10^5 \;[\Omega \cdot cm]$
-- **_Semiconduttori_**: &emsp; $10^-2 < \rho < 10^5 \;[\Omega \cdot cm]$
+- **_Semiconduttori_**: &emsp; $10^{-2} < \rho < 10^5 \;[\Omega \cdot cm]$
 
 Nel corso tratteremo principalmente i _semiconduttori_, materiali la cui resistività è controllabile a nostro piacimento.
 
@@ -61,7 +61,7 @@ Infatti, anche con il campo elettrico **continuiamo ad avere degli urti**, ma ot
 Il matematico e fisico Drude, propose di studiare il comportamento degli elettroni nei metalli _come se fossero dei gas_.
 Facendo diverse ipotesi semplificative, come ad esempio:
 - Gli elettroni non interagiscono tra loro
-- Gli urti tra elettroni e protono sono perfettamente anaelastici
+- Gli urti tra elettroni e protoni sono perfettamente anaelastici
 - ...
 
 Portarono alla seguente conclusione:
