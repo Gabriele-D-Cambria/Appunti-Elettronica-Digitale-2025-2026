@@ -229,11 +229,11 @@ $$
 	\begin{matrix}
 		V_1 = N_1 {d\phi \over dt} \\[0.75em]
 		V_2 = N_2 {d\phi \over dt}
-	\end{matrix} @ > > >
+	\end{matrix} @> > >
 	\frac{V_1}{V_2} = \frac{N_1}{N_2}
 \end{CD}
-
 $$
+
 </div>
 <div class="">
 <img class="50" src="./images/diode/converter/transformatore.png">
@@ -512,7 +512,7 @@ $$
 Affinché il circuito funzioni dobbiamo in ogni momento rispettare che la potenza del diodo sia minore del limite massimo, ovvero $V_ZI_{Z,max} < P_{Z,max}$, che ci permette di calcolare:
 $$
 \begin{CD}
-	{I_{Z,max} < \frac{P_{Z,max}}{V_Z}}
+	{I_{Z,max} < \frac{P_{2,max}}{V_Z}}
 	@>{I_{Z,max} = \frac{V'_{2,max}-V_Z}{R}}> >
 	\boxed{
 		R > \frac{(V'_{Z,max} - V_Z)V_Z}{P_{Z,max}}\;\Omega
@@ -529,7 +529,7 @@ $$
 \end{CD}
 $$
 
-Per quantificare quindi il minimo valore massimo della corrente, analizziamo quando $V'_{2,min}$, ovvero il **caso peggiore**:
+Per quantificare quindi il minimo valore massimo della corrente, dobbiamo analizzare quando $V'_{2,min}$, ovvero il **caso peggiore**:
 $$
 I_{L,max} = \frac{V'_{2,min} - V_Z}{R}\;A
 $$

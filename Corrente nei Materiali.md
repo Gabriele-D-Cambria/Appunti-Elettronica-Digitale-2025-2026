@@ -401,7 +401,7 @@ $$
 	\vec{J}_{DIFF} = (-q) \cdot D_n \cdot \Biggl(-\frac{\partial n}{\partial x}\Biggr) = q \cdot D_n \cdot \frac{\partial n}{\partial x} \hat{x} \; [A \cdot cm^{-2}]
 $$
 
-Dove $D_n$ rappresenta la **_costante di diffusione_**, che a temperatira ambiente vale circa $34$ $cm^2 \cdot s^{-1}$.
+Dove $D_n$ rappresenta la **_costante di diffusione_**, che a temperatura ambiente vale circa $34$ $cm^2 \cdot s^{-1}$.
 
 Nel caso degli elettroni torna il fatto che la corrente è di senso opposto a quello del movimento degli elettroni, in quanto **_la derivata è sempre negativa_**.
 

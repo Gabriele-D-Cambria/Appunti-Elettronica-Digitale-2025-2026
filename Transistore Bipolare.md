@@ -60,7 +60,6 @@ $$
 		A_V = \frac{v_2}{v_S} = -A_i\frac{R_L}{R_S}
 	}
 \end{CD}
-
 $$
 
 In generale, per un generico quadripolo:
@@ -143,7 +142,7 @@ Trattiamo quindi le due giunzioni di un transistore `pnp` separatamente.
 
 La prima giunzione (`BE`) presa singolarmente equivale letteralmente ad un _diodo_.
 
-Se lo consideriamo in _polarizzazione diretta_ $V_{BE} > 0$, il contributo maggioritario della corrente è quello delle _lacune_, che producono la **corrente di diffusione**.
+Se lo consideriamo in _polarizzazione diretta_, ovvero $V_{BE} < 0$, il contributo maggioritario della corrente è quello delle _lacune_, che producono la **corrente di diffusione**.
 
 </div>
 <div class="">
@@ -173,7 +172,7 @@ Diciamo quindi di essere in **_Zona Attiva Diretta_** `ZAD` quando:
 - La giunzione `BE` è in polarizzazione diretta
 - La giunzione `BC` è in polarizzazione inversa
 
-Nel caso `pnp` abbiamo quindi $V_{EB} > 0$ e $V_{CB} < 0$.
+Nel caso `pnp` abbiamo quindi $V_{BE} < 0$ e $V_{CB} < 0$.
 
 Gli effetti che osserviamo sono:
 - Grande flusso di lacune da $E$ a $B$, dovuta alla _corrente di diffusione_
@@ -181,11 +180,11 @@ Gli effetti che osserviamo sono:
 
 Le lacune che "sopravvivono" al passaggio attraverso la base arrivano quindi alla **zona di svuotamento** `BC`, dove è presente un _forte campo elettrico_. Queste lacune riforniscono quindi la giunzione `BC` in **inversa**.
 
-Oltre a questo flusso principale se ne hanno altri che sono trascurabili, dovuti a drogaggi assimmetrici e/o generazione termica di minoritari.
+Oltre a questo flusso principale se ne hanno altri che sono trascurabili, dovuti a drogaggi asimmetrici e/o generazione termica di minoritari.
 
 ### 2.2.1. Effetto Transistore
 
-Chiamiamo **effetto transitore**:
+Chiamiamo **effetto transistore**:
 > L'effetto per cui una _piccola corrente di base_ permette di controllare un _elevata corrente emettitore-collettore_. <br>
 > In particolare quest'ultima sarà una versione **amplificata della corrente di base**.
 
@@ -194,7 +193,7 @@ Chiamiamo **effetto transitore**:
 Se questo non accadesse, ovvero $I_B = 0$, i portatori si _accumulerebbero in base_, generando quindi un potenziale che ostacolerebbe l'ulteriore iniezione di portatori, portando ad avere una corrente di uscita $I_E = 0$.
 La zona neutra della base quindi **_sparirebbe_**.
 
-La corrente $I_B$ deve quindi essere sottoposta ad un meccanismo di controllo per matenere la zona neutra della base. Il numero di portatori maggioritari che raggiungono il collettore deve essere **_proporzionale_** al numero di portatori che si ricombinano in base. La percentuale di ricombinazione in base è dettata dalle dimensioni geometriche e dai drogaggi.
+La corrente $I_B$ deve quindi essere sottoposta ad un meccanismo di controllo per matenere la zona della base neutra. Per fare ciò, il numero di portatori maggioritari che raggiungono il collettore deve essere **_proporzionale_** al numero di portatori che si ricombinano in base. La percentuale di ricombinazione in base è dettata dalle dimensioni geometriche e dai drogaggi.
 
 ### 2.2.2. Differenze tra Collettore e Emettitore
 
@@ -202,7 +201,7 @@ Il `BJT` **_non è un dispositivo simmetrico_**.
 
 L'emettitore è infatti **molto più drogato** rispetto al collettore. Proprio questa differenza permette di _trascurare la corrente di elettroni iniettati dalla base_.
 
-Se cambio il ruolo di $E$ con $C$ invertendo le polarizzazioni e agendo nella **_Zona Attiva Inversa_** `ZAI`, nella quale  $V_{EB} < 0$ e $V_{CB} > 0$, continueremmo ad osservare l'_effetto transistore_, ma stavolta la corrente di base $I_B$ **sarebbe più consistente a parità di flusso di portatori**, poiché avrebbe il compito di rifornire continuamente le lacune che si ricombinano nella base e quelle che vengono perse nel collettore.
+Se cambio il ruolo di $E$ con $C$ invertendo le polarizzazioni e agendo nella **_Zona Attiva Inversa_** `ZAI`, nella quale  $V_{BE} > 0$ e $V_{CB} > 0$, continueremmo ad osservare l'_effetto transistore_, ma stavolta la corrente di base $I_B$ **sarebbe più consistente a parità di flusso di portatori**, poiché avrebbe il compito di rifornire continuamente le lacune che si ricombinano nella base e quelle che vengono perse nel collettore.
 
 Questo influisce notevolmente nella capacità di controllare una corrente grande con una corrente piccola.
 
@@ -242,16 +241,16 @@ Analizziamo cosa succede nei `pnp`, tenendo a mente che le analisi saranno valid
 Le equazioni di _Shockley_ per i diodi, trascurando i fattori di non idealità $\eta$, sono quindi:
 $$
 \begin{cases}
-	I_{ED} = I_{ES}(e^{V_{EB}/U_T} - 1) \\
-	I_{CD} = I_{CS}(e^{V_{CB}/U_T} - 1)
+	I_{E_D} = I_{E_S}(e^{V_{EB}/U_T} - 1) \\
+	I_{C_D} = I_{C_S}(e^{V_{CB}/U_T} - 1)
 \end{cases}
 $$
 
 Dalle equazioni ai nodi otteniamo quindi:
 $$
 \begin{align*}
-	I_E &= I_{ED} - \alpha_R I_{CD} \\
-	I_C &= I_{CD} - \alpha_F I_{ED} \\
+	I_E &= I_{E_D} - \alpha_R I_{C_D} \\
+	I_C &= I_{C_D} - \alpha_F I_{E_D} \\
 	I_B &= -I_E - I_C
 \end{align*}
 $$
@@ -265,8 +264,8 @@ Sostituendo nelle equazioni ai nodi le equazioni di Shockely otteniamo:
 $$
 \begin{cases}
 	\begin{align*}
-		I_E &= I_{ES}(e^{V_{EB}/U_T} - 1) - \alpha_R I_{CS}(e^{V_{CB}/U_T} - 1) \\[0.5em]
-		I_C &= I_{CS}(e^{V_{CB}/U_T} - 1) - \alpha_F I_{ES}(e^{V_{EB}/U_T} - 1)
+		I_E &= I_{E_S}(e^{V_{EB}/U_T} - 1) - \alpha_R I_{C_S}(e^{V_{CB}/U_T} - 1) \\[0.5em]
+		I_C &= I_{C_S}(e^{V_{CB}/U_T} - 1) - \alpha_F I_{E_S}(e^{V_{EB}/U_T} - 1)
 	\end{align*}
 \end{cases}
 $$
@@ -275,8 +274,8 @@ Nel modello `npn` è quindi facile ricavare che:
 $$
 \begin{cases}
 	\begin{align*}
-		I_E &= - I_{ES}(e^{V_{EB}/U_T} - 1) + \alpha_R I_{CS}(e^{V_{CB}/U_T} - 1) \\[0.5em]
-		I_C &= - I_{CS}(e^{V_{CB}/U_T} - 1) + \alpha_F I_{ES}(e^{V_{EB}/U_T} - 1)
+		I_E &= - I_{E_S}(e^{V_{EB}/U_T} - 1) + \alpha_R I_{C_S}(e^{V_{CB}/U_T} - 1) \\[0.5em]
+		I_C &= - I_{C_S}(e^{V_{CB}/U_T} - 1) + \alpha_F I_{E_S}(e^{V_{EB}/U_T} - 1)
 	\end{align*}
 \end{cases}
 $$
@@ -286,20 +285,20 @@ $$
 \begin{CD}
 	\underbrace{\begin{matrix}
 		\begin{aligned}
-			I_E &= I_{ES}(e^{V_{EB}/U_T} \cancel{- 1}) - \alpha_R I_{CS}(\cancel{e^{V_{CB}/U_T}} - 1) \\
-			I_E &= I_{ES}\cdot e^{V_{EB}/U_T} \cancel{+ \alpha_R I_{CS}} \\
-			I_E &= I_{ES}\cdot e^{V_{EB}/U_T}
+			I_E &= I_{E_S}(e^{V_{EB}/U_T} \cancel{- 1}) - \alpha_R I_{C_S}(\cancel{e^{V_{CB}/U_T}} - 1) \\
+			I_E &= I_{E_S}\cdot e^{V_{EB}/U_T} \cancel{+ \alpha_R I_{C_S}} \\
+			I_E &= I_{E_S}\cdot e^{V_{EB}/U_T}
 		\end{aligned} & &
 		\begin{aligned}
-			I_C &= I_{CS}(\cancel{e^{V_{CB}/U_T}} - 1) - \alpha_F I_{ES}(e^{V_{EB}/U_T} \cancel{- 1}) \\
-			I_C &= \cancel{-I_{CS}} -\alpha_F I_{ES}\cdot e^{V_{EB}/U_T} \\
-			I_C &= -\alpha_F I_{ES}\cdot e^{V_{EB}/U_T}
+			I_C &= I_{C_S}(\cancel{e^{V_{CB}/U_T}} - 1) - \alpha_F I_{E_S}(e^{V_{EB}/U_T} \cancel{- 1}) \\
+			I_C &= \cancel{-I_{C_S}} -\alpha_F I_{E_S}\cdot e^{V_{EB}/U_T} \\
+			I_C &= -\alpha_F I_{E_S}\cdot e^{V_{EB}/U_T}
 		\end{aligned}
 	\end{matrix}} \\
 	@VVV \\
 	\boxed{
 		\begin{aligned}
-			I_E &= I_{ES}e^{V_{EB}/U_T}\\[1em]
+			I_E &= I_{E_S}e^{V_{EB}/U_T}\\[1em]
 			I_C &= -\alpha_F I_E \\[1em]
 			I_B &= -(I_E + I_C) = (\alpha_F - 1)I_E
 		\end{aligned}
@@ -319,15 +318,16 @@ $$
 I_C = \beta_F I_B
 $$
 
-Quello che accade nelle varie zone:
+Quello che accade nei `BJT` è quindi:
+
 <div class="flexbox" markdown="1">
 
-| Zona di Funzionamento |   Polarizzazione Giunzioni    |           $\beta$           |       Impiego `BJT`        |
-| :-------------------: | :---------------------------: | :-------------------------: | :------------------------: |
-| Attiva Diretta `ZAD`  | $V_{BE} > 0 \quad V_{BC} < 0$ |    $49 < \beta_F<  499$     |       Amplificatore        |
-| Attiva Inversa `ZAI`  | $V_{BE} < 0 \quad V_{BC} > 0$ | $\frac{2}{3} < \beta_R < 4$ | Amplificatore inefficiente |
-|  Interdizione `OFF`   | $V_{BE} < 0 \quad V_{BC} < 0$ |        Non definito         |    Interruttore aperto     |
-|   Saturazione `ON`    | $V_{BE} > 0 \quad V_{BC} > 0$ |   $\beta_F > \beta_{sat}$   |    Interruttore chiuso     |
+| Zona di Funzionamento | Polarizzazione Giunzioni `pnp` | Polarizzazione Giunzioni `npn` |           $\beta$           |       Impiego `BJT`        |
+| :-------------------: | :----------------------------: | :----------------------------: | :-------------------------: | :------------------------: |
+| Attiva Diretta `ZAD`  | $V_{BE} < 0 \quad V_{BC} > 0$  | $V_{BE} < 0 \quad V_{BC} > 0$  |    $49 < \beta_F<  499$     |       Amplificatore        |
+| Attiva Inversa `ZAI`  | $V_{BE} > 0 \quad V_{BC} < 0$  | $V_{BE} > 0 \quad V_{BC} < 0$  | $\frac{2}{3} < \beta_R < 4$ | Amplificatore inefficiente |
+|  Interdizione `OFF`   | $V_{BE} > 0 \quad V_{BC} > 0$  | $V_{BE} > 0 \quad V_{BC} > 0$  |        Non definito         |    Interruttore aperto     |
+|   Saturazione `ON`    | $V_{BE} < 0 \quad V_{BC} < 0$  | $V_{BE} < 0 \quad V_{BC} < 0$  |   $\beta_F > \beta_{sat}$   |    Interruttore chiuso     |
 
 </div>
 
@@ -354,7 +354,7 @@ I_B \approx (1 - \alpha_F)|I_E| \approx (1 - \alpha_F)|I_{ES}|\cdot e^{V_{BE}/U_
 $$
 
 Notiamo che questa caratteristica è analoga a quella del _diodo_.
-Per semplicità consideriamo la `ZAD` per $V_{BE} > V_\gamma$.
+Per semplicità analizziamo un `npn` in `ZAD` per $V_{BE} > V_\gamma$.
 
 In questa zona, notiamo che in realtà $I_B = f(V_{BE})$, ovvero che **_non abbiamo dipendenza da_** $V_{CE}$.
 
@@ -437,12 +437,22 @@ Vediamo quindi l'effetto nei due transistori a parità di $V_{BE}$:
 
 <div class="grid2">
 <div class="top">
-<p class="p">npn</p>
+<figure class="">
 <img class="80" src="./images/transistor/bjt/early-effect-npn.png">
+<figcaption>
+
+npn
+</figcaption>
+</figure>
 </div>
 <div class="top">
-<p class="p">pnp</p>
+<figure class="">
 <img class="80" src="./images/transistor/bjt/early-effect-pnp.png">
+<figcaption>
+
+pnp
+</figcaption>
+</figure>
 </div>
 </div>
 
@@ -762,7 +772,7 @@ L'amplificazione è quindi linearmente dipendente da $\beta_F$, e quindi può va
 
 ## 2.8. Polarizzazione BJT - Rete a 4 resistori
 
-Per ottenere una polarizzazione indipendente dalla temperatura è necessario fissare una corrente continua costante di collettore o di emettitore che sia anch'essa **_poco sensibile alle variazioni_** della temperatira.
+Per ottenere una polarizzazione indipendente dalla temperatura è necessario fissare una corrente continua costante di collettore o di emettitore che sia anch'essa **_poco sensibile alle variazioni_** della temperatura.
 
 In particolare utilizziamo un circuito a 4 resistori. Questo circuito, come si può vedere sotto, può essere sostituito effettuando l'_equivalente Thévenin_ per ottenere una struttura più simile a quella già vista:
 
