@@ -546,7 +546,7 @@ $$
 \LARGE
 \boxed{
 	\begin{array}{cc:c}
-		\textbf{NMOS} &&& \textbf{CMOS} \\[0.5em]
+		\textbf{NMOS} &&& \textbf{PMOS} \\[0.5em]
 		i_{DS}  = \mu_n C_{ox} \frac{W}{L} \cdot \frac{(V_{GS} - V_{Tn})^2}{2} &&&
 		i_{SD}  = \mu_p C_{ox} \frac{W}{L} \cdot \frac{(V_{GS} - V_{Tp})^2}{2}  \\[1em]
 		V_{DS} \ge V_{GS} - V_{Tn} &&& V_{DS} \le V_{GS} - V_{Tp}
@@ -578,7 +578,7 @@ Anche se le tensioni di soglia sono simili in modulo, i valori $\mu_p$ e $\mu_n$
 
 Per avere due transistori `NMOS` e `PMOS` **complementari**, ovvero per i quali le due caratteristiche di tensione sono **esattamente simmetrici rispetto all'origine** i progettisti possono **_agire sulle dimensioni del transistore_** $W$ e $L$.
 
-Questo valori sono infatti tendenzialmente solamente _limitati inferiormente_, e non hanno dimensioni massime (se non quelle che ci possiamo permettere economicamente). Quindi il progettista può impostare i due parametri in modo che:
+Questi valori sono infatti tendenzialmente solamente _limitati inferiormente_, e non hanno dimensioni massime (se non quelle che ci possiamo permettere economicamente). Quindi il progettista può impostare i due parametri in modo che:
 $$
 	\mu_p\frac{W_p}{L_p} = \mu_n\frac{W_n}{L_n}
 $$
@@ -644,7 +644,7 @@ $$
 In questo caso la verifica avviene controllando che:
 $$
 \LARGE
-	V_{DS} \le (V_{GS} - V_{Tn}) < 0
+	V_{DS} \le (V_{GS} - V_{Tp}) < 0
 $$
 
 </div>
