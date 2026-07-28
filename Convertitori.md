@@ -78,7 +78,7 @@ Il `DAC` con **Resistori a Pesi Binari** è composto da due parti principali:
 
 La corrente in ingresso all'amplificatore vale:
 $$
-	i_0 = V_{REF} \cdot R_{eq}
+	i_0 = \frac{V_{REF}}{R_{eq}}
 $$
 
 Dove $R_{eq}$ rappresenta la serie di tutte le resistenze collegate a deviatori settati ad `1`, che collegano la tensione $V_{REF}$ al nodo con **tensione virtuale nulla**.
@@ -100,7 +100,7 @@ $$
 }
 $$
 
-Se utilizzassimo dei resistori _precisi all'_$1\%$, otterremo che con $N$ bit, supponendo di avere $R_{min} = 1$ $k\Omega$, e quindi $\Delta R = 10$ $k\Omega$:
+Se utilizzassimo dei resistori _precisi all'_$1\%$, otterremo che con $N$ bit, supponendo di avere $R_{min} = 1$ $k\Omega$, e quindi $\Delta R_{min} = 10$ $\Omega$:
 $$
 \begin{cases}
 	N = 10 & R_{max} = 1024\;k\Omega & \Delta R = 10.24\;k\Omega \\
@@ -146,9 +146,9 @@ $$
 </div>
 </div>
 
-Ad ogni sezione quindi la corrente si divide in **due parti nominalmente uguali**.implica che il contributo di corrente di ogni deviatore è esattamente:
+Ad ogni sezione quindi la corrente si divide in **due parti nominalmente uguali**. Ciò implica che il contributo di corrente di ogni deviatore sia esattamente:
 $$
-	I_{i} = \frac{I_R}{2^N - i}
+	I_{i} = \frac{I_R}{2^{N-i}}
 $$
 
 Possiamo quindi esprimere la corrente in ingresso:
@@ -332,7 +332,7 @@ $$
 
 Questo circuito quindi _**non dipende**_ dalla resistenza e dal condensatore che utilizziamo.
 
-Il circuito però **è molto lento**, infatti se $\vert V_{IN} \vert = V_{REF}$ sovremo attendere ben $2^N$ cicli di _clock_ prima di poter ottenere la conversione.
+Il circuito però **è molto lento**, infatti se $\vert V_{IN} \vert = 0$ dovremo attendere comunque $2^N$ cicli di clock. Se $\vert V_{IN} \vert = V_{REF}$ dovremo addirittura attendere ben $2^{N+1}$ cicli di _clock_ prima di poter ottenere la conversione.
 
 ### 2.2.4. Convertitore ad Approssimazioni Successive - `SAR`
 

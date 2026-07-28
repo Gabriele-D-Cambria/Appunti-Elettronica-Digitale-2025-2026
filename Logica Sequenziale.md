@@ -36,7 +36,7 @@ Per modellare il concetto di _Stato_ definiamo:
 - **Memoria**: capacità di un sistema di conservare traccia della _storia passata_ degli ingressi. Distinguiamo due tipi di memoria:
   - _Memoria Volatile_: sussiste fintanto che alimentata
   - _Memoria Non Volatile_: si preserva a prescindere dall'alimentazione
-- **Variabili di Stato**: rappresentazione matematica e fisica dell'informazione memoriazzata
+- **Variabili di Stato**: rappresentazione matematica e fisica dell'informazione memorizzata
 
 In elettronica possiamo implementare la memorizzazione con due approcci:
 - **Memorizzazione Statica**: sfrutta circuiti _**bistabili**_, in grado di immagazzinare un bit di informazione
@@ -353,11 +353,11 @@ Le loro caratteristiche principali sono:
 - Basso consumo energetico
 - Tempi di Accesso nell'ordine dei nanosecondi
 
-Le `RAM` (_Random Access MEmori_) permettono di accedere a qualsiasi cella in tempo costantem indipendentemente dalla sua posizione fisica.
+Le `RAM` (_Random Access Memory_) permettono di accedere a qualsiasi cella in tempo costantem indipendentemente dalla sua posizione fisica.
 
-Le ram si dividono in _Static-RAM_, o `SRAM`, e _Digital-RAM_ o `DRAM`.
+Le RAM si dividono in _Static-RAM_ (`SRAM`) e _Digital-RAM_ (`DRAM`).
 
-Le differenze sono suelle caratteristiche di dimensioni, densità e tempi di accesso:
+Le differenze tra queste due tipologie sono suelle caratteristiche di dimensioni, densità e tempi di accesso:
 <div class="flexbox" markdown="1">
 
 |  Tipo  |     Densità     |  Area per `1GB`  | Appilcazione Tipica | Velocità  |   Costo    |
@@ -428,7 +428,7 @@ Se invece $Q = 0$ la situazione è simmetrica:
 
 La scarica/carica della $BL$ è molto lenta, dato che i transistori sono molto piccoli e hanno poca capacità di portare grandi correnti. D'altro canto invece $C_B$ è relativamente grande, dato che la $BL$ è tipicamente lunga.
 
-Occorre quindi avere un circuito che interviene per **amplificare velocemente il piccolo sbilanciamento di tesione** che la cella provoca tra $BL$ e $\overline{BL}$.
+Occorre quindi avere un circuito che interviene per **amplificare velocemente il piccolo sbilanciamento di tensione** che la cella provoca tra $BL$ e $\overline{BL}$.
 
 Ecco che entra in gioco il _**Sense Amplifier**_:
 
@@ -477,27 +477,27 @@ Per quanto riguarda la lettura saranno necessari più passaggi:
 1. Precarica di $BL$ a $\frac{V_{DD}}{2}$
 2. Attivazione di $WL$
 
-In questo caso i due condensatori $C_B$ e $C_S$ condivideranno la carica dopo un trasitorio (dovuto a $R_{ON} \ne 0$ del trasnsitore). Alla fine del transitorio le tensioni $V_{BL}$ e $V_{CS}$ avranno lo stesso valore.
+In questo caso i due condensatori $C_B$ e $C_S$ condivideranno la carica dopo un trasitorio (dovuto a $R_{ON} \ne 0$ del transistore), ottenendo $V_{BL} = V_{C_S}$.
 
 La carica invece si conserva:
 $$
 \begin{align*}
-	C_S &\cdot V_S + C_B \cdot \frac{V_{DD}}{2} = (C_S + C_B) \cdot V_{BL} \\
-	V_{BL} &= \frac{C_S}{C_S + C_B}V_{CS} + \frac{C_B}{C_S + C_B} \cdot \frac{V_{DD}}{2} \\
-	V_{BL} &= \frac{C_S}{C_S + C_B}V_{CS} + (1 - \frac{C_S}{C_S + C_B}) \cdot \frac{V_{DD}}{2} \\
-	V_{BL} &= \frac{V_{DD}}{2} + \frac{C_S}{C_S + C_B}(V_{CS} - \frac{V_{DD}}{2}) \\
+	C_S &\cdot V_{C_S} + C_B \cdot \frac{V_{DD}}{2} = (C_S + C_B) \cdot V_{BL} \\
+	V_{BL} &= \frac{C_S}{C_S + C_B}V_{C_S} + \frac{C_B}{C_S + C_B} \cdot \frac{V_{DD}}{2} \\
+	V_{BL} &= \frac{C_S}{C_S + C_B}V_{C_S} + (1 - \frac{C_S}{C_S + C_B}) \cdot \frac{V_{DD}}{2} \\
+	V_{BL} &= \frac{V_{DD}}{2} + \frac{C_S}{C_S + C_B}(V_{C_S} - \frac{V_{DD}}{2}) \\
 	V_{BL} &= \frac{V_{DD}}{2} + \Delta V
 \end{align*}
 $$
 
-Se $V_{CS} = V_{DD} - V_T$:
+Se $V_{C_S} = V_{DD} - V_T$:
 $$
 \begin{CD}
 	{\Delta V > 0} @>>> {V_{BL} > \frac{V_{DD}}{2}}
 \end{CD}
 $$
 
-Se invece avessimo $V_{CS} = 0$:
+Se invece avessimo $V_{C_S} = 0$:
 $$
 \begin{CD}
 	{\Delta V < 0} @>>> {V_{BL} < \frac{V_{DD}}{2}}
@@ -637,11 +637,11 @@ Questo tipo di ROM ha però un **limite di cicli di scrittura**, che si aggira t
 
 Per rimuovere gli eletroni dal gate flottante viene somministrata **energia tramite radiazione UV**.
 
-I fotoni, che hanno energia $E = h\nu$, dove $h$ è la _Costante di Plank_, $\nu$ la frequenza dei fotoni (legata alla lunghezza d'onda nell'uguaglianza $c = \lambda \nu$), portano gli elettroni nella **banda di conduzione dell'ossido**, permettendo loro di _evadere dal gate_.
+I fotoni, che hanno energia $E = h\nu$, dove $h$ è la _Costante di Plank_ e $\nu$ è la frequenza dei fotoni (legata alla lunghezza d'onda nell'uguaglianza $c = \lambda \nu$), portano gli elettroni nella **banda di conduzione dell'ossido**, permettendo loro di _evadere dal gate_.
 
 Il chip è indatti protetto da una finestra in **quarzo trasparente** che, a differenza del vetro comune, permette il passaggio dei raggi UV.
 
-Per generare i raggi UV si utilizzano lampade a _vapori di mercurio_ che generano raggi a $\lambda \approx 254$ $nm$ e energia $E = hf \approx 4.9 eV$, sufficienti a superare la barriera energetica del $SiO_2$.
+Per generare i raggi UV si utilizzano lampade a _vapori di mercurio_ che generano raggi a $\lambda \approx 254$ $nm$ e energia $E = hf \approx 4.9\;eV$, sufficienti a superare la barriera energetica del $SiO_2$.
 
 La cancellazione è un **processo _lento_** e _**globale**_. Dopo circa 20-30 minuti di esposizione viene resettato l'intero chip.
 

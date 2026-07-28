@@ -969,7 +969,7 @@ Definiamo _**Buffer**_:
 > $$
 > 	\begin{cases}
 > 		R_{of} = \frac{R_{OPA}}{1 - \beta A} = 0 \\
-> 		R_{in} = \frac{V_s}{i_s} = 0 \\
+> 		R_{in} = \frac{V_s}{i_s} = +\infty \\
 > 		R_2 = 0 \\
 > 		A = 1
 > 	\end{cases}

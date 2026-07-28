@@ -521,8 +521,8 @@ Inoltre, quando li analizzeremo, vedremo le soluzioni:
 <div class="">
 
 Dal punto di vista elettrico, possiamo pensare ad una porta inverter come sulla destra, dove la tensione in entrata pilota un interruttore:
-1. $V_{IN} = 0$ $V$ $\to$ **Interruttore Aperto** 
-1. $V_{IN} = V_{DD}$ $V$ $\to$ **Interruttore Chiuso** 
+1. $V_{IN} = 0 \to$ **Interruttore Aperto** 
+1. $V_{IN} = V_{DD} \to$ **Interruttore Chiuso** 
 
 
 Quando l'interruttore è aperto, nel circuito superiore non passa corrente, perciò $V_{o} = V_{DD}$, mentre quando è aperto è connesso a _ground_, quindi $V_{o} = 0$
@@ -856,7 +856,7 @@ Avendo messo serie un altro _inverter_, si presentano quindi altre due capacità
 </div>
 
 
-Poiché tutte queste capacità _**condividono il nodo**_ $D$, possiamo cercare un modo per trovare una _capacità equivalente_. È però importante ricordare che il circuito non va studiato staticamente, ma **per le variazioni**. Infatti, sia _groud_ chee $V_{CC}$, per quanto siano un valore numericamente fisso, durante le commutazioni possono essere considerati _**come se fossero lo stesso nodo**_, data la variazione simmetrica di condizioni all'interno dei transistori.
+Poiché tutte queste capacità _**condividono il nodo**_ $D$, possiamo cercare un modo per trovare una _capacità equivalente_. È però importante ricordare che il circuito non va studiato staticamente, ma **per le variazioni**. Infatti, sia _ground_ chee $V_{CC}$, per quanto siano un valore numericamente fisso, durante le commutazioni possono essere considerati _**come se fossero lo stesso nodo**_, data la variazione simmetrica di condizioni all'interno dei transistori.
 
 Possiamo quindi considerare $C_W$ i due $C_{DB}, C_{GP}$ e $C_{GN}$ come se fossero tutti in _parallelo_.
 
@@ -1792,7 +1792,7 @@ $$
 
 Anche in questo caso abbiamo che l'`NMOS` lavora **sempre in saturazione**.
 
-La scarica quindi procederà a diminuire $V_S$, che farà diminuire $V_{DS}$ finché il transistore continua a condurre corrente. Questo avviene fino a quando $i_{DS} = 0$, che accade quando $V_{DS} = 0$ ovvero $V_S = 0$.
+La scarica quindi procederà a diminuire $V_S$, che farà diminuire $V_{DS}$ finché il transistore continua a condurre corrente. Questo avviene fino a quando $i_{DS} = 0$, che accade quando $V_{DS} = 0$ ovvero $V_D = 0$.
 
 Ciò significa che il nostro condensatore **_si scarica completamente_**.
 

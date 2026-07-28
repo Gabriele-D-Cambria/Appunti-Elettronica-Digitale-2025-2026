@@ -10,7 +10,7 @@ title: Regolatori di Tensione
 	- [2.2. Circuito Integrato](#22-circuito-integrato)
 	- [2.3. Regolatore di Corrente](#23-regolatore-di-corrente)
 	- [2.4. Considerazioni Energetiche](#24-considerazioni-energetiche)
-- [3. Regolatori Switching/a Commutazione](#3-regolatori-switchinga-commutazione)
+- [3. Regolatori a Commutazione (Switching)](#3-regolatori-a-commutazione-switching)
 	- [3.1. Regolatore di Forward](#31-regolatore-di-forward)
 	- [3.2. Regolatore Flyback](#32-regolatore-flyback)
 - [4. Passaggio Tensione Alternata-Costante](#4-passaggio-tensione-alternata-costante)
@@ -247,13 +247,11 @@ $$
 
 ## 2.4. Considerazioni Energetiche
 
-Il nostro elemento di passo, che sia `BJT` o `MKSFET`, _**consuma molta energia**_. Questo accade perché tutta la tensione di _dropout_, viene assorbita e necessita di essere "gestita", che sia attraverso raffreddamenti o altro.
+Il nostro elemento di passo, che sia `BJT` o `MOSFET`, _**consuma molta energia**_. Questo accade perché tutta la tensione di _dropout_, viene assorbita e necessita di essere "gestita", che sia attraverso raffreddamenti o altro.
 
 Inoltre per riuscire a fornire alti voltaggi/amperaggi le tensioni in ingresso che dobbiamo dare all'amplificatore operazionale, affinché agisca di conseguenza sulla base, sono a loro volta alte.
 
-
-
-# 3. Regolatori Switching/a Commutazione
+# 3. Regolatori a Commutazione (Switching)
 
 Sono dei regolatori che dal punto di vista funzionale sono più complessi, ma ci permettono di avere alte tensioni con sprechi di energia minimi.
 
@@ -304,10 +302,9 @@ $$
 \overline{V}_u = E \cdot D
 $$
 
-Per riuscire a elaborare il valor medio della nostra funzione possiamo porre un **filtro passa-basso** che vada a ignorare le armoniche di frequenza superiore del segnale (Trasformate di Fourier).
+Per riuscire a elaborare il valor medio della nostra funzione possiamo introdurre un **filtro passa-basso** che vada a rimuovere le armoniche di frequenza superiore del segnale (possibile vederlo usando le _Trasformate di Fourier_).
 
-
-Utilizziamo un **Filtro Passa Basso Del Second'ordine**, con la frequenza di taglio
+Utilizziamo quindi un **Filtro Passa Basso Del Second'ordine**, che ha frequenza di taglio:
 $$
 \omega = \frac{1}{\sqrt{LC}}
 $$
@@ -418,9 +415,9 @@ $$
 
 Se recuperiamo quindi l'espressione analitica della $V_L$:
 $$
-\begin{CD}	
+\begin{CD}
 	{\int_0^{T_S}{V_L(\tau)\;d\tau} = (E-V_o)T_{ON} - V_oT_{OFF} = 0 }\\
-	@VVV \\ 
+	@VVV \\
 	\begin{matrix}
 		ET_{ON} - V_oT_{ON} - V_oT_S + V_oT_{ON} = 0 \\[1em]
 		V_o = \frac{T_{ON}}{T_S} \cdot E = D \cdot E
@@ -559,7 +556,7 @@ Quando qualcuno va a toccare il punto intermedio, formerà un circuito chiuso, i
 </div>
 <div class="">
 
-Se introduciamo invece un trasformatore, nella maglia del carico _**la tensione dell'induttore non è riferita a terra**_. 
+Se introduciamo invece un trasformatore, nella maglia del carico _**la tensione dell'induttore non è riferita a terra**_.
 
 Ciò significa che se qualcuno tocca _un_ punto del circuito, non passerà alcuna corrente.
 
@@ -576,13 +573,13 @@ Dobbiamo quindi aggiungere il circuito isolante all'interno del nostro schema.
 
 Se lo mettessimo a monte del circuito, prima del _ponte di graetz_:
 - Potremmo abbassare immediatamente la tensione attraverso il rapporto spire
-- Avremmo necessita che il trasformatore _**funzioni bene a $50$ $Hz$**_. I trasformatori che necessiteremmo hanno l'inconveniente di pesare nell'ordine dei _**diversi kilogrammi**_
+- Avremmo necessità che il trasformatore _**funzioni bene a $50$ $Hz$**_. Questo tipo di  trasformatori hanno l'inconveniente di pesare nell'ordine dei _**diversi kilogrammi**_
 
 Questo secondo punto ci spinge a spsotare il trasformatore in un altro punto della nostra catena, in quanto esistono trasformatori che operano nelle centinaia di $kHz$ della grandezza di pochi centimetri.
 
 Il problema è che per come sono fatti i vari blocchi, non possiamo inserirlo in nessun'altro punto del circuito, in quanto dopo il ponte la **tensione è costante**.
 
-Possiamo però _**introdurre un regolatore a commutazione**_ che rende la tensione costante nuovamente alternata (_onda quadra_), permettendoci di trasformarla 
+Possiamo però _**introdurre un regolatore a commutazione**_ che rende la tensione costante nuovamente alternata (_onda quadra_), permettendoci di trasformarla
 
 ## 4.1. Forward con Trasformatore
 
