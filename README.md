@@ -13,7 +13,7 @@ Per una visualizzazione ottimale con formattazione completa, rendering delle for
 - **Michele Dei**
 
 
-**Bibliografia:** 
+**Bibliografia:**
 - Dispense Prog. Massimo Macucci corso da 12 CFU
 - Note sui convertitori A/D e D/A scritte dal Prof. Massimo Piotto
 - Testi delle prove scritte con traccia della risoluzione

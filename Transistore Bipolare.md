@@ -169,7 +169,7 @@ Se lo prendiamo invece nel suo complesso, vediamo che l'**emettitore** rifornisc
 
 
 Diciamo quindi di essere in **_Zona Attiva Diretta_** `ZAD` quando:
-- La giunzione `BE` è in polarizzazione diretta
+- La giunzione `EB` è in polarizzazione diretta
 - La giunzione `BC` è in polarizzazione inversa
 
 Nel caso `pnp` abbiamo quindi $V_{BE} < 0$ e $V_{CB} < 0$.
@@ -306,9 +306,9 @@ $$
 \end{CD}
 $$
 
-Se provassimo a mettere in relazione corrente in entrata e corrente di base otterremmo il **rapporto** $\beta_F$, indicato dai costruttori anche come $h_{FE}$:
+Se provassimo a mettere in relazione la corrente di uscita $(I_C)$ e la corrente di entrata $(I_B)$ otterremmo il **rapporto** $\beta_F$, indicato dai costruttori anche come $h_{FE}$:
 $$
-\beta_F := \frac{I_{in}}{I_B} \Rightarrow \frac{I_C}{I_B} =\frac{\alpha_F}{1 - \alpha_F}
+\beta_F := \frac{I_{out}}{I_{in}} \Rightarrow \frac{I_C}{I_B} =\frac{\alpha_F}{1 - \alpha_F}
 $$
 
 Che, considerando $0.98 \le \alpha_F \le 0.998$, otteniamo che $50 \lesssim \beta_F \lesssim 500$.
@@ -324,10 +324,10 @@ Quello che accade nei `BJT` è quindi:
 
 | Zona di Funzionamento | Polarizzazione Giunzioni `pnp` | Polarizzazione Giunzioni `npn` |           $\beta$           |       Impiego `BJT`        |
 | :-------------------: | :----------------------------: | :----------------------------: | :-------------------------: | :------------------------: |
-| Attiva Diretta `ZAD`  | $V_{BE} < 0 \quad V_{BC} > 0$  | $V_{BE} < 0 \quad V_{BC} > 0$  |    $49 < \beta_F<  499$     |       Amplificatore        |
-| Attiva Inversa `ZAI`  | $V_{BE} > 0 \quad V_{BC} < 0$  | $V_{BE} > 0 \quad V_{BC} < 0$  | $\frac{2}{3} < \beta_R < 4$ | Amplificatore inefficiente |
-|  Interdizione `OFF`   | $V_{BE} > 0 \quad V_{BC} > 0$  | $V_{BE} > 0 \quad V_{BC} > 0$  |        Non definito         |    Interruttore aperto     |
-|   Saturazione `ON`    | $V_{BE} < 0 \quad V_{BC} < 0$  | $V_{BE} < 0 \quad V_{BC} < 0$  |   $\beta_F > \beta_{sat}$   |    Interruttore chiuso     |
+| Attiva Diretta `ZAD`  | $V_{BE} < 0 \quad V_{BC} > 0$  | $V_{BE} > 0 \quad V_{BC} < 0$  |    $49 < \beta_F<  499$     |       Amplificatore        |
+| Attiva Inversa `ZAI`  | $V_{BE} > 0 \quad V_{BC} < 0$  | $V_{BE} < 0 \quad V_{BC} > 0$  | $\frac{2}{3} < \beta_R < 4$ | Amplificatore inefficiente |
+|  Interdizione `OFF`   | $V_{BE} > 0 \quad V_{BC} > 0$  | $V_{BE} < 0 \quad V_{BC} < 0$  |        Non definito         |    Interruttore aperto     |
+|   Saturazione `ON`    | $V_{BE} < 0 \quad V_{BC} < 0$  | $V_{BE} > 0 \quad V_{BC} > 0$  |   $\beta_F > \beta_{sat}$   |    Interruttore chiuso     |
 
 </div>
 
@@ -369,7 +369,7 @@ Noteremo più avanti che in realtà questa assenza è dovuta a una semplificazio
 </div>
 <div class="">
 
-Per quanto riguarda le **caratteristiche di ingresso**, dalla soluzione del modello di _Ebers-Moll_ avevamo ottenuto che:
+Per quanto riguarda le **caratteristiche di uscita**, dalla soluzione del modello di _Ebers-Moll_ avevamo ottenuto che:
 $$
 \begin{matrix}
 	I_C = \beta_F I_B & V_{CE} > V_{CE,sat}
@@ -437,20 +437,20 @@ Vediamo quindi l'effetto nei due transistori a parità di $V_{BE}$:
 
 <div class="grid2">
 <div class="top">
-<figure class="">
+<figure class="80">
 <img class="80" src="./images/transistor/bjt/early-effect-npn.png">
 <figcaption>
 
-npn
+`npn`
 </figcaption>
 </figure>
 </div>
 <div class="top">
-<figure class="">
+<figure class="80">
 <img class="80" src="./images/transistor/bjt/early-effect-pnp.png">
 <figcaption>
 
-pnp
+`pnp`
 </figcaption>
 </figure>
 </div>

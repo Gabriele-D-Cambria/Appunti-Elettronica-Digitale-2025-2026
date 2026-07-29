@@ -104,9 +104,9 @@ Ricordando che dobbiamo dimostrare che:
 $$
 \begin{CD}
 	{
-		\vec{J}_{TOT} = \vec{J}_{n} + \vec{J}_{p} = 0 
-	} 
-	@>\text{Equilibrio Termodinamico}> > 
+		\vec{J}_{TOT} = \vec{J}_{n} + \vec{J}_{p} = 0
+	}
+	@>\text{Equilibrio Termodinamico}> >
 	{
 		\vec{J}_{n} = - \vec{J}_{p}
 	}
@@ -246,11 +246,11 @@ $$
 \begin{CD}
 	{
 		V_T = \frac{K_BT}{q}
-	} 
-	@>{T = 300°K}> > 
+	}
+	@>{T = 300°K}> >
 	{
 		V_T \approx 26\;mV
-	} 
+	}
 \end{CD}
 $$
 

@@ -173,7 +173,7 @@ Infatti, avendo il condensatore carico:
 </div>
 </div>
 
-Il `PIV` di questo circuito sarà perciò 
+Il `PIV` di questo circuito sarà perciò
 $$
 	\max{(V_A - V_K)} = V_M - (-V_M) = 2V_M
 $$

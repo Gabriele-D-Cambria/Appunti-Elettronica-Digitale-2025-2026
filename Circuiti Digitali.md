@@ -521,8 +521,8 @@ Inoltre, quando li analizzeremo, vedremo le soluzioni:
 <div class="">
 
 Dal punto di vista elettrico, possiamo pensare ad una porta inverter come sulla destra, dove la tensione in entrata pilota un interruttore:
-1. $V_{IN} = 0 \to$ **Interruttore Aperto** 
-1. $V_{IN} = V_{DD} \to$ **Interruttore Chiuso** 
+1. $V_{IN} = 0 \to$ **Interruttore Aperto**
+1. $V_{IN} = V_{DD} \to$ **Interruttore Chiuso**
 
 
 Quando l'interruttore è aperto, nel circuito superiore non passa corrente, perciò $V_{o} = V_{DD}$, mentre quando è aperto è connesso a _ground_, quindi $V_{o} = 0$
@@ -571,7 +571,7 @@ Negli anni sono state proposte diverse soluzioni a questo problema, ed oggi quel
 
 Invece di usare una resistenza e un interruttore, utilizziamo **due interruttori** $1$ e $2$.
 
-- Quando $V_{IN} = 0$ se l'interruttore $1$ fosse $ON$ e $2$ fosse $OFF$: &emsp; $V_{o} = V_{DD}$ 
+- Quando $V_{IN} = 0$ se l'interruttore $1$ fosse $ON$ e $2$ fosse $OFF$: &emsp; $V_{o} = V_{DD}$
 - Quando $V_{IN} = V_{DD}$ se l'interruttore $1$ fosse $OFF$ e $2$ fosse $ON$: &emsp; $V_{o} = 0$
 
 In questo modo, sia che ci troviamo in uno o nell'altro caso, _**sugli interruttori non passa corrente**_, dato che almeno uno dei due interruttori è aperto.
@@ -1084,7 +1084,7 @@ Per sintetizzare le due reti dobbiamo quindi:
 
 In generale vale **Proprietà della Dualità**:
 > Nelle porte `CMOS`, una **condizione sufficiente** affinché la porta funzioni è che la `PUN` sia la _duale_ della `PDN` e viceversa.
-> 
+>
 > Ovvero ad ogni _serie_ di una porta si ha un _parallelo_ nell'altra e viceversa.
 
 #### 3.3.3.1. Porta `NOR` a 2 Ingressi

@@ -513,10 +513,9 @@ Chiamiamo:
 - $f_L$ &emsp; **Limte Inferiore Di Banda**
 - $f_H$ &emsp; **Limte Superiore Di Banda**
 
-
 I circuiti che hanno questo diagramma di Bode, si dicono **accoppiati in AC** (_AC paired_). Infatti, per segnali a basse freqeunze la risposta in frequenza è _**pari a zero**_.
 
-Esistono anche altri tipi di sistemi che hanno questa risposta in frequenza:
+Esistono anche altri tipi di sistemi, come ad esempio gli _amplificatori operazionali_ che vedremo nei [prossimi capitoli](#7-amplificatori-differenziali), che hanno questa risposta in frequenza:
 
 <img class="30" src="./images/transistor/amplification/frequency/DC-pairing.png">
 
@@ -645,7 +644,7 @@ $$
 
 La reazione _**non solo modifica la funzione di trasferimento**_, ma, nel caso di _prelievi di tensione_, andiamo a _**modificare anche la resistenza di uscita**_.
 
-Nel caso di reazione negativa, ovvero $\beta A \gg 1$, quello che accade è che $R_{of} \approx 0$, ovvero è come se fosse in cortocircuito, assimilando il nostro sistema ad un _**generatore di tensione costante**_.
+Nel caso di reazione negativa, ovvero $\vert \beta A \vert \gg 1$, quello che accade è che $R_{of} \approx 0$, ovvero è come se fosse in cortocircuito, assimilando il nostro sistema ad un _**generatore di tensione costante**_.
 
 
 Analogamente anche la resistenza di ingresso viene modificata a seconda che si faccia una rete sommatrice in serie o in parallelo.
@@ -858,9 +857,9 @@ Se questo circuito rispetta le seguenti ipotesi, allora ci permette di trattare 
 
 Le ipotesi sono due:
 1. L'`OPA` agisce in **zona lineare**
-2. Si trova in un _loop di reazione_ nel quale $\beta A \gg 1$
+2. Si trova in un _loop di reazione_ nel quale $\vert \beta A \vert \gg 1$
 
-Verificate queste la conseguenza principale è che:
+Al verificarsi di queste condizioni, la conseguenza principale è che:
 $$
 \LARGE
 	V^+ \approx V^-
@@ -1079,7 +1078,7 @@ L'analisi del circuito è sempre la stessa. Ipotizziamo per comodità l'ipotesi 
 <div class="top">
 <p class="p">Ipotesi 1</p>
 
---- 
+---
 
 Nell'ipotesi che:
 $$
@@ -1107,7 +1106,7 @@ $$
 <div class="top">
 <p class="p">Ipotesi 2</p>
 
---- 
+---
 
 Nella seconda ipotesi:
 $$
@@ -1126,7 +1125,7 @@ $$
 </div>
 </div>
 
---- 
+---
 
 Mettiamo adesso insieme i due risultati:
 $$
