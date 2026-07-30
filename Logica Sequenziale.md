@@ -697,7 +697,7 @@ Per risolvere questo problema occorre proteggere le celle adiacenti dalla cancel
 
 Per farlo è necessario **complicare** l'architettura della cella di memoria:
 - Aggiungendo un `NMOS` di protezione, pilotato da un opportuno segnale di selezione `SEL`.
-- Avendo una la linea di massa `GND` collegata al _gate flottante_ (_floating_) per ogni colonna. In questo modo si evita la dissipazione di corrente indesiderata sulla cella nella colonna successiva a quella che stiamo scrivendo.
+- Avendo una la linea di massa `GND` collegata al _ground flottante_ (_floating_) per ogni colonna. In questo modo si evita la dissipazione di corrente indesiderata sulla cella nella colonna successiva a quella che stiamo scrivendo.
 
 <img class="50" src="./images/seq-logic/rom/eeprom-matrix-solution.png">
 
